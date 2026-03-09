@@ -1,59 +1,57 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nasrullah Tanim — Operations &amp; Systems Architect</title>
+  <title>Nasrullah Tanim, Operations &amp; Systems Architect</title>
   <meta name="description" content="Content production, AI automation, and outbound systems that scale. I build operational infrastructure for founders.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     /* ========== CSS RESET ========== */
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-    /* ========== THEME VARIABLES ========== */
+    /* ========== VARIABLES ========== */
     :root {
       --transition-speed: 0.3s;
-      --sidebar-width: 320px;
+      --bg: #0c0c0c;
+      --surface: #161616;
+      --surface-hover: #1e1e1e;
+      --border: #222222;
+      --text-primary: #f2f2f2;
+      --text-secondary: #b4b4b4;
+      --text-muted: #6e6e6e;
+      --accent: #e8ff47;
+      --accent-hover: #d4eb35;
+      --accent-text: #0c0c0c;
+      --card-bg: #111111;
+      --input-bg: #111111;
+      --navbar-bg: rgba(12, 12, 12, 0.78);
+      --mobile-nav-bg: rgba(12, 12, 12, 0.97);
+      --shadow: 0 1px 3px rgba(0,0,0,0.5);
+      --shadow-lg: 0 8px 30px rgba(0,0,0,0.6);
+      --glow: 0 0 30px rgba(232,255,71,0.06);
     }
 
-    [data-theme="dark"] {
-      --bg: #0a0a0a;
-      --surface: #1a1a1a;
-      --surface-hover: #222222;
-      --border: #262626;
-      --text-primary: #f5f5f5;
-      --text-secondary: #a3a3a3;
-      --text-muted: #737373;
-      --accent: #3b82f6;
-      --accent-hover: #2563eb;
-      --accent-warm: #f59e0b;
-      --accent-warm-hover: #d97706;
-      --card-bg: #141414;
-      --input-bg: #141414;
-      --shadow: 0 1px 3px rgba(0,0,0,0.4);
-      --shadow-lg: 0 8px 30px rgba(0,0,0,0.5);
-      --glow: 0 0 20px rgba(59,130,246,0.15);
-    }
-
-    [data-theme="light"] {
+    html.light {
       --bg: #fafafa;
-      --surface: #ffffff;
-      --surface-hover: #f5f5f5;
-      --border: #e5e5e5;
-      --text-primary: #171717;
-      --text-secondary: #525252;
-      --text-muted: #a3a3a3;
-      --accent: #2563eb;
-      --accent-hover: #1d4ed8;
-      --accent-warm: #d97706;
-      --accent-warm-hover: #b45309;
+      --surface: #f3f3f3;
+      --surface-hover: #ebebeb;
+      --border: #e2e2e2;
+      --text-primary: #0a0a0a;
+      --text-secondary: #4a4a4a;
+      --text-muted: #909090;
+      --accent: #0a0a0a;
+      --accent-hover: #333333;
+      --accent-text: #fafafa;
       --card-bg: #ffffff;
-      --input-bg: #f5f5f5;
+      --input-bg: #f9f9f9;
+      --navbar-bg: rgba(250, 250, 250, 0.88);
+      --mobile-nav-bg: rgba(250, 250, 250, 0.98);
       --shadow: 0 1px 3px rgba(0,0,0,0.08);
       --shadow-lg: 0 8px 30px rgba(0,0,0,0.1);
-      --glow: 0 0 20px rgba(37,99,235,0.1);
+      --glow: 0 0 30px rgba(0,0,0,0.04);
     }
 
     /* ========== BASE ========== */
@@ -64,18 +62,21 @@
     }
 
     body {
-      font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       background: var(--bg);
       color: var(--text-primary);
       line-height: 1.7;
-      transition: background var(--transition-speed), color var(--transition-speed);
       overflow-x: hidden;
+      font-size: 16px;
+      letter-spacing: -0.005em;
     }
 
     h1, h2, h3, h4, h5, h6 {
-      font-family: 'Lora', Georgia, serif;
-      font-weight: 600;
-      line-height: 1.3;
+      font-family: 'Inter Tight', sans-serif;
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      color: var(--text-primary);
     }
 
     a {
@@ -86,161 +87,115 @@
 
     a:hover { color: var(--accent-hover); }
 
-    /* ========== LAYOUT ========== */
-    .layout {
-      display: flex;
-      min-height: 100vh;
-    }
-
-    /* ========== SIDEBAR ========== */
-    .sidebar {
-      width: var(--sidebar-width);
+    /* ========== NAVBAR ========== */
+    .navbar {
       position: fixed;
       top: 0;
       left: 0;
-      height: 100vh;
-      background: var(--surface);
-      border-right: 1px solid var(--border);
+      right: 0;
+      height: 60px;
       display: flex;
-      flex-direction: column;
-      padding: 2.5rem 1.75rem;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2.5rem;
       z-index: 100;
-      transition: background var(--transition-speed), border-color var(--transition-speed), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      overflow-y: auto;
-    }
-
-    .sidebar-header {
-      text-align: center;
-      margin-bottom: 2rem;
-    }
-
-    .avatar {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--accent), var(--accent-warm));
-      margin: 0 auto 1.25rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2.25rem;
-      color: #fff;
-      font-family: 'Lora', serif;
-      font-weight: 700;
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 0 0 3px var(--surface), 0 0 0 5px var(--border);
-    }
-
-    .avatar img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 50%;
-    }
-
-    .sidebar-name {
-      font-family: 'Lora', serif;
-      font-size: 1.35rem;
-      font-weight: 700;
-      color: var(--text-primary);
-      margin-bottom: 0.35rem;
-    }
-
-    .sidebar-title {
-      font-size: 0.78rem;
-      color: var(--text-secondary);
-      line-height: 1.55;
-      margin-bottom: 0.75rem;
-      font-weight: 400;
-    }
-
-    .sidebar-bio {
-      font-size: 0.82rem;
-      color: var(--text-muted);
-      font-style: italic;
-      margin-bottom: 1.75rem;
-      padding-bottom: 1.75rem;
+      background: var(--navbar-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--border);
+      transition: background 0.3s ease, border-color 0.3s ease;
     }
 
-    /* ========== NAV ========== */
-    .sidebar-nav {
-      flex: 1;
-    }
-
-    .sidebar-nav ul {
-      list-style: none;
-    }
-
-    .sidebar-nav li {
-      margin-bottom: 0.2rem;
-    }
-
-    .nav-link {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      padding: 0.65rem 0.85rem;
-      border-radius: 8px;
-      font-size: 0.88rem;
-      font-weight: 500;
-      color: var(--text-secondary);
-      cursor: pointer;
-      transition: all 0.2s ease;
-      user-select: none;
-    }
-
-    .nav-link:hover {
+    .navbar-brand {
+      font-family: 'Inter Tight', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
       color: var(--text-primary);
-      background: var(--surface-hover);
+      letter-spacing: -0.01em;
+      cursor: pointer;
+      transition: color 0.2s;
     }
 
-    .nav-link.active {
-      color: var(--accent);
-      background: rgba(59,130,246,0.08);
-    }
+    .navbar-brand:hover { color: var(--accent); }
 
-    [data-theme="light"] .nav-link.active {
-      background: rgba(37,99,235,0.07);
-    }
-
-    .nav-link .nav-icon {
-      font-size: 1rem;
-      width: 1.25rem;
-      text-align: center;
-      flex-shrink: 0;
-    }
-
-    /* ========== SIDEBAR FOOTER ========== */
-    .sidebar-footer {
-      margin-top: auto;
-      padding-top: 1.5rem;
-      border-top: 1px solid var(--border);
+    .navbar-right {
       display: flex;
       align-items: center;
-      justify-content: center;
-      gap: 1rem;
+      gap: 2rem;
+    }
+
+    .navbar-nav {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      list-style: none;
+      background: rgba(255,255,255,0.06);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 999px;
+      padding: 5px 10px;
+    }
+
+    .navbar-nav .nav-link {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      cursor: pointer;
+      padding: 0.3rem 0.85rem;
+      border-radius: 999px;
+      transition: color 0.2s ease, background 0.2s ease;
+      letter-spacing: 0em;
+      background: none;
+      border: none;
+      position: relative;
+    }
+
+    .navbar-nav .nav-link:hover {
+      color: var(--text-primary);
+    }
+
+    .navbar-nav .nav-link.active {
+      color: var(--text-primary);
+      background: rgba(255,255,255,0.1);
+    }
+
+    /* Active indicator dot */
+    .navbar-nav .nav-link.active::after {
+      content: '';
+      position: absolute;
+      bottom: 2px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    /* ========== NAVBAR SOCIALS ========== */
+    .navbar-socials {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding-left: 1.25rem;
+      border-left: 1px solid var(--border);
     }
 
     .social-link {
-      width: 38px;
-      height: 38px;
-      border-radius: 8px;
       display: flex;
       align-items: center;
       justify-content: center;
+      width: 32px;
+      height: 32px;
       color: var(--text-muted);
-      background: transparent;
-      border: 1px solid var(--border);
-      transition: all 0.2s ease;
+      transition: color 0.2s ease;
+      border-radius: 6px;
     }
 
     .social-link:hover {
       color: var(--accent);
-      border-color: var(--accent);
-      background: rgba(59,130,246,0.06);
-      transform: translateY(-2px);
     }
 
     .social-link svg {
@@ -249,87 +204,99 @@
       fill: currentColor;
     }
 
-    /* ========== THEME TOGGLE ========== */
-    .theme-toggle {
-      position: fixed;
-      top: 1.25rem;
-      right: 1.25rem;
-      width: 42px;
-      height: 42px;
-      border-radius: 10px;
-      border: 1px solid var(--border);
-      background: var(--surface);
-      color: var(--text-secondary);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 200;
-      transition: all 0.2s ease;
-      box-shadow: var(--shadow);
+    .social-link--stroke svg {
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
     }
 
-    .theme-toggle:hover {
-      color: var(--accent-warm);
-      border-color: var(--accent-warm);
-      transform: scale(1.05);
-    }
-
-    .theme-toggle svg { width: 18px; height: 18px; }
-
-    .theme-toggle .icon-sun,
-    .theme-toggle .icon-moon { display: none; }
-
-    [data-theme="dark"] .theme-toggle .icon-sun { display: block; }
-    [data-theme="light"] .theme-toggle .icon-moon { display: block; }
-
-    /* ========== MOBILE MENU TOGGLE ========== */
+    /* ========== MOBILE MENU BUTTON ========== */
     .mobile-menu-btn {
       display: none;
-      position: fixed;
-      top: 1.25rem;
-      left: 1.25rem;
-      width: 42px;
-      height: 42px;
-      border-radius: 10px;
-      border: 1px solid var(--border);
-      background: var(--surface);
+      background: none;
+      border: none;
       color: var(--text-secondary);
       cursor: pointer;
-      z-index: 201;
+      padding: 0.4rem;
       align-items: center;
       justify-content: center;
-      transition: all 0.2s ease;
-      box-shadow: var(--shadow);
     }
 
-    .mobile-menu-btn svg { width: 20px; height: 20px; }
+    .mobile-menu-btn svg {
+      width: 22px;
+      height: 22px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+    }
 
-    .mobile-overlay {
+    /* ========== MOBILE NAV DROPDOWN ========== */
+    .mobile-nav {
       display: none;
       position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.6);
+      top: 60px;
+      left: 0;
+      right: 0;
+      background: var(--mobile-nav-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
       z-index: 99;
-      backdrop-filter: blur(4px);
-      -webkit-backdrop-filter: blur(4px);
+      padding: 1rem 2.5rem 1.75rem;
+      transition: background 0.3s ease;
     }
 
-    .mobile-overlay.visible { display: block; }
+    .mobile-nav.open {
+      display: block;
+    }
+
+    .mobile-nav ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .mobile-nav .nav-link {
+      display: block;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      padding: 0.55rem 0;
+      cursor: pointer;
+      transition: color 0.2s;
+      border: none;
+      background: none;
+    }
+
+    .mobile-nav .nav-link.active,
+    .mobile-nav .nav-link:hover {
+      color: var(--accent);
+    }
+
+    .mobile-nav-socials {
+      display: flex;
+      gap: 0.75rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+    }
 
     /* ========== MAIN CONTENT ========== */
     .main {
-      flex: 1;
-      margin-left: var(--sidebar-width);
-      padding: 3.5rem 4rem 4rem;
-      max-width: 920px;
-      transition: margin var(--transition-speed);
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 7rem 2.5rem 5rem;
     }
 
     /* ========== SECTIONS ========== */
     .section {
       display: none;
-      animation: fadeIn 0.45s ease;
+      animation: fadeIn 0.4s ease;
     }
 
     .section.active { display: block; }
@@ -340,7 +307,7 @@
     }
 
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
+      from { opacity: 0; transform: translateY(18px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
@@ -355,36 +322,110 @@
     .animate-up:nth-child(4) { animation-delay: 0.26s; }
     .animate-up:nth-child(5) { animation-delay: 0.33s; }
 
+    /* ========== HERO ========== */
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2.5rem;
+      margin-bottom: 3.5rem;
+      padding-bottom: 3.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-text { flex: 1; }
+
+    .hero-name {
+      font-family: 'Inter Tight', sans-serif;
+      font-size: 3.75rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      line-height: 1.0;
+      margin-bottom: 1rem;
+      letter-spacing: -0.04em;
+    }
+
+    .hero-tagline {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.125rem;
+      color: var(--text-primary);
+      line-height: 1.6;
+      font-weight: 600;
+      max-width: 520px;
+      letter-spacing: -0.01em;
+    }
+
+    .hero-photo {
+      width: 128px;
+      height: 128px;
+      border-radius: 50%;
+      overflow: hidden;
+      flex-shrink: 0;
+      border: 2px solid var(--border);
+      background: var(--surface);
+    }
+
+    .hero-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
     /* ========== SECTION TYPOGRAPHY ========== */
     .eyebrow {
-      font-family: 'DM Sans', sans-serif;
+      display: block;
+      font-family: 'Inter', sans-serif;
       font-size: 0.7rem;
       font-weight: 600;
-      letter-spacing: 0.15em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 0.75rem;
+      color: var(--text-muted);
+      margin-bottom: 0.65rem;
     }
 
     .section-title {
-      font-size: 2rem;
-      margin-bottom: 0.85rem;
+      font-family: 'Inter Tight', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 0.75rem;
       color: var(--text-primary);
+      letter-spacing: -0.04em;
+      line-height: 1.05;
     }
 
     .section-lead {
-      font-size: 1.05rem;
+      font-size: 1.125rem;
       color: var(--text-secondary);
-      margin-bottom: 2.25rem;
-      max-width: 620px;
-      line-height: 1.75;
+      margin-bottom: 2.5rem;
+      max-width: 580px;
+      line-height: 1.7;
+      font-weight: 400;
     }
 
     .section-body p {
       color: var(--text-secondary);
+      margin-bottom: 1.1rem;
+      font-size: 1.0625rem;
+      line-height: 1.75;
+      font-weight: 400;
+    }
+
+    /* ========== DIVIDER ========== */
+    .section-divider {
+      height: 1px;
+      background: var(--border);
+      margin: 2.5rem 0;
+    }
+
+    .who-i-am-title {
+      font-family: 'Inter Tight', sans-serif;
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      letter-spacing: -0.04em;
       margin-bottom: 1.25rem;
-      font-size: 0.95rem;
-      line-height: 1.8;
+      margin-top: 0.25rem;
     }
 
     /* ========== CARDS ========== */
@@ -407,18 +448,16 @@
     .card::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
+      top: 0; left: 0; right: 0;
       height: 2px;
-      background: linear-gradient(90deg, var(--accent), var(--accent-warm));
+      background: linear-gradient(90deg, var(--accent), transparent);
       opacity: 0;
       transition: opacity 0.3s ease;
     }
 
     .card:hover {
-      border-color: rgba(59,130,246,0.25);
-      box-shadow: var(--glow);
+      border-color: var(--text-muted);
+      box-shadow: var(--shadow-lg);
       transform: translateY(-2px);
     }
 
@@ -430,28 +469,27 @@
     }
 
     .card-title {
-      font-family: 'Lora', serif;
-      font-size: 1.15rem;
-      font-weight: 600;
-      margin-bottom: 0.65rem;
+      font-family: 'Inter Tight', sans-serif;
+      font-size: 1.125rem;
+      font-weight: 800;
+      margin-bottom: 0.55rem;
       color: var(--text-primary);
+      letter-spacing: -0.03em;
     }
 
     .card-desc {
-      font-size: 0.88rem;
+      font-size: 0.875rem;
       color: var(--text-secondary);
-      line-height: 1.7;
-      margin-bottom: 1.25rem;
+      line-height: 1.65;
+      margin-bottom: 1.1rem;
     }
 
-    .card-capabilities {
-      list-style: none;
-    }
+    .card-capabilities { list-style: none; }
 
     .card-capabilities li {
-      font-size: 0.82rem;
-      color: var(--text-muted);
-      padding: 0.3rem 0;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      padding: 0.28rem 0;
       padding-left: 1.1rem;
       position: relative;
     }
@@ -460,94 +498,323 @@
       content: '›';
       position: absolute;
       left: 0;
-      color: var(--accent);
-      font-weight: 700;
+      color: var(--text-muted);
+      font-weight: 600;
     }
 
-    /* ========== PORTFOLIO CARDS ========== */
-    .portfolio-card {
+    /* ========== EXPERTISE (MERGED SKILLS + STACK) ========== */
+    .expertise-grid {
+      display: grid;
+      gap: 1.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .expertise-card {
       background: var(--card-bg);
       border: 1px solid var(--border);
-      border-radius: 14px;
+      border-radius: 16px;
       padding: 2rem;
-      margin-bottom: 1.5rem;
-      transition: all 0.3s ease;
       position: relative;
       overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    .portfolio-card::before {
+    .expertise-card::before {
       content: '';
       position: absolute;
       top: 0;
       left: 0;
       right: 0;
       height: 2px;
-      background: linear-gradient(90deg, var(--accent), var(--accent-warm));
+      background: linear-gradient(90deg, var(--text-muted), transparent);
       opacity: 0;
-      transition: opacity 0.3s ease;
+      transition: opacity 0.4s ease;
     }
 
-    .portfolio-card:hover {
-      border-color: rgba(59,130,246,0.25);
-      box-shadow: var(--glow);
-      transform: translateY(-2px);
+    .expertise-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(ellipse at top left, rgba(128,128,128,0.04), transparent 70%);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.4s ease;
     }
 
-    .portfolio-card:hover::before { opacity: 1; }
+    .expertise-card:hover {
+      border-color: var(--text-muted);
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-3px);
+    }
 
-    .portfolio-header {
+    .expertise-card:hover::before,
+    .expertise-card:hover::after { opacity: 1; }
+
+    .expertise-card-header {
       display: flex;
-      align-items: flex-start;
+      align-items: center;
       gap: 1rem;
       margin-bottom: 1rem;
     }
 
-    .portfolio-icon {
-      font-size: 1.5rem;
+    .expertise-icon {
+      font-size: 2rem;
+      line-height: 1;
+    }
+
+    .expertise-title {
+      font-family: 'Inter Tight', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin: 0;
+      letter-spacing: -0.03em;
+    }
+
+    .expertise-desc {
+      font-size: 0.9375rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 1.1rem;
+    }
+
+    .expertise-capabilities {
+      list-style: none;
+      margin-bottom: 1.4rem;
+      padding: 0;
+    }
+
+    .expertise-capabilities li {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      padding: 0.3rem 0;
+      padding-left: 1.2rem;
+      position: relative;
+    }
+
+    .expertise-capabilities li::before {
+      content: '–';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .expertise-tools {
+      padding-top: 1.1rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .expertise-tools-label {
+      display: block;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.63rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+
+    .tool-logo-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .tool-logo-item {
+      position: relative;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #ffffff;
+      border: 1px solid rgba(0,0,0,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: visible;
+      cursor: default;
       flex-shrink: 0;
-      width: 44px;
-      height: 44px;
-      background: rgba(59,130,246,0.08);
+    }
+
+    .tool-logo-item img {
+      width: 18px;
+      height: 18px;
+      object-fit: contain;
+      border-radius: 3px;
+    }
+
+    .tool-logo-fallback {
+      display: none;
+      font-size: 0.48rem;
+      font-weight: 700;
+      color: #555555;
+      text-align: center;
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    .tool-tooltip {
+      position: absolute;
+      bottom: calc(100% + 6px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      font-size: 0.65rem;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 6px;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.15s ease;
+      z-index: 20;
+    }
+
+    .tool-logo-item:hover .tool-tooltip { opacity: 1; }
+
+    .tool-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .tool-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.3rem 0.65rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      transition: all 0.2s ease;
+      letter-spacing: 0.01em;
+    }
+
+    .tool-badge:hover {
+      color: var(--text-primary);
+      border-color: var(--text-muted);
+      background: var(--surface);
+    }
+
+    /* ========== BENTO GRID ========== */
+    .bento-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      margin-top: 2rem;
+    }
+
+    .bento-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease, background 0.25s ease;
+    }
+
+    .bento-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+
+    .bento-card:hover {
+      border-color: var(--text-muted);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.45);
+      transform: translateY(-3px);
+    }
+
+    .bento-card:hover::before { opacity: 1; }
+
+    .bento-card--full { grid-column: 1 / -1; }
+    .bento-card--half { grid-column: span 1; }
+
+    .bento-top-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+
+    .bento-icon-box {
+      width: 40px;
+      height: 40px;
+      background: var(--surface);
       border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
     }
 
-    .portfolio-name {
-      font-family: 'Lora', serif;
-      font-size: 1.15rem;
-      font-weight: 600;
+    .bento-card-number {
+      font-family: 'Inter Tight', sans-serif;
+      font-size: 2rem;
+      font-weight: 800;
       color: var(--text-primary);
+      opacity: 0.15;
+      line-height: 1;
     }
 
-    .portfolio-desc {
-      font-size: 0.88rem;
+    .bento-name {
+      font-family: 'Inter Tight', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.75rem;
+    }
+
+    .bento-body-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .bento-desc {
+      font-size: 0.875rem;
       color: var(--text-secondary);
       line-height: 1.75;
-      margin-bottom: 1.25rem;
+      margin: 0;
     }
 
-    .portfolio-results {
-      margin-bottom: 1.25rem;
-    }
+    .bento-results { margin-bottom: 1.25rem; }
 
-    .portfolio-results-title {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
+    .bento-results-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.13em;
       text-transform: uppercase;
-      color: var(--text-muted);
+      color: var(--accent);
       margin-bottom: 0.65rem;
     }
 
-    .portfolio-results ul {
+    .bento-results ul {
       list-style: none;
+      margin: 0;
+      padding: 0;
     }
 
-    .portfolio-results li {
+    .bento-results li {
       font-size: 0.84rem;
       color: var(--text-secondary);
       padding: 0.3rem 0;
@@ -556,7 +823,7 @@
       line-height: 1.6;
     }
 
-    .portfolio-results li::before {
+    .bento-results li::before {
       content: '✓';
       position: absolute;
       left: 0;
@@ -565,20 +832,21 @@
       font-size: 0.75rem;
     }
 
-    .portfolio-tags {
+    .bento-tags {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.45rem;
+      gap: 0.4rem;
+      margin-top: 1.25rem;
     }
 
-    .tag {
-      font-size: 0.7rem;
+    .bento-tag {
+      font-size: 11px;
       font-weight: 500;
-      padding: 0.3rem 0.7rem;
-      border-radius: 6px;
-      background: rgba(59,130,246,0.08);
-      color: var(--accent);
-      border: 1px solid rgba(59,130,246,0.15);
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
     }
 
     /* ========== SEE WORKS BUTTON ========== */
@@ -586,24 +854,35 @@
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      margin-top: 0.5rem;
-      margin-bottom: 1rem;
-      padding: 0.55rem 1.1rem;
-      font-size: 0.82rem;
+      margin-top: 1rem;
+      padding: 0.4rem 1rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.78rem;
       font-weight: 600;
       color: var(--accent);
-      background: rgba(59,130,246,0.08);
-      border: 1px solid rgba(59,130,246,0.2);
-      border-radius: 8px;
+      background: transparent;
+      border: 1px solid rgba(232,255,71,0.3);
+      border-radius: 999px;
       cursor: pointer;
       transition: all 0.2s ease;
       text-decoration: none;
     }
 
     .see-works-btn:hover {
-      background: rgba(59,130,246,0.14);
-      border-color: var(--accent);
+      background: rgba(232,255,71,0.08);
+      border-color: rgba(232,255,71,0.5);
+      color: var(--accent);
       transform: translateY(-1px);
+    }
+
+    @media (max-width: 768px) {
+      .bento-grid { grid-template-columns: 1fr; }
+      .bento-card--full,
+      .bento-card--half { grid-column: 1 / -1; }
+      .bento-body-cols {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+      }
     }
 
     /* ========== VIDEO MODAL ========== */
@@ -611,17 +890,15 @@
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.85);
+      background: rgba(0,0,0,0.88);
       z-index: 1000;
       align-items: center;
       justify-content: center;
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
     }
 
-    .video-modal-overlay.visible {
-      display: flex;
-    }
+    .video-modal-overlay.visible { display: flex; }
 
     .video-modal {
       background: var(--surface);
@@ -637,10 +914,8 @@
 
     .video-modal-close {
       position: absolute;
-      top: 1rem;
-      right: 1rem;
-      width: 32px;
-      height: 32px;
+      top: 1rem; right: 1rem;
+      width: 32px; height: 32px;
       border-radius: 8px;
       border: 1px solid var(--border);
       background: var(--surface);
@@ -660,8 +935,9 @@
     }
 
     .video-modal h3 {
-      font-family: 'Lora', serif;
+      font-family: 'Inter Tight', sans-serif;
       font-size: 1.15rem;
+      font-weight: 700;
       margin-bottom: 1.25rem;
       padding-right: 2.5rem;
     }
@@ -684,7 +960,7 @@
     }
 
     .video-link-item:hover {
-      border-color: rgba(59,130,246,0.3);
+      border-color: rgba(232,255,71,0.2);
       background: var(--surface-hover);
     }
 
@@ -695,19 +971,10 @@
       flex: 1;
     }
 
-    .video-link-item a:hover {
-      color: var(--accent);
-    }
+    .video-link-item a:hover { color: var(--accent); }
 
-    .video-link-icon {
-      color: #ff0000;
-      flex-shrink: 0;
-    }
-
-    .video-link-icon svg {
-      width: 22px;
-      height: 22px;
-    }
+    .video-link-icon { color: #ff0000; flex-shrink: 0; }
+    .video-link-icon svg { width: 22px; height: 22px; }
 
     .video-links-placeholder {
       font-size: 0.85rem;
@@ -717,7 +984,7 @@
       font-style: italic;
     }
 
-    /* ========== THOUGHTS SECTION ========== */
+    /* ========== THOUGHTS ========== */
     .thoughts-placeholder {
       background: var(--card-bg);
       border: 1px dashed var(--border);
@@ -729,98 +996,26 @@
     .thoughts-placeholder-icon {
       font-size: 2.5rem;
       margin-bottom: 1rem;
-      opacity: 0.6;
+      opacity: 0.5;
     }
 
     .thoughts-placeholder h3 {
-      font-family: 'Lora', serif;
+      font-family: 'Inter Tight', sans-serif;
       font-size: 1.15rem;
+      font-weight: 700;
       color: var(--text-primary);
       margin-bottom: 0.5rem;
     }
 
     .thoughts-placeholder p {
-      font-size: 0.88rem;
+      font-size: 0.875rem;
       color: var(--text-muted);
       max-width: 420px;
       margin: 0 auto;
       line-height: 1.65;
     }
 
-    /* ========== STACK SECTION ========== */
-    .stack-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 1.5rem;
-      margin-top: 0.5rem;
-    }
-
-    .stack-category {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 1.5rem;
-      transition: all 0.3s ease;
-    }
-
-    .stack-category:hover {
-      border-color: rgba(59,130,246,0.2);
-    }
-
-    .stack-category-title {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 1rem;
-      padding-bottom: 0.6rem;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .stack-list {
-      list-style: none;
-    }
-
-    .stack-list li {
-      font-size: 0.85rem;
-      color: var(--text-secondary);
-      padding: 0.35rem 0;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .stack-list li::before {
-      content: '';
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background: var(--text-muted);
-      flex-shrink: 0;
-    }
-
-    .stack-icon {
-      width: 16px;
-      height: 16px;
-      object-fit: contain;
-      flex-shrink: 0;
-    }
-
-    .stack-list li:has(.stack-icon)::before {
-      display: none;
-    }
-
-    .skill-tool-icon {
-      width: 14px;
-      height: 14px;
-      object-fit: contain;
-      vertical-align: middle;
-      margin: 0 2px;
-    }
-
-    /* ========== CONTACT SECTION ========== */
+    /* ========== CONTACT ========== */
     .contact-grid {
       display: grid;
       grid-template-columns: 1fr 1.4fr;
@@ -836,11 +1031,11 @@
     }
 
     .contact-icon {
-      font-size: 1.15rem;
+      font-size: 1.1rem;
       flex-shrink: 0;
       width: 40px;
       height: 40px;
-      background: rgba(59,130,246,0.08);
+      background: rgba(232,255,71,0.06);
       border-radius: 10px;
       display: flex;
       align-items: center;
@@ -848,8 +1043,8 @@
     }
 
     .contact-label {
-      font-size: 0.72rem;
-      font-weight: 600;
+      font-size: 0.7rem;
+      font-weight: 700;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--text-muted);
@@ -857,18 +1052,13 @@
     }
 
     .contact-value {
-      font-size: 0.88rem;
+      font-size: 0.875rem;
       color: var(--text-secondary);
       word-break: break-all;
     }
 
-    .contact-value a {
-      color: var(--text-secondary);
-    }
-
-    .contact-value a:hover {
-      color: var(--accent);
-    }
+    .contact-value a { color: var(--text-secondary); }
+    .contact-value a:hover { color: var(--accent); }
 
     /* ========== CONTACT FORM ========== */
     .contact-form {
@@ -881,18 +1071,19 @@
 
     .form-group label {
       display: block;
-      font-size: 0.78rem;
-      font-weight: 500;
+      font-size: 0.76rem;
+      font-weight: 600;
       color: var(--text-muted);
       margin-bottom: 0.4rem;
+      letter-spacing: 0.02em;
     }
 
     .form-group input,
     .form-group textarea {
       width: 100%;
       padding: 0.75rem 1rem;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.88rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.875rem;
       color: var(--text-primary);
       background: var(--input-bg);
       border: 1px solid var(--border);
@@ -904,13 +1095,11 @@
 
     .form-group input:focus,
     .form-group textarea:focus {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(59,130,246,0.1);
+      border-color: rgba(232,255,71,0.4);
+      box-shadow: 0 0 0 3px rgba(232,255,71,0.07);
     }
 
-    .form-group textarea {
-      min-height: 140px;
-    }
+    .form-group textarea { min-height: 140px; }
 
     .form-group input::placeholder,
     .form-group textarea::placeholder {
@@ -923,10 +1112,10 @@
       justify-content: center;
       gap: 0.5rem;
       padding: 0.8rem 1.75rem;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.88rem;
-      font-weight: 600;
-      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: var(--accent-text);
       background: var(--accent);
       border: none;
       border-radius: 10px;
@@ -938,12 +1127,10 @@
     .submit-btn:hover {
       background: var(--accent-hover);
       transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(59,130,246,0.3);
+      box-shadow: 0 4px 20px rgba(232,255,71,0.22);
     }
 
-    .submit-btn:active {
-      transform: translateY(0);
-    }
+    .submit-btn:active { transform: translateY(0); }
 
     .form-status {
       font-size: 0.82rem;
@@ -954,36 +1141,34 @@
 
     .form-status.success {
       display: block;
-      background: rgba(34,197,94,0.1);
+      background: rgba(34,197,94,0.08);
       color: #22c55e;
-      border: 1px solid rgba(34,197,94,0.2);
+      border: 1px solid rgba(34,197,94,0.18);
     }
 
     .form-status.error {
       display: block;
-      background: rgba(239,68,68,0.1);
+      background: rgba(239,68,68,0.08);
       color: #ef4444;
-      border: 1px solid rgba(239,68,68,0.2);
+      border: 1px solid rgba(239,68,68,0.18);
     }
 
     /* ========== VIDEO GALLERY ========== */
-    .video-gallery {
-      margin-top: 2.5rem;
-    }
+    .video-gallery { margin-top: 2.5rem; }
 
     .video-gallery-title {
-      font-family: 'Lora', serif;
+      font-family: 'Inter Tight', sans-serif;
       font-size: 1.4rem;
-      font-weight: 600;
+      font-weight: 700;
       color: var(--text-primary);
       margin-bottom: 0.5rem;
     }
 
     .video-gallery-sub {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.13em;
       text-transform: uppercase;
       color: var(--accent);
       margin-bottom: 1.15rem;
@@ -992,9 +1177,7 @@
       border-bottom: 1px solid var(--border);
     }
 
-    .video-gallery-sub:first-of-type {
-      margin-top: 0.5rem;
-    }
+    .video-gallery-sub:first-of-type { margin-top: 0.5rem; }
 
     .podcast-grid {
       display: grid;
@@ -1018,115 +1201,21 @@
     }
 
     .video-embed:hover {
-      border-color: rgba(59,130,246,0.25);
+      border-color: rgba(232,255,71,0.18);
       box-shadow: var(--glow);
     }
 
-    .video-embed--landscape {
-      padding-top: 56.25%; /* 16:9 */
-    }
-
-    .video-embed--portrait {
-      padding-top: 177.78%; /* 9:16 */
-    }
+    .video-embed--landscape { padding-top: 56.25%; }
+    .video-embed--portrait  { padding-top: 177.78%; }
 
     .video-embed iframe {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       border: 0;
     }
 
-    @media (max-width: 768px) {
-      .podcast-grid {
-        grid-template-columns: 1fr;
-      }
-      .reel-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    @media (max-width: 480px) {
-      .reel-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    /* ========== DIVIDER ========== */
-    .section-divider {
-      height: 1px;
-      background: var(--border);
-      margin: 2.5rem 0;
-      opacity: 0.6;
-    }
-
-    /* ========== RESPONSIVE ========== */
-    @media (max-width: 1024px) {
-      .main {
-        padding: 3rem 2.5rem;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .sidebar {
-        transform: translateX(-100%);
-        width: 280px;
-      }
-
-      .sidebar.open {
-        transform: translateX(0);
-      }
-
-      .mobile-menu-btn {
-        display: flex;
-      }
-
-      .main {
-        margin-left: 0;
-        padding: 5rem 1.5rem 3rem;
-      }
-
-      .section-title {
-        font-size: 1.6rem;
-      }
-
-      .contact-grid {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-      }
-
-      .stack-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .theme-toggle {
-        top: 1.25rem;
-        right: 1.25rem;
-      }
-
-      .portfolio-header {
-        flex-direction: column;
-        gap: 0.6rem;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .main {
-        padding: 4.5rem 1.15rem 2.5rem;
-      }
-
-      .card {
-        padding: 1.5rem;
-      }
-
-      .portfolio-card {
-        padding: 1.5rem;
-      }
-    }
-
-    /* ========== SUBTLE ANIMATION UTILITIES ========== */
+    /* ========== STAGGER ANIMATIONS ========== */
     .stagger > * {
       animation: fadeUp 0.5s ease forwards;
       opacity: 0;
@@ -1139,32 +1228,434 @@
     .stagger > *:nth-child(6) { animation-delay: 0.3s; }
 
     /* ========== SCROLLBAR ========== */
-    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar { width: 5px; }
     ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb {
-      background: var(--border);
-      border-radius: 3px;
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 900px) {
+      .main { padding: 6.5rem 2rem 4rem; }
     }
-    ::-webkit-scrollbar-thumb:hover {
-      background: var(--text-muted);
+
+    @media (max-width: 768px) {
+      .navbar { padding: 0 1.5rem; }
+      .navbar-right { display: none; }
+      .mobile-menu-btn { display: flex; }
+
+      .main { padding: 5.5rem 1.5rem 3.5rem; }
+
+      .hero {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+        gap: 1.5rem;
+        margin-bottom: 2.5rem;
+        padding-bottom: 2.5rem;
+      }
+
+      .hero-name { font-size: 2.6rem; }
+      .section-title { font-size: 2rem; }
+
+      .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .expertise-grid { grid-template-columns: 1fr; }
+      .portfolio-header { flex-direction: column; gap: 0.5rem; }
+
+      .podcast-grid { grid-template-columns: 1fr; }
+      .reel-grid { grid-template-columns: repeat(2, 1fr); }
     }
+
+    @media (max-width: 480px) {
+      .main { padding: 5rem 1.15rem 3rem; }
+      .card, .portfolio-card { padding: 1.5rem; }
+      .hero-name { font-size: 2.25rem; }
+      .section-title { font-size: 1.75rem; }
+      .reel-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* ========== THOUGHTS, ARTICLE LIST ========== */
+    .article-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 2rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .article-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .article-card:hover { border-color: var(--text-muted); box-shadow: var(--shadow-lg); transform: translateY(-2px); }
+    .article-card:hover::before { opacity: 1; }
+
+    .article-card-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.85rem;
+      flex-wrap: wrap;
+    }
+
+    .article-tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.6rem;
+      border-radius: 5px;
+      background: rgba(232,255,71,0.07);
+      color: var(--accent);
+      border: 1px solid rgba(232,255,71,0.14);
+    }
+
+    .article-date, .article-read-time {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .article-date::before { content: '·'; margin-right: 0.5rem; }
+
+    .article-card-title {
+      font-family: 'Inter Tight', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 0.65rem;
+      letter-spacing: -0.04em;
+      line-height: 1.1;
+    }
+
+    .article-card-excerpt {
+      font-size: 0.9375rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 1.25rem;
+    }
+
+    .article-card-footer { display: flex; justify-content: flex-end; }
+
+    .article-card-cta {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 0.01em;
+    }
+
+    /* ========== THOUGHTS, ARTICLE VIEW ========== */
+    .article-view { display: none; }
+    .article-view.active { display: block; animation: fadeIn 0.4s ease; }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      margin-bottom: 2.5rem;
+      transition: color 0.2s;
+      letter-spacing: 0.01em;
+    }
+
+    .back-btn:hover { color: var(--accent); }
+
+    /* ========== ARTICLE PROSE ========== */
+    .article-prose { max-width: 680px; }
+
+    .article-header {
+      margin-bottom: 2.5rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 1.25rem;
+      flex-wrap: wrap;
+    }
+
+    .article-title {
+      font-family: 'Inter Tight', sans-serif;
+      font-size: 2.75rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      letter-spacing: -0.04em;
+      line-height: 1.0;
+      margin-bottom: 0.85rem;
+    }
+
+    .article-subtitle {
+      font-size: 1.125rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      font-weight: 400;
+    }
+
+    .article-callout {
+      display: flex;
+      gap: 1rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--text-muted);
+      border-radius: 6px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 2rem;
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    .article-callout-icon { font-size: 1.25rem; flex-shrink: 0; padding-top: 0.1rem; }
+
+    .article-prose p {
+      font-size: 0.965rem;
+      color: var(--text-secondary);
+      line-height: 1.875;
+      margin-bottom: 1.35rem;
+      font-weight: 400;
+    }
+
+    .article-prose h2 {
+      font-family: 'Inter Tight', sans-serif;
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      letter-spacing: -0.02em;
+      margin-top: 3rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .article-prose h3 {
+      font-family: 'Inter Tight', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-top: 2rem;
+      margin-bottom: 0.65rem;
+    }
+
+    .article-prose h4 {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-top: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .article-prose strong { color: var(--text-primary); font-weight: 600; }
+
+    .article-prose ul, .article-prose ol {
+      margin-bottom: 1.35rem;
+      padding-left: 0;
+      list-style: none;
+    }
+
+    .article-prose ul li, .article-prose ol li {
+      font-size: 0.94rem;
+      color: var(--text-secondary);
+      line-height: 1.75;
+      padding: 0.22rem 0 0.22rem 1.35rem;
+      position: relative;
+    }
+
+    .article-prose ul li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 0.82rem;
+      top: 0.32rem;
+    }
+
+    .article-prose ol { counter-reset: prose-ol; }
+    .article-prose ol li { counter-increment: prose-ol; }
+    .article-prose ol li::before {
+      content: counter(prose-ol) '.';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 0.82rem;
+      top: 0.32rem;
+    }
+
+    .article-prose hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 3rem 0;
+    }
+
+    /* ========== ARTICLE BREAKDOWN BOX ========== */
+    .article-breakdown {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .article-breakdown-title {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.85rem;
+    }
+
+    .article-breakdown ul { list-style: none; padding: 0; margin: 0; }
+
+    .article-breakdown li {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
+      padding: 0.4rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      font-size: 0.84rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    .article-breakdown li::before { display: none; }
+    .article-breakdown li:last-child { border-bottom: none; }
+
+    .article-breakdown-total {
+      margin-top: 0.35rem;
+      padding-top: 0.75rem !important;
+      border-top: 1px solid var(--border) !important;
+      border-bottom: none !important;
+      font-weight: 700;
+      color: var(--text-primary) !important;
+    }
+
+    .article-breakdown-total span:last-child { color: var(--accent); }
+
+    @media (max-width: 768px) {
+      .article-title { font-size: 2rem; }
+      .article-card-title { font-size: 1.3rem; }
+      .hero-name { font-size: 2.75rem; }
+      .section-title { font-size: 2rem; }
+    }
+
+    /* ========== THEME TOGGLE ========== */
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      height: 32px;
+      padding: 6px 14px;
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 999px;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: background 0.2s ease, color 0.2s ease;
+      flex-shrink: 0;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
+
+    .theme-toggle:hover {
+      background: rgba(255,255,255,0.15);
+      color: var(--text-primary);
+    }
+
+    .theme-toggle svg {
+      width: 13px;
+      height: 13px;
+      flex-shrink: 0;
+    }
+
+    .theme-toggle--mobile {
+      height: 30px;
+      padding: 5px 12px;
+    }
+
+    /* Dark mode: show sun icon, hide moon */
+    .theme-toggle .icon-sun { display: block; }
+    .theme-toggle .icon-moon { display: none; }
+
+    /* Light mode: show moon icon, hide sun */
+    html.light .theme-toggle .icon-sun { display: none; }
+    html.light .theme-toggle .icon-moon { display: block; }
+
+    /* Light mode pill adjustments */
+    html.light .navbar-nav {
+      background: rgba(0,0,0,0.04);
+      border-color: rgba(0,0,0,0.08);
+    }
+
+    html.light .navbar-nav .nav-link.active {
+      background: rgba(0,0,0,0.07);
+    }
+
+    html.light .theme-toggle {
+      background: rgba(0,0,0,0.05);
+      border-color: rgba(0,0,0,0.1);
+    }
+
+    html.light .theme-toggle:hover {
+      background: rgba(0,0,0,0.1);
+    }
+
+    /* ========== LIGHT MODE OVERRIDES ========== */
+    html.light .card:hover {
+      border-color: rgba(0,0,0,0.15);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+
+    html.light .expertise-card:hover {
+      border-color: rgba(0,0,0,0.2);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+    }
+
+    html.light body {
+      background: var(--bg);
+      color: var(--text-primary);
+    }
+
+    html.light .bento-card:hover {
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    }
+
+    /* Smooth theme transition */
+    body, .navbar, .mobile-nav, .card, .expertise-card, .portfolio-card,
+    .article-card, .contact-form, .btn-primary, .bento-card {
+      transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease,
+                  box-shadow 0.25s ease;
+    }
+
   </style>
 </head>
 <body>
-
-  <!-- ========== THEME TOGGLE ========== -->
-  <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-  </button>
-
-  <!-- ========== MOBILE MENU BUTTON ========== -->
-  <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-  </button>
-
-  <!-- ========== MOBILE OVERLAY ========== -->
-  <div class="mobile-overlay" id="mobileOverlay"></div>
 
   <!-- ========== VIDEO MODAL ========== -->
   <div class="video-modal-overlay" id="videoModal">
@@ -1178,129 +1669,112 @@
     </div>
   </div>
 
-  <!-- ========== LAYOUT ========== -->
-  <div class="layout">
+  <!-- ========== NAVBAR ========== -->
+  <nav class="navbar">
+    <div class="navbar-brand" data-section="about" role="button">Nasrullah Tanim</div>
 
-    <!-- ========== SIDEBAR ========== -->
-    <aside class="sidebar" id="sidebar">
-      <div class="sidebar-header">
-        <div class="avatar">
-          <img src="photo.jpg" alt="Nasrullah Tanim">
-        </div>
-        <div class="sidebar-name">Nasrullah Tanim</div>
-        <div class="sidebar-title">Content production, AI automation, and Outbound Systems that scale.</div>
-      </div>
+    <div class="navbar-right">
+      <ul class="navbar-nav">
+        <li><a class="nav-link active" data-section="about">About</a></li>
+        <li><a class="nav-link" data-section="expertise">Expertise</a></li>
+        <li><a class="nav-link" data-section="portfolio">Portfolio</a></li>
+        <li><a class="nav-link" data-section="thoughts">Thoughts</a></li>
+        <li><a class="nav-link" data-section="contact">Contact</a></li>
+      </ul>
 
-      <nav class="sidebar-nav">
-        <ul>
-          <li><a class="nav-link active" data-section="about"><span class="nav-icon">◈</span> About Me</a></li>
-          <li><a class="nav-link" data-section="skills"><span class="nav-icon">◆</span> Skills</a></li>
-          <li><a class="nav-link" data-section="portfolio"><span class="nav-icon">◇</span> Portfolio</a></li>
-          <li><a class="nav-link" data-section="thoughts"><span class="nav-icon">◌</span> Thoughts</a></li>
-          <li><a class="nav-link" data-section="stack"><span class="nav-icon">◎</span> Stack</a></li>
-          <li><a class="nav-link" data-section="contact"><span class="nav-icon">◉</span> Contact</a></li>
-        </ul>
-      </nav>
-
-      <div class="sidebar-footer">
-        <!-- LinkedIn -->
+      <div class="navbar-socials">
+        <!-- Theme Toggle -->
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
         <a href="https://www.linkedin.com/in/sheikh-md-nasrullah-910b203b3/" target="_blank" rel="noopener" class="social-link" aria-label="LinkedIn">
           <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
         </a>
-        <!-- Email -->
-        <a href="mailto:nasrullahtanim@gmail.com" class="social-link" aria-label="Email">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-        </a>
         <!-- Website -->
-        <a href="https://slideinventure.com" target="_blank" rel="noopener" class="social-link" aria-label="Website">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        <a href="https://slideinventure.com" target="_blank" rel="noopener" class="social-link social-link--stroke" aria-label="Website">
+          <svg viewBox="0 0 24 24" width="17" height="17"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </a>
+        <!-- Email -->
+        <a href="mailto:nasrullahtanim@gmail.com" class="social-link social-link--stroke" aria-label="Email">
+          <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
         </a>
       </div>
-    </aside>
+    </div>
 
-    <!-- ========== MAIN ========== -->
-    <main class="main">
+    <!-- Mobile hamburger -->
+    <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+      <svg viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </nav>
 
-      <!-- ========== ABOUT ========== -->
-      <section class="section active" id="about">
-        <div class="animate-up">
-          <span class="eyebrow">Who I Am</span>
-        </div>
-        <div class="section-divider"></div>
-        <div class="section-body animate-up">
-          <p>I'm Tanim. I help founders who want to scale without burning out.</p>
-          <p>I solve three problems for the founders I work with. First, <strong>content</strong>: planning, editing, producing, and distributing video across every major platform. Second, <strong>growth</strong>: engineering cold outreach systems that consistently find and convert the right leads. Third, <strong>operations</strong>: designing custom AI agents and internal workflows that remove the bottlenecks eating up founder time.</p>
-        </div>
-      </section>
+  <!-- ========== MOBILE NAV ========== -->
+  <div class="mobile-nav" id="mobileNav">
+    <ul>
+      <li><a class="nav-link active" data-section="about">About</a></li>
+      <li><a class="nav-link" data-section="expertise">Expertise</a></li>
+      <li><a class="nav-link" data-section="portfolio">Portfolio</a></li>
+      <li><a class="nav-link" data-section="thoughts">Thoughts</a></li>
+      <li><a class="nav-link" data-section="contact">Contact</a></li>
+    </ul>
+    <div class="mobile-nav-socials">
+      <a href="https://www.linkedin.com/in/sheikh-md-nasrullah-910b203b3/" target="_blank" rel="noopener" class="social-link" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      </a>
+      <a href="https://slideinventure.com" target="_blank" rel="noopener" class="social-link social-link--stroke" aria-label="Website">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      </a>
+      <a href="mailto:nasrullahtanim@gmail.com" class="social-link social-link--stroke" aria-label="Email">
+        <svg viewBox="0 0 24 24" width="18" height="18"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+      </a>
+      <button class="theme-toggle theme-toggle--mobile" id="themeToggleMobile" aria-label="Toggle theme">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </div>
+  </div>
 
-      <!-- ========== SKILLS ========== -->
-      <section class="section" id="skills">
-        <div class="animate-up">
-          <span class="eyebrow">What I Build</span>
-          <h1 class="section-title">Three Types of Infrastructure</h1>
-          <p class="section-lead">I design and execute operational systems that let founders focus on strategy.</p>
+  <!-- ========== MAIN ========== -->
+  <main class="main">
+
+    <!-- ========== ABOUT ========== -->
+    <section class="section active" id="about">
+      <div class="hero animate-up">
+        <div class="hero-text">
+          <div class="hero-name">Nasrullah Tanim</div>
+          <div class="hero-tagline"><strong>Content production, AI automation, and Outbound Systems that scale.</strong></div>
         </div>
-        <div class="cards-grid stagger">
-          <!-- Card 1 -->
-          <div class="card animate-up">
-            <div class="card-icon">🎬</div>
-            <h3 class="card-title">Content Production at Scale</h3>
-            <p class="card-desc">Premium video editing, podcast production, and social media management that runs like clockwork.</p>
-            <ul class="card-capabilities">
-              <li>Video editing (<img src="https://cdn.simpleicons.org/adobepremierepro" class="skill-tool-icon" aria-hidden="true" alt="">Premiere Pro, <img src="https://cdn.simpleicons.org/finalcutpro" class="skill-tool-icon" aria-hidden="true" alt="">Final Cut Pro, <img src="https://cdn.simpleicons.org/davinciresolve/888888" class="skill-tool-icon" aria-hidden="true" alt="">DaVinci Resolve)</li>
-              <li>Podcast editing and production</li>
-              <li>Shorts, Reels, and TikTok optimization</li>
-              <li>Thumbnail design and brand systems</li>
-              <li>Content distribution workflows</li>
-            </ul>
+        <div class="hero-photo">
+          <img src="photo.jpg" alt="Nasrullah Tanim">
+        </div>
+      </div>
+      <div class="animate-up">
+        <h2 class="who-i-am-title">Who I Am</h2>
+      </div>
+      <div class="section-body animate-up">
+        <p>I'm Tanim. I help founders who want to scale without burning out.</p>
+        <p>I solve three problems for the founders I work with. First, <strong>content</strong>: planning, editing, producing, and distributing video across every major platform. Second, <strong>growth</strong>: engineering cold outreach systems that consistently find and convert the right leads. Third, <strong>operations</strong>: designing custom AI agents and internal workflows that remove the bottlenecks eating up founder time.</p>
+      </div>
+
+      <hr style="border: none; border-top: 1px solid var(--border); margin: 3rem 0;">
+
+      <div class="animate-up" style="text-align: center; margin-bottom: 2.5rem;">
+        <h2 class="who-i-am-title" style="text-align: center;">What I've Built</h2>
+      </div>
+
+      <div class="bento-grid stagger">
+
+        <!-- Card 1, Full width -->
+        <div class="bento-card bento-card--full animate-up">
+          <div class="bento-top-row">
+            <div class="bento-icon-box">🤖</div>
+            <div class="bento-card-number">01</div>
           </div>
-          <!-- Card 2 -->
-          <div class="card animate-up">
-            <div class="card-icon">🤖</div>
-            <h3 class="card-title">AI-Powered Automation</h3>
-            <p class="card-desc">Custom n8n workflows and AI agents that handle repetitive work so you never have to touch it again.</p>
-            <ul class="card-capabilities">
-              <li><img src="https://cdn.simpleicons.org/n8n" class="skill-tool-icon" aria-hidden="true" alt="">n8n workflow development</li>
-              <li>AI agent development for custom business operations</li>
-              <li>Lead research and qualification systems</li>
-              <li>CRM automation and data processing</li>
-              <li>Custom integrations (APIs and webhooks)</li>
-            </ul>
-          </div>
-          <!-- Card 3 -->
-          <div class="card animate-up">
-            <div class="card-icon">📧</div>
-            <h3 class="card-title">Outbound Infrastructure</h3>
-            <p class="card-desc">Compliance-first cold email systems engineered to avoid spam folders and land in prospects' inboxes. From DNS setup and sender reputation management to full pipeline generation that runs on its own.</p>
-            <ul class="card-capabilities">
-              <li>Cold email infrastructure (DNS setup and authentication)</li>
-              <li>Deliverability optimization and sender reputation management</li>
-              <li>Lead sourcing and ICP framework development</li>
-              <li>Email sequence design and A/B testing</li>
-              <li>Performance monitoring and ongoing optimization</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <!-- ========== PORTFOLIO ========== -->
-      <section class="section" id="portfolio">
-        <div class="animate-up">
-          <span class="eyebrow">Selected Work</span>
-          <h1 class="section-title">What I've Built</h1>
-          <p class="section-lead">Real systems, real results. Here's a look at what operational infrastructure actually looks like in practice.</p>
-        </div>
-
-        <div class="stagger">
-          <!-- Project 1 -->
-          <div class="portfolio-card animate-up">
-            <div class="portfolio-header">
-              <div class="portfolio-icon">🤖</div>
-              <div class="portfolio-name">Autonomous Content Engine</div>
-            </div>
-            <p class="portfolio-desc">Built a fully autonomous content production system where a founder records themselves once and the entire pipeline runs on its own from there. Script writing, content strategy, video editing, reels creation, and publishing — all handled without the founder touching anything again. Powered by custom AI workflows, HeyGen, ElevenLabs, and n8n automation stitched together into a single hands-free operation.</p>
-            <div class="portfolio-results">
-              <div class="portfolio-results-title">Results</div>
+          <div class="bento-name">Autonomous Content Engine</div>
+          <div class="bento-body-cols">
+            <p class="bento-desc">Built a fully autonomous content production system where a founder records themselves once and the entire pipeline runs on its own from there. Script writing, content strategy, video editing, reels creation, and publishing, all handled without the founder touching anything again. Powered by custom AI workflows, HeyGen, ElevenLabs, and n8n automation stitched together into a single hands-free operation.</p>
+            <div class="bento-results">
+              <div class="bento-results-label">RESULTS</div>
               <ul>
                 <li>Zero ongoing input required from the founder after initial setup</li>
                 <li>AI writes the scripts, strategizes the content calendar, and edits the videos</li>
@@ -1309,76 +1783,81 @@
                 <li>Full publishing pipeline across all major platforms on autopilot</li>
               </ul>
             </div>
-            <div class="portfolio-tags">
-              <span class="tag">AI Automation</span>
-              <span class="tag">HeyGen</span>
-              <span class="tag">ElevenLabs</span>
-              <span class="tag">n8n</span>
-              <span class="tag">Content Systems</span>
-            </div>
           </div>
-
-          <!-- Project 2 -->
-          <div class="portfolio-card animate-up">
-            <div class="portfolio-header">
-              <div class="portfolio-icon">🎬</div>
-              <div class="portfolio-name">Multi-Client Content Operations</div>
-            </div>
-            <p class="portfolio-desc">Designed and ran a systematic content production machine managing 6 to 10 concurrent clients simultaneously, with consistent quality, predictable delivery, and no bottlenecks. Built the SOPs, the editing pipeline, and the distribution workflow from scratch.</p>
-            <div class="portfolio-results">
-              <div class="portfolio-results-title">Results</div>
-              <ul>
-                <li>2,500+ videos edited across five years</li>
-                <li>500+ podcast episodes produced</li>
-                <li>20+ deliverables shipped per week at peak</li>
-                <li>Zero missed deadlines across active client roster</li>
-              </ul>
-            </div>
-            <button class="see-works-btn" id="seeWorksBtn">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-              See Works I Have Done
-            </button>
-            <div class="portfolio-tags">
-              <span class="tag">Content Production</span>
-              <span class="tag">Video Editing</span>
-              <span class="tag">Podcast</span>
-              <span class="tag">Systems</span>
-            </div>
+          <div class="bento-tags">
+            <span class="bento-tag">AI Automation</span>
+            <span class="bento-tag">HeyGen</span>
+            <span class="bento-tag">ElevenLabs</span>
+            <span class="bento-tag">n8n</span>
+            <span class="bento-tag">Content Systems</span>
           </div>
+        </div>
 
-          <!-- Project 3 -->
-          <div class="portfolio-card animate-up">
-            <div class="portfolio-header">
-              <div class="portfolio-icon">⚙️</div>
-              <div class="portfolio-name">AI Business Operations Layer</div>
-            </div>
-            <p class="portfolio-desc">Designed custom AI agents and internal automation systems that plug directly into a business's existing tools and eliminate the operational drag that slows teams down. Not a generic chatbot. Actual workflows built around how a specific business operates, from lead qualification and CRM updates to reporting, client communication, and internal decision-making pipelines.</p>
-            <div class="portfolio-results">
-              <div class="portfolio-results-title">Results</div>
-              <ul>
-                <li>Qualified 17,000 leads in 72 hours using a custom AI research agent</li>
-                <li>15+ hours per week of manual work eliminated per client</li>
-                <li>Custom voice agent integration for automated outreach and follow-up</li>
-                <li>AI agents connected to Notion, Google Sheets, email, and CRM tools</li>
-              </ul>
-            </div>
-            <div class="portfolio-tags">
-              <span class="tag">AI Agents</span>
-              <span class="tag">Workflow Automation</span>
-              <span class="tag">n8n</span>
-              <span class="tag">Business Operations</span>
-            </div>
+        <!-- Card 2, Half width left -->
+        <div class="bento-card bento-card--half animate-up">
+          <div class="bento-top-row">
+            <div class="bento-icon-box">🎬</div>
+            <div class="bento-card-number">02</div>
           </div>
+          <div class="bento-name">Multi-Client Content Operations</div>
+          <p class="bento-desc">Designed and ran a systematic content production machine managing 6 to 10 concurrent clients simultaneously, with consistent quality, predictable delivery, and no bottlenecks. Built the SOPs, the editing pipeline, and the distribution workflow from scratch.</p>
+          <div class="bento-results">
+            <div class="bento-results-label">RESULTS</div>
+            <ul>
+              <li>2,500+ videos edited across five years</li>
+              <li>500+ podcast episodes produced</li>
+              <li>20+ deliverables shipped per week at peak</li>
+              <li>Zero missed deadlines across active client roster</li>
+            </ul>
+          </div>
+          <button class="see-works-btn" id="seeWorksBtn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            See Works I Have Done
+          </button>
+          <div class="bento-tags">
+            <span class="bento-tag">Content Production</span>
+            <span class="bento-tag">Video Editing</span>
+            <span class="bento-tag">Podcast</span>
+            <span class="bento-tag">Systems</span>
+          </div>
+        </div>
 
-          <!-- Project 4 -->
-          <div class="portfolio-card animate-up">
-            <div class="portfolio-header">
-              <div class="portfolio-icon">📧</div>
-              <div class="portfolio-name">Cold Email Deliverability System</div>
-            </div>
-            <p class="portfolio-desc">Built a compliance-first outbound infrastructure from the ground up, with AI handling the research, personalization, and sequencing automatically. DNS authentication, sender reputation management, and list verification running in the background so emails land where they are supposed to land every single time.</p>
-            <div class="portfolio-results">
-              <div class="portfolio-results-title">Results</div>
+        <!-- Card 3, Half width right -->
+        <div class="bento-card bento-card--half animate-up">
+          <div class="bento-top-row">
+            <div class="bento-icon-box">⚙️</div>
+            <div class="bento-card-number">03</div>
+          </div>
+          <div class="bento-name">AI Business Operations Layer</div>
+          <p class="bento-desc">Designed custom AI agents and internal automation systems that plug directly into a business's existing tools and eliminate the operational drag that slows teams down. Not a generic chatbot. Actual workflows built around how a specific business operates, from lead qualification and CRM updates to reporting, client communication, and internal decision-making pipelines.</p>
+          <div class="bento-results">
+            <div class="bento-results-label">RESULTS</div>
+            <ul>
+              <li>Qualified 17,000 leads in 72 hours using a custom AI research agent</li>
+              <li>15+ hours per week of manual work eliminated per client</li>
+              <li>Custom voice agent integration for automated outreach and follow-up</li>
+              <li>AI agents connected to Notion, Google Sheets, email, and CRM tools</li>
+            </ul>
+          </div>
+          <div class="bento-tags">
+            <span class="bento-tag">AI Agents</span>
+            <span class="bento-tag">Workflow Automation</span>
+            <span class="bento-tag">n8n</span>
+            <span class="bento-tag">Business Operations</span>
+          </div>
+        </div>
+
+        <!-- Card 4, Full width -->
+        <div class="bento-card bento-card--full animate-up">
+          <div class="bento-top-row">
+            <div class="bento-icon-box">📧</div>
+            <div class="bento-card-number">04</div>
+          </div>
+          <div class="bento-name">Cold Email Deliverability System</div>
+          <div class="bento-body-cols">
+            <p class="bento-desc">Built a compliance-first outbound infrastructure from the ground up, with AI handling the research, personalization, and sequencing automatically. DNS authentication, sender reputation management, and list verification running in the background so emails land where they are supposed to land every single time.</p>
+            <div class="bento-results">
+              <div class="bento-results-label">RESULTS</div>
               <ul>
                 <li>40%+ open rates maintained consistently</li>
                 <li>Zero spam complaints across all campaigns</li>
@@ -1386,198 +1865,516 @@
                 <li>Scalable sending infrastructure across multiple domains</li>
               </ul>
             </div>
-            <div class="portfolio-tags">
-              <span class="tag">Cold Email</span>
-              <span class="tag">Deliverability</span>
-              <span class="tag">AI Personalization</span>
-              <span class="tag">Infrastructure</span>
+          </div>
+          <div class="bento-tags">
+            <span class="bento-tag">Cold Email</span>
+            <span class="bento-tag">Deliverability</span>
+            <span class="bento-tag">AI Personalization</span>
+            <span class="bento-tag">Infrastructure</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========== EXPERTISE ========== -->
+    <section class="section" id="expertise">
+      <div class="animate-up">
+        <span class="eyebrow">What I Build</span>
+        <h1 class="section-title">Three Types of Infrastructure</h1>
+        <p class="section-lead">I design and execute operational systems that let founders focus on strategy. Here's what I bring to the table.</p>
+      </div>
+      <div class="expertise-grid stagger">
+
+        <!-- Card 1: Content Production -->
+        <div class="expertise-card animate-up">
+          <div class="expertise-card-header">
+            <div class="expertise-icon">🎬</div>
+            <h3 class="expertise-title">Content Production at Scale</h3>
+          </div>
+          <p class="expertise-desc">Premium video editing, podcast production, and social media management that runs like clockwork. From raw footage to published content across every platform, without you touching a thing.</p>
+          <ul class="expertise-capabilities">
+            <li>Video editing and post-production</li>
+            <li>Podcast editing and production</li>
+            <li>Shorts, Reels, and TikTok optimization</li>
+            <li>Thumbnail design and brand systems</li>
+            <li>Content distribution workflows</li>
+          </ul>
+          <div class="expertise-tools">
+            <span class="expertise-tools-label">Tools I Use</span>
+            <div class="tool-logo-row">
+              <div class="tool-logo-item"><img src="https://cdn.simpleicons.org/adobepremierepro" alt="Premiere Pro" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="tool-logo-fallback">PR</span><span class="tool-tooltip">Premiere Pro</span></div>
+              <div class="tool-logo-item"><img src="https://cdn.simpleicons.org/finalcutpro" alt="Final Cut Pro" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="tool-logo-fallback">FC</span><span class="tool-tooltip">Final Cut Pro</span></div>
+              <div class="tool-logo-item"><img src="https://cdn.simpleicons.org/davinciresolve" alt="DaVinci Resolve" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="tool-logo-fallback">DR</span><span class="tool-tooltip">DaVinci Resolve</span></div>
+              <div class="tool-logo-item"><img src="https://cdn.simpleicons.org/adobeaftereffects" alt="After Effects" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="tool-logo-fallback">AE</span><span class="tool-tooltip">After Effects</span></div>
+              <div class="tool-logo-item"><img src="https://cdn.simpleicons.org/capcut" alt="CapCut" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="tool-logo-fallback">CC</span><span class="tool-tooltip">CapCut</span></div>
+              <div class="tool-logo-item"><img src="https://logo.clearbit.com/descript.com" alt="Descript" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="tool-logo-fallback">DS</span><span class="tool-tooltip">Descript</span></div>
+              <div class="tool-logo-item"><img src="https://logo.clearbit.com/heygen.com" alt="HeyGen" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="tool-logo-fallback">HG</span><span class="tool-tooltip">HeyGen</span></div>
+              <div class="tool-logo-item"><img src="https://cdn.simpleicons.org/elevenlabs" alt="ElevenLabs" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="tool-logo-fallback">EL</span><span class="tool-tooltip">ElevenLabs</span></div>
+              <div class="tool-logo-item"><img src="https://cdn.simpleicons.org/canva" alt="Canva" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="tool-logo-fallback">CA</span><span class="tool-tooltip">Canva</span></div>
+              <div class="tool-logo-item"><img src="https://cdn.simpleicons.org/adobephotoshop" alt="Photoshop" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="tool-logo-fallback">PS</span><span class="tool-tooltip">Photoshop</span></div>
+              <div class="tool-logo-item"><img src="https://cdn.simpleicons.org/figma" alt="Figma" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="tool-logo-fallback">FI</span><span class="tool-tooltip">Figma</span></div>
             </div>
           </div>
         </div>
 
-        <!-- ========== MY WORK VIDEO GALLERY ========== -->
-        <div class="section-divider"></div>
-        <div class="video-gallery animate-up">
-          <h2 class="video-gallery-title">🎥 My Work</h2>
-
-          <h3 class="video-gallery-sub">Podcast Edits</h3>
-          <div class="podcast-grid">
-            <div class="video-embed video-embed--landscape"><iframe src="https://www.youtube.com/embed/kWw5P7IqfKU" allowfullscreen loading="lazy"></iframe></div>
-            <div class="video-embed video-embed--landscape"><iframe src="https://www.youtube.com/embed/Jq--0pSIiwk" allowfullscreen loading="lazy"></iframe></div>
-            <div class="video-embed video-embed--landscape"><iframe src="https://www.youtube.com/embed/JmpK396sDoY" allowfullscreen loading="lazy"></iframe></div>
-            <div class="video-embed video-embed--landscape"><iframe src="https://www.youtube.com/embed/_qUNzwRWdDc" allowfullscreen loading="lazy"></iframe></div>
-            <div class="video-embed video-embed--landscape"><iframe src="https://www.youtube.com/embed/mpf8zpSkbxg" allowfullscreen loading="lazy"></iframe></div>
-            <div class="video-embed video-embed--landscape"><iframe src="https://www.youtube.com/embed/HhNAsraWyvA" allowfullscreen loading="lazy"></iframe></div>
+        <!-- Card 2: AI Automation -->
+        <div class="expertise-card animate-up">
+          <div class="expertise-card-header">
+            <div class="expertise-icon">🤖</div>
+            <h3 class="expertise-title">AI-Powered Automation</h3>
           </div>
-
-          <h3 class="video-gallery-sub">Reel Edits</h3>
-          <div class="reel-grid">
-            <div class="video-embed video-embed--portrait"><iframe src="https://www.youtube.com/embed/YIOb6yP-Vqg" allowfullscreen loading="lazy"></iframe></div>
-            <div class="video-embed video-embed--portrait"><iframe src="https://www.youtube.com/embed/Q04ktHx09sY" allowfullscreen loading="lazy"></iframe></div>
-            <div class="video-embed video-embed--portrait"><iframe src="https://www.youtube.com/embed/NdlODkhmZQI" allowfullscreen loading="lazy"></iframe></div>
-            <div class="video-embed video-embed--portrait"><iframe src="https://www.youtube.com/embed/6_-dpyy9NPc" allowfullscreen loading="lazy"></iframe></div>
-            <div class="video-embed video-embed--portrait"><iframe src="https://www.youtube.com/embed/RuQZjz2qgoI" allowfullscreen loading="lazy"></iframe></div>
-            <div class="video-embed video-embed--portrait"><iframe src="https://www.youtube.com/embed/_KvU5e1Y3Mk" allowfullscreen loading="lazy"></iframe></div>
-            <div class="video-embed video-embed--portrait"><iframe src="https://www.youtube.com/embed/QfKsH8sp1RI" allowfullscreen loading="lazy"></iframe></div>
-            <div class="video-embed video-embed--portrait"><iframe src="https://www.youtube.com/embed/y78HsXO4MOM" allowfullscreen loading="lazy"></iframe></div>
-            <div class="video-embed video-embed--portrait"><iframe src="https://www.youtube.com/embed/uviaSTc5bAo" allowfullscreen loading="lazy"></iframe></div>
-            <div class="video-embed video-embed--portrait"><iframe src="https://www.youtube.com/embed/R8cuivdgUFk" allowfullscreen loading="lazy"></iframe></div>
-            <div class="video-embed video-embed--portrait"><iframe src="https://www.youtube.com/embed/ZtdZl419cys" allowfullscreen loading="lazy"></iframe></div>
-            <div class="video-embed video-embed--portrait"><iframe src="https://www.youtube.com/embed/lRVlu8G-3Vo" allowfullscreen loading="lazy"></iframe></div>
-            <div class="video-embed video-embed--portrait"><iframe src="https://www.youtube.com/embed/u-lQqR65Ox0" allowfullscreen loading="lazy"></iframe></div>
-            <div class="video-embed video-embed--portrait"><iframe src="https://www.youtube.com/embed/vgvHQRCwPq0" allowfullscreen loading="lazy"></iframe></div>
-            <div class="video-embed video-embed--portrait"><iframe src="https://www.youtube.com/embed/_zX8pe1S96g" allowfullscreen loading="lazy"></iframe></div>
-            <div class="video-embed video-embed--portrait"><iframe src="https://www.youtube.com/embed/YIOb6yP-Vqg" allowfullscreen loading="lazy"></iframe></div>
-            <div class="video-embed video-embed--portrait"><iframe src="https://www.youtube.com/embed/g_D2BvQIAkw" allowfullscreen loading="lazy"></iframe></div>
+          <p class="expertise-desc">Custom n8n workflows and AI agents that handle repetitive work so you never have to touch it again. Built around how your specific business actually operates, not a generic off-the-shelf solution.</p>
+          <ul class="expertise-capabilities">
+            <li>n8n workflow development</li>
+            <li>AI agent development for custom operations</li>
+            <li>Lead research and qualification systems</li>
+            <li>CRM automation and data processing</li>
+            <li>Custom integrations via APIs and webhooks</li>
+          </ul>
+          <div class="expertise-tools">
+            <span class="expertise-tools-label">Tools I Use</span>
+            <div class="tool-logo-row">
+              <div class="tool-logo-item"><img src="https://cdn.simpleicons.org/n8n" alt="n8n" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="tool-logo-fallback">n8</span><span class="tool-tooltip">n8n</span></div>
+              <div class="tool-logo-item"><img src="https://cdn.simpleicons.org/anthropic" alt="Claude" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="tool-logo-fallback">CL</span><span class="tool-tooltip">Claude</span></div>
+              <div class="tool-logo-item"><img src="https://cdn.simpleicons.org/zapier" alt="Zapier" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="tool-logo-fallback">ZA</span><span class="tool-tooltip">Zapier</span></div>
+              <div class="tool-logo-item"><img src="https://cdn.simpleicons.org/make" alt="Make" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="tool-logo-fallback">MK</span><span class="tool-tooltip">Make</span></div>
+              <div class="tool-logo-item"><img src="https://cdn.simpleicons.org/notion" alt="Notion" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="tool-logo-fallback">NO</span><span class="tool-tooltip">Notion</span></div>
+              <div class="tool-logo-item"><img src="https://cdn.simpleicons.org/airtable" alt="Airtable" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="tool-logo-fallback">AT</span><span class="tool-tooltip">Airtable</span></div>
+              <div class="tool-logo-item"><img src="https://cdn.simpleicons.org/googlesheets" alt="Google Sheets" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="tool-logo-fallback">GS</span><span class="tool-tooltip">Google Sheets</span></div>
+            </div>
           </div>
         </div>
-      </section>
 
-      <!-- ========== THOUGHTS ========== -->
-      <section class="section" id="thoughts">
+        <!-- Card 3: Outbound Infrastructure -->
+        <div class="expertise-card animate-up">
+          <div class="expertise-card-header">
+            <div class="expertise-icon">📧</div>
+            <h3 class="expertise-title">Outbound Infrastructure</h3>
+          </div>
+          <p class="expertise-desc">Compliance-first cold email systems engineered to land in inboxes, not spam folders. Full infrastructure from DNS setup to sequence optimization, built to generate pipeline on autopilot.</p>
+          <ul class="expertise-capabilities">
+            <li>Cold email infrastructure and DNS setup</li>
+            <li>Deliverability optimization and sender reputation management</li>
+            <li>Lead sourcing and ICP framework development</li>
+            <li>Email sequence design and A/B testing</li>
+            <li>Performance monitoring and ongoing optimization</li>
+          </ul>
+          <div class="expertise-tools">
+            <span class="expertise-tools-label">Tools I Use</span>
+            <div class="tool-logo-row">
+              <div class="tool-logo-item"><img src="https://logo.clearbit.com/instantly.ai" alt="Instantly" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="tool-logo-fallback">IN</span><span class="tool-tooltip">Instantly</span></div>
+              <div class="tool-logo-item"><img src="https://logo.clearbit.com/apollo.io" alt="Apollo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="tool-logo-fallback">AP</span><span class="tool-tooltip">Apollo</span></div>
+              <div class="tool-logo-item"><img src="https://logo.clearbit.com/hunter.io" alt="Hunter.io" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="tool-logo-fallback">HU</span><span class="tool-tooltip">Hunter.io</span></div>
+              <div class="tool-logo-item"><img src="https://cdn.simpleicons.org/googleworkspace" alt="Google Workspace" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="tool-logo-fallback">GW</span><span class="tool-tooltip">Google Workspace</span></div>
+              <div class="tool-logo-item"><img src="https://logo.clearbit.com/clay.com" alt="Clay" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="tool-logo-fallback">CY</span><span class="tool-tooltip">Clay</span></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========== PORTFOLIO ========== -->
+    <section class="section" id="portfolio">
+      <div class="animate-up">
+        <span class="eyebrow">My Work</span>
+        <h1 class="section-title">Video Portfolio</h1>
+        <p class="section-lead">A selection of podcast edits and short-form reels produced for clients across industries.</p>
+      </div>
+
+      <div class="video-gallery animate-up">
+        <h3 class="video-gallery-sub">Podcast Edits</h3>
+        <div class="podcast-grid">
+          <div class="video-embed video-embed--landscape"><iframe src="https://www.youtube.com/embed/kWw5P7IqfKU?si=Eedy9yg2mkxSuTfB" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
+          <div class="video-embed video-embed--landscape"><iframe src="https://www.youtube.com/embed/Jq--0pSIiwk?si=wXUNRbJ9vq6kCW2J" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
+          <div class="video-embed video-embed--landscape"><iframe src="https://www.youtube.com/embed/JmpK396sDoY?si=syUvX2IsUdVPnAAZ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
+          <div class="video-embed video-embed--landscape"><iframe src="https://www.youtube.com/embed/_qUNzwRWdDc?si=6mqeFdn1Hrl1s6eg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
+          <div class="video-embed video-embed--landscape"><iframe src="https://www.youtube.com/embed/mpf8zpSkbxg?si=v-fqa_H_K4J6TiK_" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
+          <div class="video-embed video-embed--landscape"><iframe src="https://www.youtube.com/embed/HhNAsraWyvA?si=A4-bWt81Kj-uqUT5" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
+        </div>
+
+        <h3 class="video-gallery-sub">Reel Edits</h3>
+        <div class="reel-grid">
+          <div class="video-embed video-embed--portrait"><iframe src="https://www.youtube.com/embed/YIOb6yP-Vqg" allowfullscreen loading="lazy"></iframe></div>
+          <div class="video-embed video-embed--portrait"><iframe src="https://www.youtube.com/embed/Q04ktHx09sY" allowfullscreen loading="lazy"></iframe></div>
+          <div class="video-embed video-embed--portrait"><iframe src="https://www.youtube.com/embed/NdlODkhmZQI" allowfullscreen loading="lazy"></iframe></div>
+          <div class="video-embed video-embed--portrait"><iframe src="https://www.youtube.com/embed/6_-dpyy9NPc" allowfullscreen loading="lazy"></iframe></div>
+          <div class="video-embed video-embed--portrait"><iframe src="https://www.youtube.com/embed/RuQZjz2qgoI" allowfullscreen loading="lazy"></iframe></div>
+          <div class="video-embed video-embed--portrait"><iframe src="https://www.youtube.com/embed/_KvU5e1Y3Mk" allowfullscreen loading="lazy"></iframe></div>
+          <div class="video-embed video-embed--portrait"><iframe src="https://www.youtube.com/embed/QfKsH8sp1RI" allowfullscreen loading="lazy"></iframe></div>
+          <div class="video-embed video-embed--portrait"><iframe src="https://www.youtube.com/embed/y78HsXO4MOM" allowfullscreen loading="lazy"></iframe></div>
+          <div class="video-embed video-embed--portrait"><iframe src="https://www.youtube.com/embed/uviaSTc5bAo" allowfullscreen loading="lazy"></iframe></div>
+          <div class="video-embed video-embed--portrait"><iframe src="https://www.youtube.com/embed/R8cuivdgUFk" allowfullscreen loading="lazy"></iframe></div>
+          <div class="video-embed video-embed--portrait"><iframe src="https://www.youtube.com/embed/ZtdZl419cys" allowfullscreen loading="lazy"></iframe></div>
+          <div class="video-embed video-embed--portrait"><iframe src="https://www.youtube.com/embed/lRVlu8G-3Vo" allowfullscreen loading="lazy"></iframe></div>
+          <div class="video-embed video-embed--portrait"><iframe src="https://www.youtube.com/embed/u-lQqR65Ox0" allowfullscreen loading="lazy"></iframe></div>
+          <div class="video-embed video-embed--portrait"><iframe src="https://www.youtube.com/embed/vgvHQRCwPq0" allowfullscreen loading="lazy"></iframe></div>
+          <div class="video-embed video-embed--portrait"><iframe src="https://www.youtube.com/embed/_zX8pe1S96g" allowfullscreen loading="lazy"></iframe></div>
+          <div class="video-embed video-embed--portrait"><iframe src="https://www.youtube.com/embed/YIOb6yP-Vqg" allowfullscreen loading="lazy"></iframe></div>
+          <div class="video-embed video-embed--portrait"><iframe src="https://www.youtube.com/embed/g_D2BvQIAkw" allowfullscreen loading="lazy"></iframe></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== THOUGHTS ========== -->
+    <section class="section" id="thoughts">
+
+      <!-- ===== THOUGHTS LIST VIEW ===== -->
+      <div class="thoughts-list" id="thoughtsList">
         <div class="animate-up">
           <span class="eyebrow">Ideas &amp; Vision</span>
           <h1 class="section-title">Thoughts</h1>
           <p class="section-lead">Where I share ideas, frameworks, and the projects I'm dreaming about building next.</p>
         </div>
-        <div class="thoughts-placeholder animate-up">
-          <div class="thoughts-placeholder-icon">💭</div>
-          <h3>Coming Soon</h3>
-          <p>A visionary project idea is taking shape. This section will feature long-form writing on systems thinking, AI infrastructure, and the future of founder operations. Stay tuned.</p>
-          <!-- To add an article: create an <article> element with your content, or link to a CSV/document with the full article. -->
-        </div>
-      </section>
-
-      <!-- ========== STACK ========== -->
-      <section class="section" id="stack">
         <div class="animate-up">
-          <span class="eyebrow">Tools &amp; Tech</span>
-          <h1 class="section-title">What I work with.</h1>
-          <p class="section-lead">The tools I use to build automation, content, and outbound systems.</p>
+          <article class="article-card" data-article="remote-hq">
+            <div class="article-card-meta">
+              <span class="article-tag">Essay</span>
+              <span class="article-date">March 2025</span>
+              <span class="article-read-time">18 min read</span>
+            </div>
+            <h2 class="article-card-title">The Remote Headquarters Revolution</h2>
+            <p class="article-card-excerpt">Why AI-Powered Operational Partners Will Replace Traditional Business Models by 2035. The traditional model of building in-house teams is dying, and in its place, a new paradigm is emerging.</p>
+            <div class="article-card-footer">
+              <span class="article-card-cta">Read article →</span>
+            </div>
+          </article>
         </div>
-        <div class="stack-grid stagger">
-          <div class="stack-category animate-up">
-            <div class="stack-category-title">Video Production</div>
-            <ul class="stack-list">
-              <li><img src="https://cdn.simpleicons.org/adobepremierepro" class="stack-icon" aria-hidden="true" alt="">Premiere Pro</li>
-              <li><img src="https://cdn.simpleicons.org/finalcutpro" class="stack-icon" aria-hidden="true" alt="">Final Cut Pro</li>
-              <li><img src="https://cdn.simpleicons.org/davinciresolve/888888" class="stack-icon" aria-hidden="true" alt="">DaVinci Resolve</li>
-              <li><img src="https://cdn.simpleicons.org/adobeaftereffects" class="stack-icon" aria-hidden="true" alt="">After Effects</li>
-              <li><img src="https://cdn.simpleicons.org/capcut/888888" class="stack-icon" aria-hidden="true" alt="">CapCut</li>
-              <li><img src="https://www.descript.com/favicon.ico" class="stack-icon" aria-hidden="true" alt="">Descript</li>
-              <li><img src="https://www.heygen.com/favicon.ico" class="stack-icon" aria-hidden="true" alt="">HeyGen</li>
-              <li><img src="https://cdn.simpleicons.org/elevenlabs/888888" onerror="this.src='https://elevenlabs.io/favicon.ico'" class="stack-icon" aria-hidden="true" alt="">ElevenLabs</li>
-            </ul>
-          </div>
-          <div class="stack-category animate-up">
-            <div class="stack-category-title">AI &amp; Automation</div>
-            <ul class="stack-list">
-              <li><img src="https://cdn.simpleicons.org/n8n" class="stack-icon" aria-hidden="true" alt="">n8n</li>
-              <li><img src="https://cdn.simpleicons.org/anthropic" class="stack-icon" aria-hidden="true" alt="">Claude</li>
-              <li><img src="https://cdn.simpleicons.org/zapier" class="stack-icon" aria-hidden="true" alt="">Zapier</li>
-              <li><img src="https://cdn.simpleicons.org/make" class="stack-icon" aria-hidden="true" alt="">Make</li>
-            </ul>
-          </div>
-          <div class="stack-category animate-up">
-            <div class="stack-category-title">Outbound &amp; CRM</div>
-            <ul class="stack-list">
-              <li><img src="https://app.instantly.ai/favicon.ico" class="stack-icon" aria-hidden="true" alt="">Instantly</li>
-              <li><img src="https://app.apollo.io/favicon.ico" class="stack-icon" aria-hidden="true" alt="">Apollo</li>
-              <li><img src="https://cdn.simpleicons.org/hunterio" onerror="this.src='https://hunter.io/favicon.ico'" class="stack-icon" aria-hidden="true" alt="">Hunter.io</li>
-              <li><img src="https://cdn.simpleicons.org/googleworkspace" class="stack-icon" aria-hidden="true" alt="">Google Workspace</li>
-              <li>
-                <svg class="stack-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                  <rect x="2" y="4" width="20" height="16" rx="2"/>
-                  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
-                </svg>
-                Email Verification APIs
-              </li>
-            </ul>
-          </div>
-          <div class="stack-category animate-up">
-            <div class="stack-category-title">Design &amp; Creative</div>
-            <ul class="stack-list">
-              <li><img src="https://cdn.simpleicons.org/canva" class="stack-icon" aria-hidden="true" alt="">Canva</li>
-              <li><img src="https://cdn.simpleicons.org/adobephotoshop" class="stack-icon" aria-hidden="true" alt="">Adobe Photoshop</li>
-              <li><img src="https://cdn.simpleicons.org/figma" class="stack-icon" aria-hidden="true" alt="">Figma</li>
-              <li><img src="https://cdn.simpleicons.org/adobeillustrator" class="stack-icon" aria-hidden="true" alt="">Adobe Illustrator</li>
-            </ul>
-          </div>
-          <div class="stack-category animate-up">
-            <div class="stack-category-title">Project Management</div>
-            <ul class="stack-list">
-              <li><img src="https://cdn.simpleicons.org/notion/888888" class="stack-icon" aria-hidden="true" alt="">Notion</li>
-              <li><img src="https://cdn.simpleicons.org/airtable" class="stack-icon" aria-hidden="true" alt="">Airtable</li>
-              <li><img src="https://cdn.simpleicons.org/googlesheets" class="stack-icon" aria-hidden="true" alt="">Google Sheets</li>
-              <li><img src="https://cdn.simpleicons.org/todoist" class="stack-icon" aria-hidden="true" alt="">Todoist</li>
-            </ul>
-          </div>
-        </div>
-      </section>
+      </div>
 
-      <!-- ========== CONTACT ========== -->
-      <section class="section" id="contact">
+      <!-- ===== ARTICLE VIEW ===== -->
+      <div class="article-view" id="article-remote-hq">
+        <button class="back-btn" id="thoughtsBackBtn">← Back to Thoughts</button>
+
+        <div class="article-prose">
+
+          <!-- Header -->
+          <div class="article-header">
+            <div class="article-meta">
+              <span class="article-tag">Essay</span>
+              <span class="article-date">March 2025</span>
+              <span class="article-read-time">18 min read</span>
+            </div>
+            <h1 class="article-title">The Remote Headquarters Revolution</h1>
+            <p class="article-subtitle">Why AI-Powered Operational Partners Will Replace Traditional Business Models by 2035</p>
+          </div>
+
+          <!-- Thesis callout -->
+          <div class="article-callout">
+            <div class="article-callout-icon">🏢</div>
+            <div><strong>Thesis:</strong> By 2035, most companies will not employ traditional operations teams. Instead, they will subscribe to <strong>Remote Headquarters (Remote HQ)</strong> platforms that combine AI, specialized human expertise, and proprietary technology.</div>
+          </div>
+
+          <!-- Executive Summary -->
+          <h2>Executive Summary</h2>
+          <p>We stand at the precipice of the most significant shift in business operations since the advent of the internet. The traditional model of building in-house teams, renting expensive office space, and managing complex vendor relationships is dying.</p>
+          <p>In its place, a new paradigm is emerging: the <strong>Remote Headquarters (Remote HQ)</strong> model. These are AI-powered operational partners that serve as an organization's complete back-office, middle-office, and increasingly, front-office operations.</p>
+          <p>This isn't speculation. The convergence of four massive trends has created the perfect conditions for this transformation:</p>
+          <ul>
+            <li>AI maturation</li>
+            <li>Permanent remote work normalization</li>
+            <li>Service delivery platformization</li>
+            <li>Economic pressure for efficiency</li>
+          </ul>
+          <p>The thesis is simple but profound: <strong>By 2035, most companies will not employ traditional operations teams. Instead, they will subscribe to Remote HQ platforms that combine artificial intelligence, specialized human expertise, and proprietary technology to deliver what previously required dozens of employees.</strong></p>
+          <p>This article examines why this shift is inevitable, how it will reshape every major industry, and what it means for the future of work itself.</p>
+          <hr>
+
+          <!-- Section 1 -->
+          <h2>1. The Crisis of the Current Model</h2>
+          <h3>The Broken Economics of Traditional Operations</h3>
+          <p>Consider the economics of a typical mid-sized company ($10–50M revenue) today.</p>
+
+          <div class="article-breakdown">
+            <div class="article-breakdown-title">Traditional Operational Burden, $25M Revenue Software Company</div>
+            <ul>
+              <li><span>Chief Marketing Officer</span><span>$234,000</span></li>
+              <li><span>Marketing Manager</span><span>$110,500</span></li>
+              <li><span>2 Content Creators</span><span>$169,000</span></li>
+              <li><span>Video Editor</span><span>$84,500</span></li>
+              <li><span>2 SDRs (Sales Development Reps)</span><span>$156,000</span></li>
+              <li><span>Marketing Operations Specialist</span><span>$97,500</span></li>
+              <li><span>Web Developer</span><span>$123,500</span></li>
+              <li><span>Data Analyst</span><span>$104,000</span></li>
+              <li class="article-breakdown-total"><span>Subtotal: Direct Compensation</span><span>$1,079,000</span></li>
+            </ul>
+          </div>
+
+          <div class="article-breakdown">
+            <div class="article-breakdown-title">Additional Operational Costs</div>
+            <ul>
+              <li><span>Office space (10 people × $12,000/year)</span><span>$120,000</span></li>
+              <li><span>Equipment and technology</span><span>$50,000</span></li>
+              <li><span>Software licenses and tools</span><span>$60,000</span></li>
+              <li><span>Recruitment and training</span><span>$80,000</span></li>
+              <li><span>Management overhead (CEO/COO time)</span><span>$150,000</span></li>
+              <li><span>Employee turnover and backfill</span><span>$100,000</span></li>
+              <li class="article-breakdown-total"><span>Total Annual Cost</span><span>$1,639,000</span></li>
+            </ul>
+          </div>
+
+          <h3>The Hidden Costs</h3>
+          <ul>
+            <li>Management complexity (coordinating 10 different people)</li>
+            <li>Knowledge loss when people leave</li>
+            <li>Misalignment between departments</li>
+            <li>Time spent in meetings coordinating work</li>
+            <li>Inefficiency from context-switching</li>
+            <li>Inconsistent quality across individuals</li>
+            <li>Limited scalability (each new hire is slow)</li>
+            <li>Geographic constraints on talent access</li>
+          </ul>
+
+          <h3>The Compounding Problem</h3>
+          <p>This isn't just expensive. It's getting worse.</p>
+          <ol>
+            <li><strong>Talent Competition:</strong> Average tech worker salary increased 42% from 2019–2024</li>
+            <li><strong>Benefits Escalation:</strong> Healthcare, retirement, and other benefits now average 30–35% of salary</li>
+            <li><strong>Office Space:</strong> Despite remote work, most companies maintain expensive office footprints ($50–150/sq ft annually in major cities)</li>
+            <li><strong>Turnover Crisis:</strong> Average employee tenure in tech is 2.8 years; each replacement costs 6–9 months of salary</li>
+            <li><strong>Coordination Overhead:</strong> As teams grow, coordination costs increase exponentially (Brooks's Law)</li>
+          </ol>
+          <p>The result: Companies spend 30–50% of revenue on operations that don't directly create value for customers.</p>
+
+          <h3>The Small Business Trap</h3>
+          <p>The situation is even more dire for smaller companies. A startup with $2M in revenue needs the same operational functions but can't afford dedicated specialists. Founders end up doing marketing, sales, and operations themselves, 80-hour weeks, every week. They hire generalists who aren't expert in anything, outsource to disconnected freelancers across five different platforms, or buy DIY SaaS tools that require expertise to deploy effectively.</p>
+          <p>The impossible choice: stay small and do everything yourself, or scale and drown in operational complexity.</p>
+
+          <h3>Industry-Specific Breaking Points</h3>
+          <h4>Audit Firms</h4>
+          <ul>
+            <li>Junior auditors cost $65–85K but bill at $150–250/hour</li>
+            <li>60–70% of audit work is data gathering, document review, and compliance checking</li>
+            <li>Busy season requires temporary staff, hire, train, manage, lay off, repeatedly</li>
+          </ul>
+          <h4>Law Firms</h4>
+          <ul>
+            <li>Associates cost $120–180K but 40% of their time goes to research and administrative tasks</li>
+            <li>Document management and research tools cost $15–30K per attorney</li>
+            <li>Billing coordination and admin consume 15–20% of partner time</li>
+          </ul>
+          <h4>Video Production Companies</h4>
+          <ul>
+            <li>Full-time editors cost $55–85K but are only 60–70% utilized</li>
+            <li>Equipment and software licenses add $20–30K per editor annually</li>
+            <li>Project management and client coordination consume 25–30% of production time</li>
+          </ul>
+          <h4>Tech Companies</h4>
+          <ul>
+            <li>Marketing and sales teams represent 40–60% of headcount at growth-stage companies</li>
+            <li>Each channel requires specialized expertise: SEO, paid, content, social, email</li>
+            <li>Average company uses 120+ SaaS tools, creating complexity and integration debt</li>
+          </ul>
+          <p>The current model is breaking. Companies can feel it. The question isn't whether things will change, but what replaces this broken system.</p>
+          <hr>
+
+          <!-- Section 2 -->
+          <h2>2. What is a Remote Headquarters?</h2>
+          <h3>Defining the Remote HQ Model</h3>
+          <p>A Remote Headquarters is an AI-powered operational partner that serves as a company's complete operational infrastructure, combining:</p>
+          <ol>
+            <li><strong>Artificial Intelligence:</strong> Autonomous agents handling repetitive, pattern-based, and data-intensive work</li>
+            <li><strong>Global Human Expertise:</strong> Specialists distributed worldwide, working asynchronously, coordinated by AI</li>
+            <li><strong>Proprietary Technology:</strong> Custom tools, platforms, and workflows optimized for specific operational functions</li>
+            <li><strong>Persistent Memory:</strong> Complete context and history of client's business, accumulating institutional knowledge</li>
+            <li><strong>Orchestration Layer:</strong> Intelligent routing of work between AI and humans based on complexity, stakes, and context</li>
+          </ol>
+
+          <h3>What It Is Not</h3>
+          <ul>
+            <li>A traditional outsourcing company (human-only, low-skill, transaction-based)</li>
+            <li>A staffing agency (provides bodies, not systems)</li>
+            <li>A SaaS tool (provides software, not execution)</li>
+            <li>A freelancer marketplace (disconnected individuals, not coordinated teams)</li>
+            <li>A traditional agency (project-based, expensive, forgets context between engagements)</li>
+          </ul>
+
+          <h3>What It Is</h3>
+          <ul>
+            <li>Your virtual COO + full operational team</li>
+            <li>Your always-on, always-learning business partner</li>
+            <li>Your scalable, cost-effective operational infrastructure</li>
+            <li>Your competitive advantage through superior execution velocity</li>
+          </ul>
+
+          <h3>The Architecture of a Remote HQ</h3>
+          <p>Think of a Remote HQ as having three interconnected layers.</p>
+
+          <h4>Layer 1: The Intelligence Layer (The Brain)</h4>
+          <p>The AI-powered orchestration system that understands your business deeply, industry, customers, goals, constraints, history. It makes strategic recommendations based on data and context, routes work to the appropriate execution resources, learns continuously from outcomes, and maintains institutional memory that never forgets.</p>
+
+          <h4>Layer 2: The Execution Layer (The Hands)</h4>
+          <p>Where work actually happens, through two pathways. <strong>AI Agents (60–80% of work):</strong> data processing, content creation, video editing, email outreach at scale, report generation, research, CRM management, and scheduling. <strong>Human Specialists (20–40% of work):</strong> complex strategy, high-stakes deliverables, creative direction, client relationship management, and quality assurance.</p>
+          <p>The division is dynamic. As AI improves, more work shifts from human to AI, improving margins and speed without reducing quality.</p>
+
+          <h4>Layer 3: The Integration Layer (The Nervous System)</h4>
+          <p>Connects the Remote HQ to all client systems: CRM, communication platforms, marketing tools, financial systems, project management, and data warehouses. The result: the Remote HQ has full visibility and can act on any system the client already uses.</p>
+
+          <h3>How It Works: A Day in the Life</h3>
+          <p><strong>6 AM:</strong> Remote HQ AI analyzes overnight data, detects an email deliverability issue, runs a root-cause diagnostic, routes the fix to a technical specialist who resolves the expired DNS record, and sends the client a plain-English summary, before they've had their coffee.</p>
+          <p><strong>9 AM:</strong> Client asks, "Our sales have been flat for 6 weeks. What's wrong?" AI analyzes the full funnel, identifies that the sales cycle lengthened from 45 to 62 days, traces it to two new lower-priced competitors, and routes execution to produce competitive comparison content and an ROI calculator, within the same afternoon.</p>
+          <p><strong>2 PM:</strong> Client needs 10 slides for a conference next week. AI reviews past presentations, brand guidelines, and audience context. Generates outline and first draft. Routes to design agent. Delivers in 6 hours, proactively including a relevant case study.</p>
+          <p><strong>8 PM (automated, nobody asked):</strong> 2,000 cold emails sent. 50 qualification calls made. 12 meetings booked. 100 LinkedIn connection requests sent with personalized messages. 3 social posts published. 2 YouTube videos finished editing. Weekly performance report auto-generated and sent.</p>
+          <p>This is the power of the Remote HQ model: always working, always learning, always improving.</p>
+
+          <h3>The Value Proposition</h3>
+          <ol>
+            <li><strong>Cost efficiency:</strong> 60–85% cheaper than an equivalent in-house team</li>
+            <li><strong>Superior velocity:</strong> 3–5x faster execution, AI doesn't sleep, global team works across timezones</li>
+            <li><strong>Expertise access:</strong> Top specialists in every domain, on demand</li>
+            <li><strong>Scalability:</strong> Instantly scale up or down based on business needs</li>
+            <li><strong>Continuity:</strong> Institutional knowledge never walks out the door</li>
+            <li><strong>Strategic partnership:</strong> Not just execution, but proactive recommendations and optimization</li>
+            <li><strong>Continuous improvement:</strong> AI learns from every project and gets measurably better</li>
+          </ol>
+          <p>The bottom line: companies get enterprise-grade operational capabilities at startup-level costs, with none of the management burden.</p>
+          <hr>
+
+          <!-- Section 3 -->
+          <h2>3. The Four Converging Forces</h2>
+          <h3>Force 1: AI Maturation (The Capability Revolution)</h3>
+          <p>In 2020, AI could classify images and transcribe speech. In 2025, AI can reason, strategize, and make complex decisions through natural language interfaces, with multimodal understanding and autonomous multi-step execution. Content generation required 80% human editing in 2020. By 2025 that's down to 20%. The trajectory is clear: every year, AI handles more complex tasks with higher quality, at lower cost.</p>
+
+          <h3>Force 2: Permanent Remote Work Normalization</h3>
+          <p>Remote work is now the default. This removed the psychological barrier to distributed execution. If internal teams are already remote, the operational partner can be remote too. It unlocked global talent access, asynchronous collaboration, results-based assessment, and a fundamentally transformed cost structure for service delivery.</p>
+
+          <h3>Force 3: Service Delivery Platformization</h3>
+          <p>The market is shifting from fragmented point vendors to integrated platforms: one partner providing all services, unified process and communication, integrated data and insights, and persistent context. Platform economics create winner-take-all dynamics through network effects and compounding economies of scale.</p>
+
+          <h3>Force 4: Economic Pressure for Efficiency</h3>
+          <p>Margin compression is forcing efficiency everywhere. AI-native competitors operate at radically lower cost structures. Remote HQ delivers 40–60% operational cost reduction and 2–3x execution velocity, a performance gap traditional operators cannot close without structural change.</p>
+
+          <h3>The Convergence: Why Now?</h3>
+          <p>AI capability is ready. Remote work is culturally accepted. Platforms beat fragmentation. Efficiency is financially urgent. These four forces converging means Remote HQ is not a "maybe." It is a transformation already underway, and the companies building on this model now will be structurally unbeatable within the decade.</p>
+          <hr>
+
+          <!-- Section 4 -->
+          <h2>4. Why Traditional Models Are Obsolete</h2>
+          <h3>The Five Fatal Flaws</h3>
+          <h4>Flaw 1: Fixed Costs in a Variable World</h4>
+          <p>Traditional employment creates fixed costs regardless of output. Capacity is always mismatched to demand, overstaffed during slow periods, understaffed during peaks. You pay for presence, not performance.</p>
+          <h4>Flaw 2: The Expertise Paradox</h4>
+          <p>Modern business needs deep expertise across dozens of specialized domains. Most companies cannot afford full-time specialists for all of them, so they hire generalists and get mediocre results across the board.</p>
+          <h4>Flaw 3: The Knowledge Loss Crisis</h4>
+          <p>When employees leave, institutional knowledge walks out the door. Rebuilding productivity after turnover takes months and costs more than the initial hiring expense did. The average tech company faces this every 2.8 years per employee.</p>
+          <h4>Flaw 4: Coordination Overhead</h4>
+          <p>Communication channels scale as n(n-1)/2. A 10-person team has 45 communication channels. A 50-person team has 1,225. Most knowledge work time is spent coordinating rather than executing. This overhead is invisible in org charts but devastating in practice.</p>
+          <h4>Flaw 5: Innovation Stagnation</h4>
+          <p>Internal teams get entrenched in "the way we've always done it," limiting the continuous optimization that competitive markets demand. The same people doing the same work the same way, quarter after quarter.</p>
+
+          <h3>The Compounding Effect</h3>
+          <p>The gap widens over time. Remote HQ compounds efficiency and learning. Traditional models compound coordination burden and turnover cost. By 2030, the operational performance gap will be too wide to paper over with good intentions, the transformation will be non-negotiable.</p>
+          <hr>
+
+          <!-- Section 5 -->
+          <h2>5. The Remote HQ Model Across Industries</h2>
+          <h3>Professional Services</h3>
+          <p><strong>Audit firms:</strong> AI agents automate data gathering, testing, and documentation. Human auditors focus on judgment, client interaction, and reporting. <strong>Law firms:</strong> AI handles document review, research, discovery, and first drafts. Lawyers focus on strategy, negotiation, and courtroom work. <strong>Consulting:</strong> AI performs research, analysis, and deck creation. Consultants focus on workshops, recommendations, and implementation planning. In every case, the ratio of billable output per professional increases dramatically.</p>
+
+          <h3>Financial Services</h3>
+          <p>AI handles transactions, customer support, underwriting, and compliance monitoring at scale. Human specialists handle exceptions, complex relationships, and decisions that require regulatory judgment. The result: dramatically higher client capacity with the same headcount.</p>
+
+          <h3>Technology Companies</h3>
+          <p>AI-powered growth engines automate execution across content, ads, email, social, and analytics. Humans focus on strategy, brand direction, and the high-judgment creative work that differentiates market positioning. Growth velocity increases while headcount stays flat.</p>
+
+          <h3>Creative Industries</h3>
+          <p>AI-first studios automate mechanical editing, formatting, and distribution. Humans focus on storytelling, creative direction, and quality assurance, compressing production timelines from weeks to days, and days to hours.</p>
+
+          <h3>Sales Operations</h3>
+          <p>AI-powered outbound engines scale prospecting, personalization, outreach, and qualification continuously. Humans focus on strategy, VIP accounts, and ongoing optimization. The result: a sales machine that never sleeps, never misses a follow-up, and gets smarter with every campaign.</p>
+          <hr>
+
+          <!-- Section 6 -->
+          <h2>6. The Economic Case</h2>
+          <h3>The Unit Economics</h3>
+          <p><strong>Traditional in-house model:</strong> Fully loaded costs run 125–137% of base salary. Productive utilization sits at 60–70%. Scaling is linear, every new output unit requires a new hire, a new onboarding cycle, and a new management overhead.</p>
+          <p><strong>Remote HQ model:</strong> AI utilization runs 90–95%. Efficiency on repetitive tasks is 5–10x human baseline. Scaling is exponential, capacity grows without proportional cost growth. The comparison, on a unit-economics basis, is not close.</p>
+
+          <h3>The Employment Transition</h3>
+          <p>A major portion of knowledge work will shift from routine execution to strategy, oversight, quality assurance, relationship management, and ethical judgment. The transition will be disruptive. The key question facing societies and policymakers is not whether this happens, but how to manage the pace and distribution of that disruption responsibly.</p>
+          <hr>
+
+          <!-- Section 7 -->
+          <h2>7. The Technology Stack Enabling This Future</h2>
+          <h4>Layer 1: Foundation Models</h4>
+          <p>LLMs (Claude, GPT-4, Gemini) provide reasoning, decision-making, and multimodal understanding, the cognitive engine of the entire system.</p>
+          <h4>Layer 2: Specialized Models</h4>
+          <p>Computer vision, speech, code generation, and video editing models handle domain-specific work with expert-level output across verticals.</p>
+          <h4>Layer 3: Orchestration and Memory</h4>
+          <p>Vector databases, knowledge graphs, and persistent memory systems store business context and institutional knowledge that compounds in value over time.</p>
+          <h4>Layer 4: Integration and Automation</h4>
+          <p>APIs, webhooks, RPA, and iPaaS connect systems and execute workflows across any client's existing tool stack, no rip-and-replace required.</p>
+          <h4>Layer 5: Deployment and Infrastructure</h4>
+          <p>Cloud compute, GPU infrastructure, monitoring, and security complete the platform, ensuring reliability, compliance, and performance at any scale.</p>
+
+        </div><!-- /article-prose -->
+      </div><!-- /article-view -->
+
+    </section>
+
+    <!-- ========== CONTACT ========== -->
+    <section class="section" id="contact">
+      <div class="animate-up">
+        <span class="eyebrow">Contact</span>
+        <h1 class="section-title">Let's build something.</h1>
+      </div>
+      <div class="contact-grid">
         <div class="animate-up">
-          <span class="eyebrow">Contact</span>
-          <h1 class="section-title">Let's build something.</h1>
-        </div>
-        <div class="contact-grid">
-          <div class="animate-up">
-            <div class="contact-info-item">
-              <div class="contact-icon">📧</div>
-              <div>
-                <div class="contact-label">Email</div>
-                <div class="contact-value">
-                  <a href="mailto:nasrullahtanim@gmail.com">nasrullahtanim@gmail.com</a><br>
-                  <a href="mailto:hello@tanim.social">hello@tanim.social</a>
-                </div>
-              </div>
-            </div>
-            <div class="contact-info-item">
-              <div class="contact-icon">🔗</div>
-              <div>
-                <div class="contact-label">LinkedIn</div>
-                <div class="contact-value">
-                  <a href="https://www.linkedin.com/in/sheikh-md-nasrullah-910b203b3/" target="_blank" rel="noopener">Sheikh Md Nasrullah</a>
-                </div>
-              </div>
-            </div>
-            <div class="contact-info-item">
-              <div class="contact-icon">🌐</div>
-              <div>
-                <div class="contact-label">Website</div>
-                <div class="contact-value">
-                  <a href="https://slideinventure.com" target="_blank" rel="noopener">slideinventure.com</a>
-                </div>
+          <div class="contact-info-item">
+            <div class="contact-icon">📧</div>
+            <div>
+              <div class="contact-label">Email</div>
+              <div class="contact-value">
+                <a href="mailto:nasrullahtanim@gmail.com">nasrullahtanim@gmail.com</a><br>
+                <a href="mailto:hello@tanim.social">hello@tanim.social</a>
               </div>
             </div>
           </div>
-          <div class="animate-up">
-            <form class="contact-form" id="contactForm">
-              <div class="form-group">
-                <label for="contactName">Name</label>
-                <input type="text" id="contactName" name="name" placeholder="Your name" required>
+          <div class="contact-info-item">
+            <div class="contact-icon">🔗</div>
+            <div>
+              <div class="contact-label">LinkedIn</div>
+              <div class="contact-value">
+                <a href="https://www.linkedin.com/in/sheikh-md-nasrullah-910b203b3/" target="_blank" rel="noopener">Sheikh Md Nasrullah</a>
               </div>
-              <div class="form-group">
-                <label for="contactEmail">Email</label>
-                <input type="email" id="contactEmail" name="email" placeholder="your@email.com" required>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-icon">🌐</div>
+            <div>
+              <div class="contact-label">Website</div>
+              <div class="contact-value">
+                <a href="https://slideinventure.com" target="_blank" rel="noopener">slideinventure.com</a>
               </div>
-              <div class="form-group">
-                <label for="contactMessage">Message</label>
-                <textarea id="contactMessage" name="message" placeholder="Tell me about what you're building and what bottleneck you're trying to solve..."></textarea>
-              </div>
-              <button type="submit" class="submit-btn">
-                Send message
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-              </button>
-              <div class="form-status" id="formStatus"></div>
-            </form>
+            </div>
           </div>
         </div>
-      </section>
+        <div class="animate-up">
+          <form class="contact-form" id="contactForm">
+            <div class="form-group">
+              <label for="contactName">Name</label>
+              <input type="text" id="contactName" name="name" placeholder="Your name" required>
+            </div>
+            <div class="form-group">
+              <label for="contactEmail">Email</label>
+              <input type="email" id="contactEmail" name="email" placeholder="your@email.com" required>
+            </div>
+            <div class="form-group">
+              <label for="contactMessage">Message</label>
+              <textarea id="contactMessage" name="message" placeholder="Tell me about what you're building and what bottleneck you're trying to solve..."></textarea>
+            </div>
+            <button type="submit" class="submit-btn">
+              Send message
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            </button>
+            <div class="form-status" id="formStatus"></div>
+          </form>
+        </div>
+      </div>
+    </section>
 
-    </main>
-  </div>
+  </main>
 
   <!-- ========== JAVASCRIPT ========== -->
   <script>
@@ -1588,22 +2385,39 @@
       // Add your YouTube links here. Each item: { title: 'Video Title', url: 'https://youtube.com/...' }
       const videoLinks = [
         // { title: 'Client Podcast Episode Edit', url: 'https://www.youtube.com/watch?v=EXAMPLE1' },
-        // { title: 'Brand Reel — Coach Launch', url: 'https://www.youtube.com/watch?v=EXAMPLE2' },
+        // { title: 'Brand Reel, Coach Launch', url: 'https://www.youtube.com/watch?v=EXAMPLE2' },
       ];
+
+      // ===== THEME TOGGLE =====
+      const html = document.documentElement;
+      const themeToggle = document.getElementById('themeToggle');
+      const themeToggleMobile = document.getElementById('themeToggleMobile');
+
+      // Apply saved theme on load
+      if (localStorage.getItem('theme') === 'light') {
+        html.classList.add('light');
+      }
+
+      function toggleTheme() {
+        html.classList.toggle('light');
+        localStorage.setItem('theme', html.classList.contains('light') ? 'light' : 'dark');
+      }
+
+      if (themeToggle) themeToggle.addEventListener('click', toggleTheme);
+      if (themeToggleMobile) themeToggleMobile.addEventListener('click', toggleTheme);
 
       // ===== DOM ELEMENTS =====
       const navLinks = document.querySelectorAll('.nav-link');
       const sections = document.querySelectorAll('.section');
-      const themeToggle = document.getElementById('themeToggle');
       const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-      const sidebar = document.getElementById('sidebar');
-      const mobileOverlay = document.getElementById('mobileOverlay');
+      const mobileNav = document.getElementById('mobileNav');
       const contactForm = document.getElementById('contactForm');
       const formStatus = document.getElementById('formStatus');
       const videoModal = document.getElementById('videoModal');
       const videoModalClose = document.getElementById('videoModalClose');
       const seeWorksBtn = document.getElementById('seeWorksBtn');
       const videoLinksList = document.getElementById('videoLinksList');
+      const navbarBrand = document.querySelector('.navbar-brand');
 
       // ===== NAVIGATION =====
       function switchSection(targetId) {
@@ -1625,9 +2439,11 @@
           if (l.dataset.section === targetId) l.classList.add('active');
         });
 
+        // Update URL hash without triggering a scroll jump
+        history.pushState(null, '', '#' + targetId);
+
         // Close mobile menu
-        sidebar.classList.remove('open');
-        mobileOverlay.classList.remove('visible');
+        mobileNav.classList.remove('open');
       }
 
       navLinks.forEach(link => {
@@ -1638,30 +2454,28 @@
         });
       });
 
-      // ===== THEME TOGGLE =====
-      function setTheme(theme) {
-        document.documentElement.setAttribute('data-theme', theme);
-        localStorage.setItem('theme', theme);
+      // Navbar brand click → About
+      if (navbarBrand) {
+        navbarBrand.addEventListener('click', () => switchSection('about'));
       }
 
-      themeToggle.addEventListener('click', () => {
-        const current = document.documentElement.getAttribute('data-theme');
-        setTheme(current === 'dark' ? 'light' : 'dark');
-      });
-
-      // Restore saved theme
-      const savedTheme = localStorage.getItem('theme');
-      if (savedTheme) setTheme(savedTheme);
+      // ===== DEEP LINK: read hash on load =====
+      const validSections = ['about', 'expertise', 'portfolio', 'thoughts', 'contact'];
+      const hashTarget = window.location.hash.slice(1); // strip the '#'
+      if (hashTarget && validSections.includes(hashTarget)) {
+        switchSection(hashTarget);
+      }
 
       // ===== MOBILE MENU =====
       mobileMenuBtn.addEventListener('click', () => {
-        sidebar.classList.toggle('open');
-        mobileOverlay.classList.toggle('visible');
+        mobileNav.classList.toggle('open');
       });
 
-      mobileOverlay.addEventListener('click', () => {
-        sidebar.classList.remove('open');
-        mobileOverlay.classList.remove('visible');
+      // Close mobile nav on outside click
+      document.addEventListener('click', (e) => {
+        if (!mobileNav.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+          mobileNav.classList.remove('open');
+        }
       });
 
       // ===== CONTACT FORM =====
@@ -1714,7 +2528,8 @@
 
       if (seeWorksBtn) {
         seeWorksBtn.addEventListener('click', () => {
-          videoModal.classList.add('visible');
+          switchSection('portfolio');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
         });
       }
 
@@ -1730,10 +2545,32 @@
       document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
           videoModal.classList.remove('visible');
-          sidebar.classList.remove('open');
-          mobileOverlay.classList.remove('visible');
+          mobileNav.classList.remove('open');
         }
       });
+
+      // ===== ARTICLE TOGGLE (Thoughts section) =====
+      document.querySelectorAll('.article-card').forEach(card => {
+        card.addEventListener('click', function() {
+          const articleId = 'article-' + this.dataset.article;
+          const listEl = document.getElementById('thoughtsList');
+          const articleEl = document.getElementById(articleId);
+          if (!articleEl) return;
+          listEl.style.display = 'none';
+          articleEl.classList.add('active');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      });
+
+      const thoughtsBackBtn = document.getElementById('thoughtsBackBtn');
+      if (thoughtsBackBtn) {
+        thoughtsBackBtn.addEventListener('click', function() {
+          const listEl = document.getElementById('thoughtsList');
+          document.querySelectorAll('.article-view').forEach(v => v.classList.remove('active'));
+          listEl.style.display = '';
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      }
 
     })();
   </script>
