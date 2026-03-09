@@ -94,9 +94,9 @@
       left: 0;
       right: 0;
       height: 60px;
-      display: flex;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
       align-items: center;
-      justify-content: space-between;
       padding: 0 2.5rem;
       z-index: 100;
       background: var(--navbar-bg);
@@ -114,68 +114,63 @@
       letter-spacing: -0.01em;
       cursor: pointer;
       transition: color 0.2s;
+      grid-column: 1;
+      justify-self: start;
     }
 
     .navbar-brand:hover { color: var(--accent); }
 
-    .navbar-right {
-      display: flex;
-      align-items: center;
-      gap: 2rem;
-    }
-
     .navbar-nav {
+      grid-column: 2;
       display: flex;
       align-items: center;
-      gap: 0;
+      gap: 2px;
       list-style: none;
-      background: rgba(255,255,255,0.06);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(232, 255, 71, 0.04);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(232, 255, 71, 0.22);
       border-radius: 999px;
-      padding: 5px 10px;
+      padding: 4px 6px;
+      box-shadow: 0 0 28px rgba(232, 255, 71, 0.07), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+      position: relative;
     }
 
     .navbar-nav .nav-link {
       font-family: 'Inter', sans-serif;
-      font-size: 0.8125rem;
+      font-size: 0.8rem;
       font-weight: 500;
       color: var(--text-muted);
       cursor: pointer;
-      padding: 0.3rem 0.85rem;
+      padding: 0.3rem 0.9rem;
       border-radius: 999px;
-      transition: color 0.2s ease, background 0.2s ease;
-      letter-spacing: 0em;
+      transition: color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+      letter-spacing: 0.01em;
       background: none;
       border: none;
       position: relative;
+      white-space: nowrap;
     }
 
     .navbar-nav .nav-link:hover {
       color: var(--text-primary);
+      background: rgba(232, 255, 71, 0.09);
     }
 
     .navbar-nav .nav-link.active {
-      color: var(--text-primary);
-      background: rgba(255,255,255,0.1);
+      color: #0c0c0c;
+      background: var(--accent);
+      font-weight: 600;
+      box-shadow: 0 0 14px rgba(232, 255, 71, 0.55), 0 2px 6px rgba(232, 255, 71, 0.3);
     }
 
-    /* Active indicator dot */
-    .navbar-nav .nav-link.active::after {
-      content: '';
-      position: absolute;
-      bottom: 2px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 3px;
-      height: 3px;
-      border-radius: 50%;
-      background: var(--accent);
-    }
+    /* Remove old dot indicator — active fill replaces it */
+    .navbar-nav .nav-link.active::after { display: none; }
 
     /* ========== NAVBAR SOCIALS ========== */
     .navbar-socials {
+      grid-column: 3;
+      justify-self: end;
       display: flex;
       align-items: center;
       gap: 0.6rem;
@@ -222,35 +217,58 @@
       padding: 0.4rem;
       align-items: center;
       justify-content: center;
+      flex-direction: column;
+      gap: 5px;
     }
 
-    .mobile-menu-btn svg {
+    .ham-bar {
+      display: block;
       width: 22px;
-      height: 22px;
-      stroke: currentColor;
-      fill: none;
-      stroke-width: 2;
-      stroke-linecap: round;
+      height: 2px;
+      border-radius: 2px;
+      background: currentColor;
+      transform-origin: center;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .mobile-menu-btn.open .ham-bar:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    .mobile-menu-btn.open .ham-bar:nth-child(2) {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+
+    .mobile-menu-btn.open .ham-bar:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
     }
 
     /* ========== MOBILE NAV DROPDOWN ========== */
     .mobile-nav {
-      display: none;
       position: fixed;
       top: 60px;
       left: 0;
       right: 0;
       background: var(--mobile-nav-bg);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-bottom: 1px solid rgba(232, 255, 71, 0.15);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
       z-index: 99;
       padding: 1rem 2.5rem 1.75rem;
-      transition: background 0.3s ease;
+      opacity: 0;
+      transform: translateY(-10px);
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease, background 0.3s ease;
     }
 
     .mobile-nav.open {
-      display: block;
+      opacity: 1;
+      transform: translateY(0);
+      visibility: visible;
+      pointer-events: auto;
     }
 
     .mobile-nav ul {
@@ -269,14 +287,21 @@
       color: var(--text-secondary);
       padding: 0.55rem 0;
       cursor: pointer;
-      transition: color 0.2s;
+      transition: color 0.2s, padding-left 0.2s;
       border: none;
       background: none;
+      border-left: 2px solid transparent;
     }
 
-    .mobile-nav .nav-link.active,
+    .mobile-nav .nav-link.active {
+      color: var(--accent);
+      border-left-color: var(--accent);
+      padding-left: 0.75rem;
+    }
+
     .mobile-nav .nav-link:hover {
       color: var(--accent);
+      padding-left: 0.5rem;
     }
 
     .mobile-nav-socials {
@@ -629,11 +654,11 @@
 
     .tool-logo-item {
       position: relative;
-      width: 28px;
-      height: 28px;
+      width: 32px;
+      height: 32px;
       border-radius: 50%;
-      background: #ffffff;
-      border: 1px solid rgba(0,0,0,0.1);
+      background: #222222;
+      border: 1px solid rgba(255,255,255,0.1);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -643,20 +668,34 @@
     }
 
     .tool-logo-item img {
-      width: 18px;
-      height: 18px;
+      width: 20px;
+      height: 20px;
       object-fit: contain;
       border-radius: 3px;
     }
 
     .tool-logo-fallback {
       display: none;
-      font-size: 0.48rem;
-      font-weight: 700;
-      color: #555555;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      font-size: 11px;
+      font-weight: 600;
+      color: #ffffff;
       text-align: center;
-      line-height: 1;
+      line-height: 32px;
       letter-spacing: 0;
+    }
+
+    .tool-logo-item--text {
+      background: transparent;
+      border: none;
+    }
+
+    .tool-logo-item--text .tool-logo-fallback {
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .tool-tooltip {
@@ -847,6 +886,17 @@
       background: var(--surface);
       border: 1px solid var(--border);
       color: var(--text-secondary);
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .bento-tag img {
+      width: 13px;
+      height: 13px;
+      object-fit: contain;
+      border-radius: 2px;
+      flex-shrink: 0;
     }
 
     /* ========== SEE WORKS BUTTON ========== */
@@ -1240,8 +1290,10 @@
 
     @media (max-width: 768px) {
       .navbar { padding: 0 1.5rem; }
-      .navbar-right { display: none; }
-      .mobile-menu-btn { display: flex; }
+      .navbar { grid-template-columns: 1fr auto; }
+      .navbar-nav { display: none; }
+      .navbar-socials { display: none; }
+      .mobile-menu-btn { display: flex; grid-column: 2; }
 
       .main { padding: 5.5rem 1.5rem 3.5rem; }
 
@@ -1609,12 +1661,20 @@
 
     /* Light mode pill adjustments */
     html.light .navbar-nav {
-      background: rgba(0,0,0,0.04);
-      border-color: rgba(0,0,0,0.08);
+      background: rgba(0, 0, 0, 0.03);
+      border-color: rgba(0, 0, 0, 0.12);
+      box-shadow: 0 1px 8px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.8);
     }
 
     html.light .navbar-nav .nav-link.active {
-      background: rgba(0,0,0,0.07);
+      background: var(--accent);
+      color: #fafafa;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    }
+
+    html.light .navbar-nav .nav-link:hover {
+      background: rgba(0, 0, 0, 0.06);
+      color: var(--text-primary);
     }
 
     html.light .theme-toggle {
@@ -1673,38 +1733,38 @@
   <nav class="navbar">
     <div class="navbar-brand" data-section="about" role="button">Nasrullah Tanim</div>
 
-    <div class="navbar-right">
-      <ul class="navbar-nav">
-        <li><a class="nav-link active" data-section="about">About</a></li>
-        <li><a class="nav-link" data-section="expertise">Expertise</a></li>
-        <li><a class="nav-link" data-section="portfolio">Portfolio</a></li>
-        <li><a class="nav-link" data-section="thoughts">Thoughts</a></li>
-        <li><a class="nav-link" data-section="contact">Contact</a></li>
-      </ul>
+    <ul class="navbar-nav">
+      <li><a class="nav-link active" data-section="about">About</a></li>
+      <li><a class="nav-link" data-section="expertise">Expertise</a></li>
+      <li><a class="nav-link" data-section="portfolio">Portfolio</a></li>
+      <li><a class="nav-link" data-section="thoughts">Thoughts</a></li>
+      <li><a class="nav-link" data-section="contact">Contact</a></li>
+    </ul>
 
-      <div class="navbar-socials">
-        <!-- Theme Toggle -->
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-        </button>
-        <a href="https://www.linkedin.com/in/sheikh-md-nasrullah-910b203b3/" target="_blank" rel="noopener" class="social-link" aria-label="LinkedIn">
-          <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-        </a>
-        <!-- Website -->
-        <a href="https://slideinventure.com" target="_blank" rel="noopener" class="social-link social-link--stroke" aria-label="Website">
-          <svg viewBox="0 0 24 24" width="17" height="17"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-        </a>
-        <!-- Email -->
-        <a href="mailto:nasrullahtanim@gmail.com" class="social-link social-link--stroke" aria-label="Email">
-          <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-        </a>
-      </div>
+    <div class="navbar-socials">
+      <!-- Theme Toggle -->
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <a href="https://www.linkedin.com/in/sheikh-md-nasrullah-910b203b3/" target="_blank" rel="noopener" class="social-link" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      </a>
+      <!-- Website -->
+      <a href="https://slideinventure.com" target="_blank" rel="noopener" class="social-link social-link--stroke" aria-label="Website">
+        <svg viewBox="0 0 24 24" width="17" height="17"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      </a>
+      <!-- Email -->
+      <a href="mailto:nasrullahtanim@gmail.com" class="social-link social-link--stroke" aria-label="Email">
+        <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+      </a>
     </div>
 
     <!-- Mobile hamburger -->
-    <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
-      <svg viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu" aria-expanded="false">
+      <span class="ham-bar"></span>
+      <span class="ham-bar"></span>
+      <span class="ham-bar"></span>
     </button>
   </nav>
 
@@ -1745,7 +1805,7 @@
           <div class="hero-tagline"><strong>Content production, AI automation, and Outbound Systems that scale.</strong></div>
         </div>
         <div class="hero-photo">
-          <img src="photo.jpg" alt="Nasrullah Tanim">
+          <img src="photo.webp" alt="Nasrullah Tanim" loading="eager" fetchpriority="high">
         </div>
       </div>
       <div class="animate-up">
@@ -1786,9 +1846,9 @@
           </div>
           <div class="bento-tags">
             <span class="bento-tag">AI Automation</span>
-            <span class="bento-tag">HeyGen</span>
-            <span class="bento-tag">ElevenLabs</span>
-            <span class="bento-tag">n8n</span>
+            <span class="bento-tag"><img src="https://logo.clearbit.com/heygen.com" alt="" onerror="this.style.display='none'">HeyGen</span>
+            <span class="bento-tag"><img src="https://logo.clearbit.com/elevenlabs.io" alt="" onerror="this.style.display='none'">ElevenLabs</span>
+            <span class="bento-tag"><img src="https://logo.clearbit.com/n8n.io" alt="" onerror="this.style.display='none'">n8n</span>
             <span class="bento-tag">Content Systems</span>
           </div>
         </div>
@@ -1842,7 +1902,7 @@
           <div class="bento-tags">
             <span class="bento-tag">AI Agents</span>
             <span class="bento-tag">Workflow Automation</span>
-            <span class="bento-tag">n8n</span>
+            <span class="bento-tag"><img src="https://logo.clearbit.com/n8n.io" alt="" onerror="this.style.display='none'">n8n</span>
             <span class="bento-tag">Business Operations</span>
           </div>
         </div>
@@ -1903,17 +1963,17 @@
           <div class="expertise-tools">
             <span class="expertise-tools-label">Tools I Use</span>
             <div class="tool-logo-row">
-              <div class="tool-logo-item"><img src="https://cdn.simpleicons.org/adobepremierepro" alt="Premiere Pro" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="tool-logo-fallback">PR</span><span class="tool-tooltip">Premiere Pro</span></div>
-              <div class="tool-logo-item"><img src="https://cdn.simpleicons.org/finalcutpro" alt="Final Cut Pro" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="tool-logo-fallback">FC</span><span class="tool-tooltip">Final Cut Pro</span></div>
-              <div class="tool-logo-item"><img src="https://cdn.simpleicons.org/davinciresolve" alt="DaVinci Resolve" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="tool-logo-fallback">DR</span><span class="tool-tooltip">DaVinci Resolve</span></div>
-              <div class="tool-logo-item"><img src="https://cdn.simpleicons.org/adobeaftereffects" alt="After Effects" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="tool-logo-fallback">AE</span><span class="tool-tooltip">After Effects</span></div>
-              <div class="tool-logo-item"><img src="https://cdn.simpleicons.org/capcut" alt="CapCut" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="tool-logo-fallback">CC</span><span class="tool-tooltip">CapCut</span></div>
-              <div class="tool-logo-item"><img src="https://logo.clearbit.com/descript.com" alt="Descript" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="tool-logo-fallback">DS</span><span class="tool-tooltip">Descript</span></div>
-              <div class="tool-logo-item"><img src="https://logo.clearbit.com/heygen.com" alt="HeyGen" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="tool-logo-fallback">HG</span><span class="tool-tooltip">HeyGen</span></div>
-              <div class="tool-logo-item"><img src="https://cdn.simpleicons.org/elevenlabs" alt="ElevenLabs" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="tool-logo-fallback">EL</span><span class="tool-tooltip">ElevenLabs</span></div>
-              <div class="tool-logo-item"><img src="https://cdn.simpleicons.org/canva" alt="Canva" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="tool-logo-fallback">CA</span><span class="tool-tooltip">Canva</span></div>
-              <div class="tool-logo-item"><img src="https://cdn.simpleicons.org/adobephotoshop" alt="Photoshop" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="tool-logo-fallback">PS</span><span class="tool-tooltip">Photoshop</span></div>
-              <div class="tool-logo-item"><img src="https://cdn.simpleicons.org/figma" alt="Figma" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="tool-logo-fallback">FI</span><span class="tool-tooltip">Figma</span></div>
+              <div class="tool-logo-item" title="Premiere Pro"><img src="https://cdn.simpleicons.org/adobepremierepro/ffffff" width="20" height="20" alt="Premiere Pro"><span class="tool-tooltip">Premiere Pro</span></div>
+              <div class="tool-logo-item tool-logo-item--text" title="Final Cut Pro"><span class="tool-logo-fallback" style="background:#1C1C1E;">FC</span><span class="tool-tooltip">Final Cut Pro</span></div>
+              <div class="tool-logo-item" title="DaVinci Resolve"><img src="https://cdn.simpleicons.org/davinciresolve/ffffff" width="20" height="20" alt="DaVinci Resolve"><span class="tool-tooltip">DaVinci Resolve</span></div>
+              <div class="tool-logo-item" title="After Effects"><img src="https://cdn.simpleicons.org/adobeaftereffects/ffffff" width="20" height="20" alt="After Effects"><span class="tool-tooltip">After Effects</span></div>
+              <div class="tool-logo-item tool-logo-item--text" title="CapCut"><span class="tool-logo-fallback" style="background:#000000;">CC</span><span class="tool-tooltip">CapCut</span></div>
+              <div class="tool-logo-item" title="Descript"><img src="https://cdn.simpleicons.org/descript/ffffff" width="20" height="20" alt="Descript"><span class="tool-tooltip">Descript</span></div>
+              <div class="tool-logo-item tool-logo-item--text" title="HeyGen"><span class="tool-logo-fallback" style="background:#6366F1;">HG</span><span class="tool-tooltip">HeyGen</span></div>
+              <div class="tool-logo-item tool-logo-item--text" title="ElevenLabs"><span class="tool-logo-fallback" style="background:#000000;">EL</span><span class="tool-tooltip">ElevenLabs</span></div>
+              <div class="tool-logo-item" title="Canva"><img src="https://cdn.simpleicons.org/canva/ffffff" width="20" height="20" alt="Canva"><span class="tool-tooltip">Canva</span></div>
+              <div class="tool-logo-item" title="Photoshop"><img src="https://cdn.simpleicons.org/adobephotoshop/ffffff" width="20" height="20" alt="Photoshop"><span class="tool-tooltip">Photoshop</span></div>
+              <div class="tool-logo-item" title="Figma"><img src="https://cdn.simpleicons.org/figma/ffffff" width="20" height="20" alt="Figma"><span class="tool-tooltip">Figma</span></div>
             </div>
           </div>
         </div>
@@ -1935,13 +1995,13 @@
           <div class="expertise-tools">
             <span class="expertise-tools-label">Tools I Use</span>
             <div class="tool-logo-row">
-              <div class="tool-logo-item"><img src="https://cdn.simpleicons.org/n8n" alt="n8n" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="tool-logo-fallback">n8</span><span class="tool-tooltip">n8n</span></div>
-              <div class="tool-logo-item"><img src="https://cdn.simpleicons.org/anthropic" alt="Claude" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="tool-logo-fallback">CL</span><span class="tool-tooltip">Claude</span></div>
-              <div class="tool-logo-item"><img src="https://cdn.simpleicons.org/zapier" alt="Zapier" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="tool-logo-fallback">ZA</span><span class="tool-tooltip">Zapier</span></div>
-              <div class="tool-logo-item"><img src="https://cdn.simpleicons.org/make" alt="Make" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="tool-logo-fallback">MK</span><span class="tool-tooltip">Make</span></div>
-              <div class="tool-logo-item"><img src="https://cdn.simpleicons.org/notion" alt="Notion" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="tool-logo-fallback">NO</span><span class="tool-tooltip">Notion</span></div>
-              <div class="tool-logo-item"><img src="https://cdn.simpleicons.org/airtable" alt="Airtable" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="tool-logo-fallback">AT</span><span class="tool-tooltip">Airtable</span></div>
-              <div class="tool-logo-item"><img src="https://cdn.simpleicons.org/googlesheets" alt="Google Sheets" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="tool-logo-fallback">GS</span><span class="tool-tooltip">Google Sheets</span></div>
+              <div class="tool-logo-item" title="n8n"><img src="https://cdn.simpleicons.org/n8n/ffffff" width="20" height="20" alt="n8n"><span class="tool-tooltip">n8n</span></div>
+              <div class="tool-logo-item tool-logo-item--text" title="Claude"><span class="tool-logo-fallback" style="background:#CC785C;">AI</span><span class="tool-tooltip">Claude</span></div>
+              <div class="tool-logo-item" title="Zapier"><img src="https://cdn.simpleicons.org/zapier/ffffff" width="20" height="20" alt="Zapier"><span class="tool-tooltip">Zapier</span></div>
+              <div class="tool-logo-item" title="Make"><img src="https://cdn.simpleicons.org/make/ffffff" width="20" height="20" alt="Make"><span class="tool-tooltip">Make</span></div>
+              <div class="tool-logo-item" title="Notion"><img src="https://cdn.simpleicons.org/notion/ffffff" width="20" height="20" alt="Notion"><span class="tool-tooltip">Notion</span></div>
+              <div class="tool-logo-item" title="Airtable"><img src="https://cdn.simpleicons.org/airtable/ffffff" width="20" height="20" alt="Airtable"><span class="tool-tooltip">Airtable</span></div>
+              <div class="tool-logo-item" title="Google Sheets"><img src="https://cdn.simpleicons.org/googlesheets/ffffff" width="20" height="20" alt="Google Sheets"><span class="tool-tooltip">Google Sheets</span></div>
             </div>
           </div>
         </div>
@@ -1963,11 +2023,11 @@
           <div class="expertise-tools">
             <span class="expertise-tools-label">Tools I Use</span>
             <div class="tool-logo-row">
-              <div class="tool-logo-item"><img src="https://logo.clearbit.com/instantly.ai" alt="Instantly" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="tool-logo-fallback">IN</span><span class="tool-tooltip">Instantly</span></div>
-              <div class="tool-logo-item"><img src="https://logo.clearbit.com/apollo.io" alt="Apollo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="tool-logo-fallback">AP</span><span class="tool-tooltip">Apollo</span></div>
-              <div class="tool-logo-item"><img src="https://logo.clearbit.com/hunter.io" alt="Hunter.io" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="tool-logo-fallback">HU</span><span class="tool-tooltip">Hunter.io</span></div>
-              <div class="tool-logo-item"><img src="https://cdn.simpleicons.org/googleworkspace" alt="Google Workspace" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="tool-logo-fallback">GW</span><span class="tool-tooltip">Google Workspace</span></div>
-              <div class="tool-logo-item"><img src="https://logo.clearbit.com/clay.com" alt="Clay" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="tool-logo-fallback">CY</span><span class="tool-tooltip">Clay</span></div>
+              <div class="tool-logo-item tool-logo-item--text" title="Instantly"><span class="tool-logo-fallback" style="background:#4F46E5;">IN</span><span class="tool-tooltip">Instantly</span></div>
+              <div class="tool-logo-item" title="Apollo"><img src="https://cdn.simpleicons.org/apollo/ffffff" width="20" height="20" alt="Apollo"><span class="tool-tooltip">Apollo</span></div>
+              <div class="tool-logo-item tool-logo-item--text" title="Hunter.io"><span class="tool-logo-fallback" style="background:#F97316;">HU</span><span class="tool-tooltip">Hunter.io</span></div>
+              <div class="tool-logo-item" title="Google Workspace"><img src="https://cdn.simpleicons.org/google/ffffff" width="20" height="20" alt="Google Workspace"><span class="tool-tooltip">Google Workspace</span></div>
+              <div class="tool-logo-item tool-logo-item--text" title="Clay"><span class="tool-logo-fallback" style="background:#6366F1;">CL</span><span class="tool-tooltip">Clay</span></div>
             </div>
           </div>
         </div>
@@ -2444,6 +2504,8 @@
 
         // Close mobile menu
         mobileNav.classList.remove('open');
+        mobileMenuBtn.classList.remove('open');
+        mobileMenuBtn.setAttribute('aria-expanded', 'false');
       }
 
       navLinks.forEach(link => {
@@ -2468,13 +2530,17 @@
 
       // ===== MOBILE MENU =====
       mobileMenuBtn.addEventListener('click', () => {
-        mobileNav.classList.toggle('open');
+        const isOpen = mobileNav.classList.toggle('open');
+        mobileMenuBtn.classList.toggle('open', isOpen);
+        mobileMenuBtn.setAttribute('aria-expanded', isOpen);
       });
 
       // Close mobile nav on outside click
       document.addEventListener('click', (e) => {
         if (!mobileNav.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
           mobileNav.classList.remove('open');
+          mobileMenuBtn.classList.remove('open');
+          mobileMenuBtn.setAttribute('aria-expanded', 'false');
         }
       });
 
@@ -2546,6 +2612,8 @@
         if (e.key === 'Escape') {
           videoModal.classList.remove('visible');
           mobileNav.classList.remove('open');
+          mobileMenuBtn.classList.remove('open');
+          mobileMenuBtn.setAttribute('aria-expanded', 'false');
         }
       });
 
