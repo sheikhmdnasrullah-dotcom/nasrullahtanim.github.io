@@ -801,6 +801,25 @@
       flex-shrink: 0;
     }
 
+    .stack-icon {
+      width: 16px;
+      height: 16px;
+      object-fit: contain;
+      flex-shrink: 0;
+    }
+
+    .stack-list li:has(.stack-icon)::before {
+      display: none;
+    }
+
+    .skill-tool-icon {
+      width: 14px;
+      height: 14px;
+      object-fit: contain;
+      vertical-align: middle;
+      margin: 0 2px;
+    }
+
     /* ========== CONTACT SECTION ========== */
     .contact-grid {
       display: grid;
@@ -1228,7 +1247,7 @@
             <h3 class="card-title">Content Production at Scale</h3>
             <p class="card-desc">Premium video editing, podcast production, and social media management that runs like clockwork.</p>
             <ul class="card-capabilities">
-              <li>Video editing (Premiere Pro, Final Cut Pro, DaVinci Resolve)</li>
+              <li>Video editing (<img src="https://cdn.simpleicons.org/adobepremierepro" class="skill-tool-icon" aria-hidden="true" alt="">Premiere Pro, <img src="https://cdn.simpleicons.org/finalcutpro" class="skill-tool-icon" aria-hidden="true" alt="">Final Cut Pro, <img src="https://cdn.simpleicons.org/davinciresolve/888888" class="skill-tool-icon" aria-hidden="true" alt="">DaVinci Resolve)</li>
               <li>Podcast editing and production</li>
               <li>Shorts, Reels, and TikTok optimization</li>
               <li>Thumbnail design and brand systems</li>
@@ -1241,7 +1260,7 @@
             <h3 class="card-title">AI-Powered Automation</h3>
             <p class="card-desc">Custom n8n workflows and AI agents that handle repetitive work so you never have to touch it again.</p>
             <ul class="card-capabilities">
-              <li>n8n workflow development</li>
+              <li><img src="https://cdn.simpleicons.org/n8n" class="skill-tool-icon" aria-hidden="true" alt="">n8n workflow development</li>
               <li>AI agent development for custom business operations</li>
               <li>Lead research and qualification systems</li>
               <li>CRM automation and data processing</li>
@@ -1440,51 +1459,57 @@
           <div class="stack-category animate-up">
             <div class="stack-category-title">Video Production</div>
             <ul class="stack-list">
-              <li>Premiere Pro</li>
-              <li>Final Cut Pro</li>
-              <li>DaVinci Resolve</li>
-              <li>After Effects</li>
-              <li>CapCut</li>
-              <li>Descript</li>
-              <li>HeyGen</li>
-              <li>ElevenLabs</li>
+              <li><img src="https://cdn.simpleicons.org/adobepremierepro" class="stack-icon" aria-hidden="true" alt="">Premiere Pro</li>
+              <li><img src="https://cdn.simpleicons.org/finalcutpro" class="stack-icon" aria-hidden="true" alt="">Final Cut Pro</li>
+              <li><img src="https://cdn.simpleicons.org/davinciresolve/888888" class="stack-icon" aria-hidden="true" alt="">DaVinci Resolve</li>
+              <li><img src="https://cdn.simpleicons.org/adobeaftereffects" class="stack-icon" aria-hidden="true" alt="">After Effects</li>
+              <li><img src="https://cdn.simpleicons.org/capcut/888888" class="stack-icon" aria-hidden="true" alt="">CapCut</li>
+              <li><img src="https://www.descript.com/favicon.ico" class="stack-icon" aria-hidden="true" alt="">Descript</li>
+              <li><img src="https://www.heygen.com/favicon.ico" class="stack-icon" aria-hidden="true" alt="">HeyGen</li>
+              <li><img src="https://cdn.simpleicons.org/elevenlabs/888888" onerror="this.src='https://elevenlabs.io/favicon.ico'" class="stack-icon" aria-hidden="true" alt="">ElevenLabs</li>
             </ul>
           </div>
           <div class="stack-category animate-up">
             <div class="stack-category-title">AI &amp; Automation</div>
             <ul class="stack-list">
-              <li>n8n</li>
-              <li>Claude</li>
-              <li>Zapier</li>
-              <li>Make</li>
+              <li><img src="https://cdn.simpleicons.org/n8n" class="stack-icon" aria-hidden="true" alt="">n8n</li>
+              <li><img src="https://cdn.simpleicons.org/anthropic" class="stack-icon" aria-hidden="true" alt="">Claude</li>
+              <li><img src="https://cdn.simpleicons.org/zapier" class="stack-icon" aria-hidden="true" alt="">Zapier</li>
+              <li><img src="https://cdn.simpleicons.org/make" class="stack-icon" aria-hidden="true" alt="">Make</li>
             </ul>
           </div>
           <div class="stack-category animate-up">
             <div class="stack-category-title">Outbound &amp; CRM</div>
             <ul class="stack-list">
-              <li>Instantly</li>
-              <li>Apollo</li>
-              <li>Hunter.io</li>
-              <li>Google Workspace</li>
-              <li>Email Verification APIs</li>
+              <li><img src="https://app.instantly.ai/favicon.ico" class="stack-icon" aria-hidden="true" alt="">Instantly</li>
+              <li><img src="https://app.apollo.io/favicon.ico" class="stack-icon" aria-hidden="true" alt="">Apollo</li>
+              <li><img src="https://cdn.simpleicons.org/hunterio" onerror="this.src='https://hunter.io/favicon.ico'" class="stack-icon" aria-hidden="true" alt="">Hunter.io</li>
+              <li><img src="https://cdn.simpleicons.org/googleworkspace" class="stack-icon" aria-hidden="true" alt="">Google Workspace</li>
+              <li>
+                <svg class="stack-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <rect x="2" y="4" width="20" height="16" rx="2"/>
+                  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                </svg>
+                Email Verification APIs
+              </li>
             </ul>
           </div>
           <div class="stack-category animate-up">
             <div class="stack-category-title">Design &amp; Creative</div>
             <ul class="stack-list">
-              <li>Canva</li>
-              <li>Adobe Photoshop</li>
-              <li>Figma</li>
-              <li>Adobe Illustrator</li>
+              <li><img src="https://cdn.simpleicons.org/canva" class="stack-icon" aria-hidden="true" alt="">Canva</li>
+              <li><img src="https://cdn.simpleicons.org/adobephotoshop" class="stack-icon" aria-hidden="true" alt="">Adobe Photoshop</li>
+              <li><img src="https://cdn.simpleicons.org/figma" class="stack-icon" aria-hidden="true" alt="">Figma</li>
+              <li><img src="https://cdn.simpleicons.org/adobeillustrator" class="stack-icon" aria-hidden="true" alt="">Adobe Illustrator</li>
             </ul>
           </div>
           <div class="stack-category animate-up">
             <div class="stack-category-title">Project Management</div>
             <ul class="stack-list">
-              <li>Notion</li>
-              <li>Airtable</li>
-              <li>Google Sheets</li>
-              <li>Todoist</li>
+              <li><img src="https://cdn.simpleicons.org/notion/888888" class="stack-icon" aria-hidden="true" alt="">Notion</li>
+              <li><img src="https://cdn.simpleicons.org/airtable" class="stack-icon" aria-hidden="true" alt="">Airtable</li>
+              <li><img src="https://cdn.simpleicons.org/googlesheets" class="stack-icon" aria-hidden="true" alt="">Google Sheets</li>
+              <li><img src="https://cdn.simpleicons.org/todoist" class="stack-icon" aria-hidden="true" alt="">Todoist</li>
             </ul>
           </div>
         </div>
