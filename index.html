@@ -490,20 +490,22 @@
 
     /* ========== WHO I AM WHITE THEME BOX ========== */
     .who-i-am-box {
-      background: #ffffff;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
       border-radius: 20px;
       padding: 2.5rem;
       margin: 2rem 0 3rem;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.04);
+      box-shadow: var(--shadow-lg);
+      transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
     }
 
     .who-i-am-box .who-i-am-title {
-      color: #0a0a0a;
+      color: var(--text-primary);
       margin-top: 0;
     }
 
     .who-i-am-box .section-body p {
-      color: #2a2a2a;
+      color: var(--text-secondary);
       font-size: 1.05rem;
       line-height: 1.75;
     }
@@ -1964,7 +1966,7 @@
 
     /* Smooth theme transition */
     body, .navbar, .mobile-nav, .card, .expertise-card, .portfolio-card,
-    .article-card, .contact-form, .btn-primary, .bento-card {
+    .article-card, .contact-form, .btn-primary, .bento-card, .who-i-am-box {
       transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease,
                   box-shadow 0.25s ease;
     }
@@ -2088,33 +2090,6 @@
 
     <!-- ========== EXPERTISE ========== -->
     <section class="section" id="expertise">
-      <!-- Autonomous Content Engine - Featured Card -->
-      <div class="bento-grid stagger" style="margin-bottom: 2rem;">
-        <div class="bento-card bento-card--full animate-up">
-          <div class="bento-top-row">
-            <div class="bento-icon-box">🤖</div>
-            <div class="bento-card-number">01</div>
-          </div>
-          <div class="bento-name">Autonomous Content Engine</div>
-          <div class="bento-body-cols">
-            <p class="bento-desc">Built a fully autonomous content production system where a founder records themselves once and the entire pipeline runs on its own from there. Script writing, content strategy, video editing, reels creation, and publishing, all handled without the founder touching anything again. Powered by custom AI workflows, HeyGen, ElevenLabs, and n8n automation stitched together into a single hands-free operation.</p>
-            <div class="bento-results">
-              <div class="bento-results-label">RESULTS</div>
-              <ul>
-                <li>Zero ongoing input required from the founder after initial setup</li>
-                <li>AI writes the scripts, strategizes the content calendar, and edits the videos</li>
-                <li>Automated reels and short-form content created from long-form footage</li>
-                <li>Custom AI voice and avatar clones via ElevenLabs and HeyGen</li>
-                <li>Full publishing pipeline across all major platforms on autopilot</li>
-              </ul>
-            </div>
-          </div>
-          <div class="expertise-buttons" style="border-top: none; padding-top: 0.5rem;">
-            <button class="expertise-btn expertise-btn--primary" id="viewExampleBtn">View Example</button>
-          </div>
-        </div>
-      </div>
-
       <div class="expertise-grid stagger">
 
         <!-- Card 1: Content Production -->
@@ -2138,27 +2113,7 @@
           </div>
         </div>
 
-        <!-- Card 2: AI Automation -->
-        <div class="expertise-card animate-up">
-          <div class="expertise-card-header">
-            <div class="expertise-icon">🤖</div>
-            <h3 class="expertise-title">AI-Powered Automation</h3>
-          </div>
-          <p class="expertise-desc">Custom n8n workflows and AI agents that handle repetitive work so you never have to touch it again. Built around how your specific business actually operates, not a generic off-the-shelf solution.</p>
-          <ul class="expertise-capabilities">
-            <li>n8n workflow development</li>
-            <li>AI agent development for custom operations</li>
-            <li>Lead research and qualification systems</li>
-            <li>CRM automation and data processing</li>
-            <li>Custom integrations via APIs and webhooks</li>
-          </ul>
-          <div class="expertise-buttons">
-            <button class="expertise-btn expertise-btn--secondary" disabled>Try Custom Chat Agent</button>
-            <button class="expertise-btn expertise-btn--secondary" disabled>Try Custom Voice Agent</button>
-          </div>
-        </div>
-
-        <!-- Card 3: Outbound Infrastructure -->
+        <!-- Card 2: Outbound Infrastructure -->
         <div class="expertise-card animate-up">
           <div class="expertise-card-header">
             <div class="expertise-icon">📧</div>
@@ -2177,7 +2132,54 @@
             <button class="expertise-btn expertise-btn--secondary wistia-popover-trigger" data-wistia-id="jkd9o74r18">Service Explained</button>
           </div>
         </div>
+
+        <!-- Card 3: AI Automation -->
+        <div class="expertise-card animate-up">
+          <div class="expertise-card-header">
+            <div class="expertise-icon">🤖</div>
+            <h3 class="expertise-title">AI-Powered Automation</h3>
+          </div>
+          <p class="expertise-desc">Custom n8n workflows and AI agents that handle repetitive work so you never have to touch it again. Built around how your specific business actually operates, not a generic off-the-shelf solution.</p>
+          <ul class="expertise-capabilities">
+            <li>n8n workflow development</li>
+            <li>AI agent development for custom operations</li>
+            <li>Lead research and qualification systems</li>
+            <li>CRM automation and data processing</li>
+            <li>Custom integrations via APIs and webhooks</li>
+          </ul>
+          <div class="expertise-buttons">
+            <button class="expertise-btn expertise-btn--secondary" disabled>Try Custom Chat Agent</button>
+            <button class="expertise-btn expertise-btn--secondary" disabled>Try Custom Voice Agent</button>
+          </div>
         </div>
+        </div>
+
+      <!-- Autonomous Content Engine - Featured Card -->
+      <div class="bento-grid stagger" style="margin-top: 3rem;">
+        <div class="bento-card bento-card--full animate-up">
+          <div class="bento-top-row">
+            <div class="bento-icon-box">🤖</div>
+            <div class="bento-card-number">04</div>
+          </div>
+          <div class="bento-name">Autonomous Content Engine</div>
+          <div class="bento-body-cols">
+            <p class="bento-desc">Built a fully autonomous content production system where a founder records themselves once and the entire pipeline runs on its own from there. Script writing, content strategy, video editing, reels creation, and publishing, all handled without the founder touching anything again. Powered by custom AI workflows, HeyGen, ElevenLabs, and n8n automation stitched together into a single hands-free operation.</p>
+            <div class="bento-results">
+              <div class="bento-results-label">RESULTS</div>
+              <ul>
+                <li>Zero ongoing input required from the founder after initial setup</li>
+                <li>AI writes the scripts, strategizes the content calendar, and edits the videos</li>
+                <li>Automated reels and short-form content created from long-form footage</li>
+                <li>Custom AI voice and avatar clones via ElevenLabs and HeyGen</li>
+                <li>Full publishing pipeline across all major platforms on autopilot</li>
+              </ul>
+            </div>
+          </div>
+          <div class="expertise-buttons" style="border-top: none; padding-top: 0.5rem;">
+            <button class="expertise-btn expertise-btn--primary" id="viewExampleBtn">View Example</button>
+          </div>
+        </div>
+      </div>
 
       </div>
     </section>
