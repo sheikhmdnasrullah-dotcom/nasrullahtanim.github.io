@@ -1205,6 +1205,64 @@
       font-style: italic;
     }
 
+    /* ========== YOUTUBE EMBED MODAL ========== */
+    .youtube-modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.92);
+      z-index: 1001;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .youtube-modal-overlay.visible {
+      display: flex;
+    }
+
+    .youtube-modal-content {
+      position: relative;
+      width: 90%;
+      max-width: 900px;
+      aspect-ratio: 16 / 9;
+      background: #000;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    }
+
+    .youtube-modal-content iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .youtube-modal-close {
+      position: absolute;
+      top: -50px;
+      right: 0;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      transition: all 0.2s ease;
+    }
+
+    .youtube-modal-close:hover {
+      background: rgba(255, 255, 255, 0.2);
+      border-color: rgba(255, 255, 255, 0.4);
+      transform: scale(1.05);
+    }
+
     /* ========== THOUGHTS ========== */
     .thoughts-placeholder {
       background: var(--card-bg);
@@ -1909,6 +1967,14 @@
     </div>
   </div>
 
+  <!-- ========== YOUTUBE EMBED MODAL ========== -->
+  <div class="youtube-modal-overlay" id="youtubeModal">
+    <div class="youtube-modal-content">
+      <button class="youtube-modal-close" id="youtubeModalClose">&times;</button>
+      <iframe id="youtubeIframe" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  </div>
+
   <!-- ========== NAVBAR ========== -->
   <nav class="navbar">
     <div class="navbar-brand" data-section="about" role="button">Nasrullah Tanim</div>
@@ -1995,6 +2061,9 @@
         <div class="section-body">
           <p>I'm Tanim. I love building systems that scale a business. I solve three problems. First, <strong>content</strong>: planning, editing, producing, and distributing video across every major platform. Second, <strong>growth</strong>: engineering cold outreach systems that consistently find and convert the right leads. Third, <strong>operations</strong>: designing custom AI agents and internal workflows that remove the bottlenecks eating up founder time.</p>
         </div>
+        <div class="expertise-buttons" style="border-top: none; padding-top: 1rem; margin-top: 0.5rem;">
+          <a href="#expertise" class="expertise-btn expertise-btn--primary">What I Solve</a>
+        </div>
       </div>
 
       <hr style="border: none; border-top: 1px solid var(--border); margin: 3rem 0;">
@@ -2025,93 +2094,8 @@
               </ul>
             </div>
           </div>
-          <div class="bento-tags">
-            <span class="bento-tag">AI Automation</span>
-            <span class="bento-tag"><img src="https://logo.clearbit.com/heygen.com" alt="" onerror="this.style.display='none'">HeyGen</span>
-            <span class="bento-tag"><img src="https://logo.clearbit.com/elevenlabs.io" alt="" onerror="this.style.display='none'">ElevenLabs</span>
-            <span class="bento-tag"><img src="https://logo.clearbit.com/n8n.io" alt="" onerror="this.style.display='none'">n8n</span>
-            <span class="bento-tag">Content Systems</span>
-          </div>
-        </div>
-
-        <!-- Card 2, Half width left -->
-        <div class="bento-card bento-card--half animate-up">
-          <div class="bento-top-row">
-            <div class="bento-icon-box">🎬</div>
-            <div class="bento-card-number">02</div>
-          </div>
-          <div class="bento-name">Multi-Client Content Operations</div>
-          <p class="bento-desc">Designed and ran a systematic content production machine managing 6 to 10 concurrent clients simultaneously, with consistent quality, predictable delivery, and no bottlenecks. Built the SOPs, the editing pipeline, and the distribution workflow from scratch.</p>
-          <div class="bento-results">
-            <div class="bento-results-label">RESULTS</div>
-            <ul>
-              <li>2,500+ videos edited across five years</li>
-              <li>500+ podcast episodes produced</li>
-              <li>20+ deliverables shipped per week at peak</li>
-              <li>Zero missed deadlines across active client roster</li>
-            </ul>
-          </div>
-          <button class="see-works-btn" id="seeWorksBtn">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-            See Works I Have Done
-          </button>
-          <div class="bento-tags">
-            <span class="bento-tag">Content Production</span>
-            <span class="bento-tag">Video Editing</span>
-            <span class="bento-tag">Podcast</span>
-            <span class="bento-tag">Systems</span>
-          </div>
-        </div>
-
-        <!-- Card 3, Half width right -->
-        <div class="bento-card bento-card--half animate-up">
-          <div class="bento-top-row">
-            <div class="bento-icon-box">⚙️</div>
-            <div class="bento-card-number">03</div>
-          </div>
-          <div class="bento-name">AI Business Operations Layer</div>
-          <p class="bento-desc">Designed custom AI agents and internal automation systems that plug directly into a business's existing tools and eliminate the operational drag that slows teams down. Not a generic chatbot. Actual workflows built around how a specific business operates, from lead qualification and CRM updates to reporting, client communication, and internal decision-making pipelines.</p>
-          <div class="bento-results">
-            <div class="bento-results-label">RESULTS</div>
-            <ul>
-              <li>Qualified 17,000 leads in 72 hours using a custom AI research agent</li>
-              <li>15+ hours per week of manual work eliminated per client</li>
-              <li>Custom voice agent integration for automated outreach and follow-up</li>
-              <li>AI agents connected to Notion, Google Sheets, email, and CRM tools</li>
-            </ul>
-          </div>
-          <div class="bento-tags">
-            <span class="bento-tag">AI Agents</span>
-            <span class="bento-tag">Workflow Automation</span>
-            <span class="bento-tag"><img src="https://logo.clearbit.com/n8n.io" alt="" onerror="this.style.display='none'">n8n</span>
-            <span class="bento-tag">Business Operations</span>
-          </div>
-        </div>
-
-        <!-- Card 4, Full width -->
-        <div class="bento-card bento-card--full animate-up">
-          <div class="bento-top-row">
-            <div class="bento-icon-box">📧</div>
-            <div class="bento-card-number">04</div>
-          </div>
-          <div class="bento-name">Cold Email Deliverability System</div>
-          <div class="bento-body-cols">
-            <p class="bento-desc">Built a compliance-first outbound infrastructure from the ground up, with AI handling the research, personalization, and sequencing automatically. DNS authentication, sender reputation management, and list verification running in the background so emails land where they are supposed to land every single time.</p>
-            <div class="bento-results">
-              <div class="bento-results-label">RESULTS</div>
-              <ul>
-                <li>40%+ open rates maintained consistently</li>
-                <li>Zero spam complaints across all campaigns</li>
-                <li>Under 2% bounce rate through AI-powered list verification</li>
-                <li>Scalable sending infrastructure across multiple domains</li>
-              </ul>
-            </div>
-          </div>
-          <div class="bento-tags">
-            <span class="bento-tag">Cold Email</span>
-            <span class="bento-tag">Deliverability</span>
-            <span class="bento-tag">AI Personalization</span>
-            <span class="bento-tag">Infrastructure</span>
+          <div class="expertise-buttons" style="border-top: none; padding-top: 0.5rem;">
+            <button class="expertise-btn expertise-btn--primary" id="viewExampleBtn">View Example</button>
           </div>
         </div>
 
@@ -2816,6 +2800,48 @@
             player.play();
           }
         });
+      });
+
+      // ===== YOUTUBE EMBED MODAL =====
+      const youtubeModal = document.getElementById('youtubeModal');
+      const youtubeIframe = document.getElementById('youtubeIframe');
+      const youtubeModalClose = document.getElementById('youtubeModalClose');
+      const viewExampleBtn = document.getElementById('viewExampleBtn');
+
+      function openYoutubeModal(videoUrl) {
+        youtubeIframe.src = videoUrl + '?autoplay=1';
+        youtubeModal.classList.add('visible');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeYoutubeModal() {
+        youtubeModal.classList.remove('visible');
+        youtubeIframe.src = '';
+        document.body.style.overflow = '';
+      }
+
+      if (viewExampleBtn) {
+        viewExampleBtn.addEventListener('click', function() {
+          openYoutubeModal('https://www.youtube.com/embed/CpDM2ZXapBs');
+        });
+      }
+
+      if (youtubeModalClose) {
+        youtubeModalClose.addEventListener('click', closeYoutubeModal);
+      }
+
+      if (youtubeModal) {
+        youtubeModal.addEventListener('click', function(e) {
+          if (e.target === youtubeModal) {
+            closeYoutubeModal();
+          }
+        });
+      }
+
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && youtubeModal && youtubeModal.classList.contains('visible')) {
+          closeYoutubeModal();
+        }
       });
 
     })();
