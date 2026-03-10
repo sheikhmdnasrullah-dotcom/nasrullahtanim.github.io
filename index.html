@@ -3997,11 +3997,10 @@
           return;
         }
 
-        // Play welcome message
+        // Reset conversation and UI
         voiceConversationHistory = [];
         voiceTranscript.innerHTML = '';
-        setVoiceState('speaking');
-        playWelcomeMessage();
+        setVoiceState('idle');
       }
 
       function closeVoiceModal() {
@@ -4069,6 +4068,9 @@
             // Initialize AudioContext if needed
             if (!audioContext) {
               audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (audioContext.state === 'suspended') {
+              await audioContext.resume();
             }
 
             const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
@@ -4207,7 +4209,15 @@
             stopAudio();
             setVoiceState('idle');
           } else if (voiceState === 'idle') {
-            startVoiceListening();
+            // Play welcome message on first click
+            if (voiceConversationHistory.length === 0) {
+              setVoiceState('speaking');
+              playWelcomeMessage().then(() => {
+                startVoiceListening();
+              });
+            } else {
+              startVoiceListening();
+            }
           } else if (voiceState === 'listening') {
             stopVoiceListening();
             setVoiceState('idle');
