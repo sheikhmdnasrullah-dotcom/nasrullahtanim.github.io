@@ -1903,6 +1903,65 @@
 
     .video-gallery-sub:first-of-type { margin-top: 0; }
 
+    /* Portfolio Tabs */
+    .portfolio-tabs {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+      padding: 0.5rem;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      width: fit-content;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .portfolio-tab {
+      padding: 0.75rem 2rem;
+      font-family: 'Inter Tight', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      background: transparent;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+    }
+
+    .portfolio-tab:hover {
+      color: var(--text);
+      background: rgba(139,92,246,0.08);
+    }
+
+    .portfolio-tab.active {
+      color: var(--text);
+      background: var(--primary);
+      box-shadow: 0 4px 12px rgba(139,92,246,0.25);
+    }
+
+    .portfolio-content {
+      display: none;
+      animation: fadeIn 0.4s ease;
+    }
+
+    .portfolio-content.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
     .podcast-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -1989,6 +2048,14 @@
 
       .podcast-grid { grid-template-columns: 1fr; }
       .reel-grid { grid-template-columns: repeat(2, 1fr); }
+      .portfolio-tabs {
+        padding: 0.4rem;
+        gap: 0.5rem;
+      }
+      .portfolio-tab {
+        padding: 0.65rem 1.5rem;
+        font-size: 0.95rem;
+      }
       .video-gallery-sub {
         font-size: 1.5rem;
         padding: 1.2rem 2rem;
@@ -2003,6 +2070,17 @@
       .hero-name { font-size: 2.25rem; }
       .section-title { font-size: 1.75rem; }
       .reel-grid { grid-template-columns: repeat(2, 1fr); }
+      .portfolio-tabs {
+        padding: 0.35rem;
+        gap: 0.4rem;
+        width: 100%;
+        max-width: 100%;
+      }
+      .portfolio-tab {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+        flex: 1;
+      }
       .video-gallery-sub {
         font-size: 1.2rem;
         padding: 1rem 1.5rem;
@@ -2990,35 +3068,45 @@
     <!-- ========== PORTFOLIO ========== -->
     <section class="section" id="portfolio">
       <div class="video-gallery animate-up">
-        <h3 class="video-gallery-sub">Podcast Edits</h3>
-        <div class="podcast-grid">
-          <div class="video-embed video-embed--landscape"><iframe src="https://www.youtube.com/embed/kWw5P7IqfKU?si=Eedy9yg2mkxSuTfB" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
-          <div class="video-embed video-embed--landscape"><iframe src="https://www.youtube.com/embed/Jq--0pSIiwk?si=wXUNRbJ9vq6kCW2J" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
-          <div class="video-embed video-embed--landscape"><iframe src="https://www.youtube.com/embed/JmpK396sDoY?si=syUvX2IsUdVPnAAZ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
-          <div class="video-embed video-embed--landscape"><iframe src="https://www.youtube.com/embed/_qUNzwRWdDc?si=6mqeFdn1Hrl1s6eg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
-          <div class="video-embed video-embed--landscape"><iframe src="https://www.youtube.com/embed/mpf8zpSkbxg?si=v-fqa_H_K4J6TiK_" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
-          <div class="video-embed video-embed--landscape"><iframe src="https://www.youtube.com/embed/HhNAsraWyvA?si=A4-bWt81Kj-uqUT5" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
+        <!-- Portfolio Sub Navigation -->
+        <div class="portfolio-tabs">
+          <button class="portfolio-tab active" data-tab="podcast">Podcast Edits</button>
+          <button class="portfolio-tab" data-tab="reel">Reel Edits</button>
         </div>
 
-        <h3 class="video-gallery-sub">Reel Edits</h3>
-        <div class="reel-grid">
-          <div class="video-embed video-embed--portrait"><iframe src="https://www.youtube.com/embed/YIOb6yP-Vqg" allowfullscreen loading="lazy"></iframe></div>
-          <div class="video-embed video-embed--portrait"><iframe src="https://www.youtube.com/embed/Q04ktHx09sY" allowfullscreen loading="lazy"></iframe></div>
-          <div class="video-embed video-embed--portrait"><iframe src="https://www.youtube.com/embed/NdlODkhmZQI" allowfullscreen loading="lazy"></iframe></div>
-          <div class="video-embed video-embed--portrait"><iframe src="https://www.youtube.com/embed/6_-dpyy9NPc" allowfullscreen loading="lazy"></iframe></div>
-          <div class="video-embed video-embed--portrait"><iframe src="https://www.youtube.com/embed/RuQZjz2qgoI" allowfullscreen loading="lazy"></iframe></div>
-          <div class="video-embed video-embed--portrait"><iframe src="https://www.youtube.com/embed/_KvU5e1Y3Mk" allowfullscreen loading="lazy"></iframe></div>
-          <div class="video-embed video-embed--portrait"><iframe src="https://www.youtube.com/embed/QfKsH8sp1RI" allowfullscreen loading="lazy"></iframe></div>
-          <div class="video-embed video-embed--portrait"><iframe src="https://www.youtube.com/embed/y78HsXO4MOM" allowfullscreen loading="lazy"></iframe></div>
-          <div class="video-embed video-embed--portrait"><iframe src="https://www.youtube.com/embed/uviaSTc5bAo" allowfullscreen loading="lazy"></iframe></div>
-          <div class="video-embed video-embed--portrait"><iframe src="https://www.youtube.com/embed/R8cuivdgUFk" allowfullscreen loading="lazy"></iframe></div>
-          <div class="video-embed video-embed--portrait"><iframe src="https://www.youtube.com/embed/ZtdZl419cys" allowfullscreen loading="lazy"></iframe></div>
-          <div class="video-embed video-embed--portrait"><iframe src="https://www.youtube.com/embed/lRVlu8G-3Vo" allowfullscreen loading="lazy"></iframe></div>
-          <div class="video-embed video-embed--portrait"><iframe src="https://www.youtube.com/embed/u-lQqR65Ox0" allowfullscreen loading="lazy"></iframe></div>
-          <div class="video-embed video-embed--portrait"><iframe src="https://www.youtube.com/embed/vgvHQRCwPq0" allowfullscreen loading="lazy"></iframe></div>
-          <div class="video-embed video-embed--portrait"><iframe src="https://www.youtube.com/embed/_zX8pe1S96g" allowfullscreen loading="lazy"></iframe></div>
-          <div class="video-embed video-embed--portrait"><iframe src="https://www.youtube.com/embed/YIOb6yP-Vqg" allowfullscreen loading="lazy"></iframe></div>
-          <div class="video-embed video-embed--portrait"><iframe src="https://www.youtube.com/embed/g_D2BvQIAkw" allowfullscreen loading="lazy"></iframe></div>
+        <!-- Podcast Edits Content -->
+        <div class="portfolio-content active" id="podcastContent">
+          <div class="podcast-grid">
+            <div class="video-embed video-embed--landscape"><iframe src="https://www.youtube.com/embed/kWw5P7IqfKU?si=Eedy9yg2mkxSuTfB" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
+            <div class="video-embed video-embed--landscape"><iframe src="https://www.youtube.com/embed/Jq--0pSIiwk?si=wXUNRbJ9vq6kCW2J" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
+            <div class="video-embed video-embed--landscape"><iframe src="https://www.youtube.com/embed/JmpK396sDoY?si=syUvX2IsUdVPnAAZ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
+            <div class="video-embed video-embed--landscape"><iframe src="https://www.youtube.com/embed/_qUNzwRWdDc?si=6mqeFdn1Hrl1s6eg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
+            <div class="video-embed video-embed--landscape"><iframe src="https://www.youtube.com/embed/mpf8zpSkbxg?si=v-fqa_H_K4J6TiK_" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
+            <div class="video-embed video-embed--landscape"><iframe src="https://www.youtube.com/embed/HhNAsraWyvA?si=A4-bWt81Kj-uqUT5" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
+          </div>
+        </div>
+
+        <!-- Reel Edits Content -->
+        <div class="portfolio-content" id="reelContent">
+          <div class="reel-grid">
+            <div class="video-embed video-embed--portrait"><iframe src="https://www.youtube.com/embed/YIOb6yP-Vqg" allowfullscreen loading="lazy"></iframe></div>
+            <div class="video-embed video-embed--portrait"><iframe src="https://www.youtube.com/embed/Q04ktHx09sY" allowfullscreen loading="lazy"></iframe></div>
+            <div class="video-embed video-embed--portrait"><iframe src="https://www.youtube.com/embed/NdlODkhmZQI" allowfullscreen loading="lazy"></iframe></div>
+            <div class="video-embed video-embed--portrait"><iframe src="https://www.youtube.com/embed/6_-dpyy9NPc" allowfullscreen loading="lazy"></iframe></div>
+            <div class="video-embed video-embed--portrait"><iframe src="https://www.youtube.com/embed/RuQZjz2qgoI" allowfullscreen loading="lazy"></iframe></div>
+            <div class="video-embed video-embed--portrait"><iframe src="https://www.youtube.com/embed/_KvU5e1Y3Mk" allowfullscreen loading="lazy"></iframe></div>
+            <div class="video-embed video-embed--portrait"><iframe src="https://www.youtube.com/embed/QfKsH8sp1RI" allowfullscreen loading="lazy"></iframe></div>
+            <div class="video-embed video-embed--portrait"><iframe src="https://www.youtube.com/embed/y78HsXO4MOM" allowfullscreen loading="lazy"></iframe></div>
+            <div class="video-embed video-embed--portrait"><iframe src="https://www.youtube.com/embed/uviaSTc5bAo" allowfullscreen loading="lazy"></iframe></div>
+            <div class="video-embed video-embed--portrait"><iframe src="https://www.youtube.com/embed/R8cuivdgUFk" allowfullscreen loading="lazy"></iframe></div>
+            <div class="video-embed video-embed--portrait"><iframe src="https://www.youtube.com/embed/ZtdZl419cys" allowfullscreen loading="lazy"></iframe></div>
+            <div class="video-embed video-embed--portrait"><iframe src="https://www.youtube.com/embed/lRVlu8G-3Vo" allowfullscreen loading="lazy"></iframe></div>
+            <div class="video-embed video-embed--portrait"><iframe src="https://www.youtube.com/embed/u-lQqR65Ox0" allowfullscreen loading="lazy"></iframe></div>
+            <div class="video-embed video-embed--portrait"><iframe src="https://www.youtube.com/embed/vgvHQRCwPq0" allowfullscreen loading="lazy"></iframe></div>
+            <div class="video-embed video-embed--portrait"><iframe src="https://www.youtube.com/embed/_zX8pe1S96g" allowfullscreen loading="lazy"></iframe></div>
+            <div class="video-embed video-embed--portrait"><iframe src="https://www.youtube.com/embed/YIOb6yP-Vqg" allowfullscreen loading="lazy"></iframe></div>
+            <div class="video-embed video-embed--portrait"><iframe src="https://www.youtube.com/embed/g_D2BvQIAkw" allowfullscreen loading="lazy"></iframe></div>
+          </div>
         </div>
       </div>
     </section>
@@ -3620,6 +3708,31 @@
           }
         });
       }
+
+      // ===== PORTFOLIO TABS =====
+      const portfolioTabs = document.querySelectorAll('.portfolio-tab');
+      const portfolioContents = document.querySelectorAll('.portfolio-content');
+
+      portfolioTabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+          const targetTab = this.dataset.tab;
+
+          // Remove active class from all tabs
+          portfolioTabs.forEach(t => t.classList.remove('active'));
+
+          // Add active class to clicked tab
+          this.classList.add('active');
+
+          // Hide all content sections
+          portfolioContents.forEach(content => content.classList.remove('active'));
+
+          // Show the target content
+          const targetContent = document.getElementById(targetTab + 'Content');
+          if (targetContent) {
+            targetContent.classList.add('active');
+          }
+        });
+      });
 
       // ===== WISTIA POPOVER TRIGGERS =====
       document.querySelectorAll('.wistia-popover-trigger').forEach(btn => {
