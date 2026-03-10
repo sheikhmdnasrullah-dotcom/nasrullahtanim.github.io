@@ -3411,6 +3411,7 @@
       let currentIndex = 0;
 
       function rotateTagline() {
+        if (rotatingTexts.length === 0) return;
         const current = rotatingTexts[currentIndex];
         current.classList.add('fade-out');
         current.classList.remove('visible');
@@ -3464,9 +3465,11 @@
         history.pushState(null, '', '#' + targetId);
 
         // Close mobile menu
-        mobileNav.classList.remove('open');
-        mobileMenuBtn.classList.remove('open');
-        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+        if (mobileNav && mobileMenuBtn) {
+          mobileNav.classList.remove('open');
+          mobileMenuBtn.classList.remove('open');
+          mobileMenuBtn.setAttribute('aria-expanded', 'false');
+        }
       }
 
       // Make switchSection globally accessible for onclick handlers
@@ -3493,52 +3496,58 @@
       }
 
       // ===== MOBILE MENU =====
-      mobileMenuBtn.addEventListener('click', () => {
-        const isOpen = mobileNav.classList.toggle('open');
-        mobileMenuBtn.classList.toggle('open', isOpen);
-        mobileMenuBtn.setAttribute('aria-expanded', isOpen);
-      });
+      if (mobileMenuBtn && mobileNav) {
+        mobileMenuBtn.addEventListener('click', () => {
+          const isOpen = mobileNav.classList.toggle('open');
+          mobileMenuBtn.classList.toggle('open', isOpen);
+          mobileMenuBtn.setAttribute('aria-expanded', isOpen);
+        });
+      }
 
       // Close mobile nav on outside click
-      document.addEventListener('click', (e) => {
-        if (!mobileNav.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
-          mobileNav.classList.remove('open');
-          mobileMenuBtn.classList.remove('open');
-          mobileMenuBtn.setAttribute('aria-expanded', 'false');
-        }
-      });
+      if (mobileNav && mobileMenuBtn) {
+        document.addEventListener('click', (e) => {
+          if (!mobileNav.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+            mobileNav.classList.remove('open');
+            mobileMenuBtn.classList.remove('open');
+            mobileMenuBtn.setAttribute('aria-expanded', 'false');
+          }
+        });
+      }
 
       // ===== CONTACT FORM =====
-      contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        const name = document.getElementById('contactName').value.trim();
-        const email = document.getElementById('contactEmail').value.trim();
-        const message = document.getElementById('contactMessage').value.trim();
+      if (contactForm && formStatus) {
+        contactForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          const name = document.getElementById('contactName').value.trim();
+          const email = document.getElementById('contactEmail').value.trim();
+          const message = document.getElementById('contactMessage').value.trim();
 
-        if (!name || !email || !message) {
-          formStatus.className = 'form-status error';
-          formStatus.textContent = 'Please fill in all fields.';
-          return;
-        }
+          if (!name || !email || !message) {
+            formStatus.className = 'form-status error';
+            formStatus.textContent = 'Please fill in all fields.';
+            return;
+          }
 
-        // Construct mailto link as a fallback (no backend)
-        const subject = encodeURIComponent('Portfolio Contact from ' + name);
-        const body = encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\n' + message);
-        window.location.href = 'mailto:nasrullahtanim@gmail.com?subject=' + subject + '&body=' + body;
+          // Construct mailto link as a fallback (no backend)
+          const subject = encodeURIComponent('Portfolio Contact from ' + name);
+          const body = encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\n' + message);
+          window.location.href = 'mailto:nasrullahtanim@gmail.com?subject=' + subject + '&body=' + body;
 
-        formStatus.className = 'form-status success';
-        formStatus.textContent = 'Opening your email client… If nothing happens, email nasrullahtanim@gmail.com directly.';
+          formStatus.className = 'form-status success';
+          formStatus.textContent = 'Opening your email client… If nothing happens, email nasrullahtanim@gmail.com directly.';
 
-        // Reset after delay
-        setTimeout(() => {
-          formStatus.className = 'form-status';
-          formStatus.textContent = '';
-        }, 6000);
-      });
+          // Reset after delay
+          setTimeout(() => {
+            formStatus.className = 'form-status';
+            formStatus.textContent = '';
+          }, 6000);
+        });
+      }
 
       // ===== VIDEO MODAL =====
       function renderVideoLinks() {
-        if (videoLinks.length === 0) return;
+        if (videoLinks.length === 0 || !videoLinksList) return;
 
         const placeholder = document.querySelector('.video-links-placeholder');
         if (placeholder) placeholder.style.display = 'none';
@@ -3563,21 +3572,27 @@
         });
       }
 
-      videoModalClose.addEventListener('click', () => {
-        videoModal.classList.remove('visible');
-      });
+      if (videoModalClose && videoModal) {
+        videoModalClose.addEventListener('click', () => {
+          videoModal.classList.remove('visible');
+        });
+      }
 
-      videoModal.addEventListener('click', (e) => {
-        if (e.target === videoModal) videoModal.classList.remove('visible');
-      });
+      if (videoModal) {
+        videoModal.addEventListener('click', (e) => {
+          if (e.target === videoModal) videoModal.classList.remove('visible');
+        });
+      }
 
       // ===== KEYBOARD SUPPORT =====
       document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
-          videoModal.classList.remove('visible');
-          mobileNav.classList.remove('open');
-          mobileMenuBtn.classList.remove('open');
-          mobileMenuBtn.setAttribute('aria-expanded', 'false');
+          if (videoModal) videoModal.classList.remove('visible');
+          if (mobileNav && mobileMenuBtn) {
+            mobileNav.classList.remove('open');
+            mobileMenuBtn.classList.remove('open');
+            mobileMenuBtn.setAttribute('aria-expanded', 'false');
+          }
         }
       });
 
@@ -3587,7 +3602,7 @@
           const articleId = 'article-' + this.dataset.article;
           const listEl = document.getElementById('thoughtsList');
           const articleEl = document.getElementById(articleId);
-          if (!articleEl) return;
+          if (!articleEl || !listEl) return;
           listEl.style.display = 'none';
           articleEl.classList.add('active');
           window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -3598,9 +3613,11 @@
       if (thoughtsBackBtn) {
         thoughtsBackBtn.addEventListener('click', function() {
           const listEl = document.getElementById('thoughtsList');
-          document.querySelectorAll('.article-view').forEach(v => v.classList.remove('active'));
-          listEl.style.display = '';
-          window.scrollTo({ top: 0, behavior: 'smooth' });
+          if (listEl) {
+            document.querySelectorAll('.article-view').forEach(v => v.classList.remove('active'));
+            listEl.style.display = '';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }
         });
       }
 
@@ -3631,18 +3648,22 @@
       const viewExampleBtn = document.getElementById('viewExampleBtn');
 
       function openYoutubeModal(videoUrl) {
-        youtubeIframe.src = videoUrl + '?autoplay=1';
-        youtubeModal.classList.add('visible');
-        document.body.style.overflow = 'hidden';
+        if (youtubeIframe && youtubeModal) {
+          youtubeIframe.src = videoUrl + '?autoplay=1';
+          youtubeModal.classList.add('visible');
+          document.body.style.overflow = 'hidden';
+        }
       }
 
       // Make openYoutubeModal globally accessible for onclick handlers
       window.openYoutubeModal = openYoutubeModal;
 
       function closeYoutubeModal() {
-        youtubeModal.classList.remove('visible');
-        youtubeIframe.src = '';
-        document.body.style.overflow = '';
+        if (youtubeModal && youtubeIframe) {
+          youtubeModal.classList.remove('visible');
+          youtubeIframe.src = '';
+          document.body.style.overflow = '';
+        }
       }
 
       if (viewExampleBtn) {
@@ -3743,13 +3764,21 @@
             recognition.start();
           } catch (error) {
             console.error('Error starting recognition:', error);
+            isListening = false;
+            chatMicBtn.classList.remove('listening');
+            chatMicBtn.disabled = false;
+            chatInput.placeholder = 'Type your message...';
           }
         }
       }
 
       function stopListening() {
         if (recognition && isListening) {
-          recognition.stop();
+          try {
+            recognition.stop();
+          } catch (error) {
+            console.error('Error stopping recognition:', error);
+          }
         }
       }
 
@@ -3772,7 +3801,7 @@
       }
 
       function stopSpeech() {
-        if (synthesis && currentUtterance) {
+        if (synthesis) {
           synthesis.cancel();
           currentUtterance = null;
         }
@@ -3786,19 +3815,26 @@
       }
 
       function openChatModal() {
-        chatModal.classList.add('visible');
-        document.body.style.overflow = 'hidden';
-        setTimeout(() => chatInput.focus(), 350);
+        if (chatModal) {
+          chatModal.classList.add('visible');
+          document.body.style.overflow = 'hidden';
+          if (chatInput) {
+            setTimeout(() => chatInput.focus(), 350);
+          }
+        }
       }
 
       function closeChatModal() {
-        chatModal.classList.remove('visible');
-        document.body.style.overflow = '';
-        stopSpeech();
-        stopListening();
+        if (chatModal) {
+          chatModal.classList.remove('visible');
+          document.body.style.overflow = '';
+          stopSpeech();
+          stopListening();
+        }
       }
 
       function addMessage(role, content) {
+        if (!chatMessages) return;
         const messageDiv = document.createElement('div');
         messageDiv.className = `chat-message chat-message--${role === 'user' ? 'user' : 'agent'}`;
 
@@ -3812,6 +3848,7 @@
       }
 
       function showTypingIndicator() {
+        if (!chatMessages) return;
         const typingDiv = document.createElement('div');
         typingDiv.className = 'chat-typing-indicator';
         typingDiv.id = 'typingIndicator';
@@ -3838,6 +3875,7 @@
       }
 
       async function sendMessage() {
+        if (!chatInput) return;
         const message = chatInput.value.trim();
         if (!message) return;
 
