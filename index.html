@@ -3954,9 +3954,10 @@
       let voiceConversationHistory = [];
       let voiceRecognition = null;
       let isVoiceListening = false;
-      let currentAudioSource = null;
-      let audioContext = null;
       let voiceState = 'idle'; // idle, listening, thinking, speaking
+
+      // Initialize voices for speech synthesis
+      window.speechSynthesis.onvoiceschanged = () => { window.speechSynthesis.getVoices(); };
 
       // Check for Web Speech API support
       const VoiceSpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -4050,58 +4051,29 @@
         }
       }
 
-      async function playTextToSpeech(text) {
-        return new Promise(async (resolve, reject) => {
-          try {
-            const response = await fetch('https://tanim-ai-agent.nasrullahtanim.workers.dev/tts', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ voice_id: 'JBFqnCBsd6RMkjVDRZzb', text: text })
-            });
-
-            if (!response.ok) {
-              throw new Error('TTS request failed');
-            }
-
-            const arrayBuffer = await response.arrayBuffer();
-
-            // Initialize AudioContext if needed
-            if (!audioContext) {
-              audioContext = new (window.AudioContext || window.webkitAudioContext)();
-            }
-            if (audioContext.state === 'suspended') {
-              await audioContext.resume();
-            }
-
-            const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
-            const source = audioContext.createBufferSource();
-            source.buffer = audioBuffer;
-            source.connect(audioContext.destination);
-
-            currentAudioSource = source;
-
-            source.onended = () => {
-              currentAudioSource = null;
-              resolve();
-            };
-
-            source.start(0);
-          } catch (error) {
-            currentAudioSource = null;
-            reject(error);
-          }
+      function playTextToSpeech(text) {
+        return new Promise((resolve) => {
+          window.speechSynthesis.cancel();
+          const utterance = new SpeechSynthesisUtterance(text);
+          utterance.rate = 0.95;
+          utterance.pitch = 0.9;
+          utterance.volume = 1;
+          const voices = window.speechSynthesis.getVoices();
+          const preferred = voices.find(v =>
+            v.name.includes('Google US English') ||
+            v.name.includes('Daniel') ||
+            v.name.includes('Alex') ||
+            (v.lang === 'en-US' && !v.localService === false)
+          );
+          if (preferred) utterance.voice = preferred;
+          utterance.onend = () => resolve();
+          utterance.onerror = () => resolve();
+          window.speechSynthesis.speak(utterance);
         });
       }
 
       function stopAudio() {
-        if (currentAudioSource) {
-          try {
-            currentAudioSource.stop();
-          } catch (error) {
-            // Source may already be stopped
-          }
-          currentAudioSource = null;
-        }
+        window.speechSynthesis.cancel();
       }
 
       function addVoiceTranscript(speaker, text) {
