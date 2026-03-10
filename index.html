@@ -601,19 +601,19 @@
       flex-direction: column;
       gap: 0;
       margin-top: 0.5rem;
-      padding-bottom: 2rem;
+      padding-bottom: 4rem;
     }
 
     .expertise-card {
       background: var(--card-bg);
       border: 1px solid var(--border);
       border-radius: 16px;
-      padding: 2rem;
+      padding: 2rem 2rem 2.5rem;
       position: sticky;
-      overflow: hidden;
+      overflow: visible;
       transition: box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.4s ease;
       box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.15);
-      margin-bottom: -60px;
+      margin-bottom: -40px;
     }
 
     .expertise-card:nth-child(1) {
@@ -635,7 +635,7 @@
       z-index: 3;
       transform: scale(1);
       transform-origin: center top;
-      margin-bottom: 0;
+      margin-bottom: 2rem;
     }
 
     .expertise-card::before {
@@ -1402,11 +1402,10 @@
       .section-title { font-size: 2rem; }
 
       .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .expertise-card { margin-bottom: -30px; padding: 1.75rem 1.75rem 2.25rem; }
       .expertise-card:nth-child(1) { top: 70px; }
-      .expertise-card:nth-child(2) { top: 85px; }
-      .expertise-card:nth-child(3) { top: 100px; }
-      .expertise-card { margin-bottom: -50px; }
-      .expertise-card:nth-child(3) { margin-bottom: 0; }
+      .expertise-card:nth-child(2) { top: 88px; }
+      .expertise-card:nth-child(3) { top: 106px; margin-bottom: 1.5rem; }
       .portfolio-header { flex-direction: column; gap: 0.5rem; }
 
       .podcast-grid { grid-template-columns: 1fr; }
@@ -1419,10 +1418,10 @@
       .hero-name { font-size: 2.25rem; }
       .section-title { font-size: 1.75rem; }
       .reel-grid { grid-template-columns: repeat(2, 1fr); }
-      .expertise-card { padding: 1.5rem; margin-bottom: -40px; }
+      .expertise-card { padding: 1.5rem 1.5rem 2rem; margin-bottom: -25px; }
       .expertise-card:nth-child(1) { top: 65px; }
-      .expertise-card:nth-child(2) { top: 77px; }
-      .expertise-card:nth-child(3) { top: 89px; margin-bottom: 0; }
+      .expertise-card:nth-child(2) { top: 80px; }
+      .expertise-card:nth-child(3) { top: 95px; margin-bottom: 1.5rem; }
     }
 
     /* ========== THOUGHTS, ARTICLE LIST ========== */
