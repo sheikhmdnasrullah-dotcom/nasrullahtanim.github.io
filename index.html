@@ -453,6 +453,42 @@
       margin-top: 0.25rem;
     }
 
+    /* ========== WHO I AM WHITE THEME BOX ========== */
+    .who-i-am-box {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 2.5rem;
+      margin: 2rem 0 3rem;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.04);
+    }
+
+    .who-i-am-box .who-i-am-title {
+      color: #0a0a0a;
+      margin-top: 0;
+    }
+
+    .who-i-am-box .section-body p {
+      color: #2a2a2a;
+      font-size: 1.05rem;
+      line-height: 1.75;
+    }
+
+    .who-i-am-box .section-body p strong {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    /* Light mode adjustment */
+    html.light .who-i-am-box {
+      background: #f8f8f8;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.8);
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+
+    html.light .who-i-am-box .section-body p {
+      color: #1a1a1a;
+    }
+
     /* ========== CARDS ========== */
     .cards-grid {
       display: grid;
@@ -1808,12 +1844,12 @@
           <img src="photo.webp" alt="Nasrullah Tanim" loading="eager" fetchpriority="high">
         </div>
       </div>
-      <div class="animate-up">
+      <div class="who-i-am-box animate-up">
         <h2 class="who-i-am-title">Who I Am</h2>
-      </div>
-      <div class="section-body animate-up">
-        <p>I'm Tanim. I help founders who want to scale without burning out.</p>
-        <p>I solve three problems for the founders I work with. First, <strong>content</strong>: planning, editing, producing, and distributing video across every major platform. Second, <strong>growth</strong>: engineering cold outreach systems that consistently find and convert the right leads. Third, <strong>operations</strong>: designing custom AI agents and internal workflows that remove the bottlenecks eating up founder time.</p>
+        <div class="section-body">
+          <p>I'm Tanim. I help founders who want to scale without burning out.</p>
+          <p>I solve three problems for the founders I work with. First, <strong>content</strong>: planning, editing, producing, and distributing video across every major platform. Second, <strong>growth</strong>: engineering cold outreach systems that consistently find and convert the right leads. Third, <strong>operations</strong>: designing custom AI agents and internal workflows that remove the bottlenecks eating up founder time.</p>
+        </div>
       </div>
 
       <hr style="border: none; border-top: 1px solid var(--border); margin: 3rem 0;">
