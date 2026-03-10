@@ -3954,7 +3954,8 @@
       let voiceConversationHistory = [];
       let voiceRecognition = null;
       let isVoiceListening = false;
-      let currentAudio = null;
+      let currentAudioSource = null;
+      let audioContext = null;
       let voiceState = 'idle'; // idle, listening, thinking, speaking
 
       // Check for Web Speech API support
