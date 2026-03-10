@@ -419,6 +419,7 @@
       flex-shrink: 0;
       border: 2px solid var(--border);
       background: var(--surface);
+      box-shadow: 0 0 60px 20px rgba(139, 92, 246, 0.3);
     }
 
     .hero-photo img {
@@ -481,7 +482,7 @@
       color: var(--text-primary);
       letter-spacing: -0.04em;
       margin-bottom: 1.25rem;
-      margin-top: 0.25rem;
+      margin-top: 1.75rem;
     }
 
     /* ========== WHO I AM WHITE THEME BOX ========== */
@@ -1880,15 +1881,14 @@
       <div class="who-i-am-box animate-up">
         <h2 class="who-i-am-title">Who I Am</h2>
         <div class="section-body">
-          <p>I'm Tanim. I help founders who want to scale without burning out.</p>
-          <p>I solve three problems for the founders I work with. First, <strong>content</strong>: planning, editing, producing, and distributing video across every major platform. Second, <strong>growth</strong>: engineering cold outreach systems that consistently find and convert the right leads. Third, <strong>operations</strong>: designing custom AI agents and internal workflows that remove the bottlenecks eating up founder time.</p>
+          <p>I'm Tanim. I love building systems that scale a business. I solve three problems. First, <strong>content</strong>: planning, editing, producing, and distributing video across every major platform. Second, <strong>growth</strong>: engineering cold outreach systems that consistently find and convert the right leads. Third, <strong>operations</strong>: designing custom AI agents and internal workflows that remove the bottlenecks eating up founder time.</p>
         </div>
       </div>
 
       <hr style="border: none; border-top: 1px solid var(--border); margin: 3rem 0;">
 
       <div class="animate-up" style="text-align: center; margin-bottom: 2.5rem;">
-        <h2 class="who-i-am-title" style="text-align: center;">What I've Built</h2>
+        <a href="#expertise" class="who-i-am-title" style="text-align: center; display: inline-block; text-decoration: none; color: var(--text-primary); transition: color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-primary)'">What I Solve</a>
       </div>
 
       <div class="bento-grid stagger">
@@ -2008,11 +2008,6 @@
 
     <!-- ========== EXPERTISE ========== -->
     <section class="section" id="expertise">
-      <div class="animate-up">
-        <span class="eyebrow">What I Build</span>
-        <h1 class="section-title">Three Types of Infrastructure</h1>
-        <p class="section-lead">I design and execute operational systems that let founders focus on strategy. Here's what I bring to the table.</p>
-      </div>
       <div class="expertise-grid stagger">
 
         <!-- Card 1: Content Production -->
@@ -2151,11 +2146,6 @@
 
       <!-- ===== THOUGHTS LIST VIEW ===== -->
       <div class="thoughts-list" id="thoughtsList">
-        <div class="animate-up">
-          <span class="eyebrow">Ideas &amp; Vision</span>
-          <h1 class="section-title">Thoughts</h1>
-          <p class="section-lead">Where I share ideas, frameworks, and the projects I'm dreaming about building next.</p>
-        </div>
         <div class="animate-up">
           <article class="article-card" data-article="remote-hq">
             <div class="article-card-meta">
@@ -2445,7 +2435,6 @@
     <!-- ========== CONTACT ========== -->
     <section class="section" id="contact">
       <div class="animate-up">
-        <span class="eyebrow">Contact</span>
         <h1 class="section-title">Let's build something.</h1>
       </div>
       <div class="contact-grid">
