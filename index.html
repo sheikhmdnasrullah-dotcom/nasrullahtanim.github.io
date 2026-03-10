@@ -8,6 +8,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script src="https://fast.wistia.com/player.js" async></script>
+  <script src="https://fast.wistia.com/embed/x7ydzmpcdc.js" async type="module"></script>
+  <script src="https://fast.wistia.com/embed/jkd9o74r18.js" async type="module"></script>
   <style>
     /* ========== CSS RESET ========== */
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -722,6 +725,81 @@
       font-size: 0.9rem;
     }
 
+    .expertise-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1.25rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .expertise-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      padding: 0.6rem 1.1rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      border: none;
+    }
+
+    .expertise-btn--primary {
+      background: var(--accent);
+      color: var(--accent-text);
+    }
+
+    .expertise-btn--primary:hover {
+      background: var(--accent-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+    }
+
+    .expertise-btn--secondary {
+      background: transparent;
+      color: var(--accent);
+      border: 1px solid rgba(139, 92, 246, 0.3);
+    }
+
+    .expertise-btn--secondary:hover {
+      background: rgba(139, 92, 246, 0.08);
+      border-color: rgba(139, 92, 246, 0.5);
+      transform: translateY(-1px);
+    }
+
+    .expertise-btn--disabled {
+      background: var(--surface);
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      cursor: not-allowed;
+      opacity: 0.7;
+    }
+
+    .expertise-btn--disabled:hover {
+      transform: none;
+      box-shadow: none;
+    }
+
+    .expertise-btn:disabled {
+      background: var(--surface);
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+
+    .expertise-btn:disabled:hover {
+      transform: none;
+      box-shadow: none;
+      background: var(--surface);
+    }
+
     .expertise-tools {
       padding-top: 1.1rem;
       border-top: 1px solid var(--border);
@@ -1422,6 +1500,8 @@
       .expertise-card:nth-child(1) { top: 65px; }
       .expertise-card:nth-child(2) { top: 80px; }
       .expertise-card:nth-child(3) { top: 95px; margin-bottom: 1.5rem; }
+      .expertise-buttons { flex-direction: column; gap: 0.5rem; }
+      .expertise-btn { width: 100%; justify-content: center; }
     }
 
     /* ========== THOUGHTS, ARTICLE LIST ========== */
@@ -2056,6 +2136,11 @@
             <li>Thumbnail design and brand systems</li>
             <li>Content distribution workflows</li>
           </ul>
+          <div class="expertise-buttons">
+            <a href="#portfolio" class="expertise-btn expertise-btn--primary">View Portfolio</a>
+            <wistia-player media-id="x7ydzmpcdc" wistia-popover="true" aspect="1.7777777777777777" style="display:none;"></wistia-player>
+            <button class="expertise-btn expertise-btn--secondary wistia-popover-trigger" data-wistia-id="x7ydzmpcdc">Service Explained</button>
+          </div>
         </div>
 
         <!-- Card 2: AI Automation -->
@@ -2072,6 +2157,10 @@
             <li>CRM automation and data processing</li>
             <li>Custom integrations via APIs and webhooks</li>
           </ul>
+          <div class="expertise-buttons">
+            <button class="expertise-btn expertise-btn--secondary" disabled>Try Custom Chat Agent</button>
+            <button class="expertise-btn expertise-btn--secondary" disabled>Try Custom Voice Agent</button>
+          </div>
         </div>
 
         <!-- Card 3: Outbound Infrastructure -->
@@ -2088,6 +2177,11 @@
             <li>Email sequence design and A/B testing</li>
             <li>Performance monitoring and ongoing optimization</li>
           </ul>
+          <div class="expertise-buttons">
+            <wistia-player media-id="jkd9o74r18" wistia-popover="true" aspect="1.7777777777777777" style="display:none;"></wistia-player>
+            <button class="expertise-btn expertise-btn--secondary wistia-popover-trigger" data-wistia-id="jkd9o74r18">Service Explained</button>
+          </div>
+        </div>
         </div>
 
       </div>
@@ -2712,6 +2806,17 @@
           window.scrollTo({ top: 0, behavior: 'smooth' });
         });
       }
+
+      // ===== WISTIA POPOVER TRIGGERS =====
+      document.querySelectorAll('.wistia-popover-trigger').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const mediaId = this.dataset.wistiaId;
+          const player = document.querySelector(`wistia-player[media-id="${mediaId}"]`);
+          if (player && player.play) {
+            player.play();
+          }
+        });
+      });
 
     })();
   </script>
