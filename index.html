@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nasrullah Tanim, Operations &amp; Systems Architect</title>
+  <title>Nasrullah Tanim</title>
   <meta name="description" content="Content production, AI automation, and outbound systems that scale. I build operational infrastructure for founders.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -32,6 +33,8 @@
       --input-bg: #111111;
       --navbar-bg: rgba(12, 12, 12, 0.78);
       --mobile-nav-bg: rgba(12, 12, 12, 0.97);
+      --modal-overlay-bg: rgba(0, 0, 0, 0.88);
+      --modal-bg: rgba(20, 20, 25, 0.95);
       --shadow: 0 1px 3px rgba(0,0,0,0.5);
       --shadow-lg: 0 8px 30px rgba(0,0,0,0.6);
       --glow: 0 0 30px rgba(139,92,246,0.06);
@@ -52,6 +55,8 @@
       --input-bg: #f9f9f9;
       --navbar-bg: rgba(250, 250, 250, 0.88);
       --mobile-nav-bg: rgba(250, 250, 250, 0.98);
+      --modal-overlay-bg: rgba(0, 0, 0, 0.6);
+      --modal-bg: rgba(255, 255, 255, 0.95);
       --shadow: 0 1px 3px rgba(0,0,0,0.08);
       --shadow-lg: 0 8px 30px rgba(0,0,0,0.1);
       --glow: 0 0 30px rgba(139,92,246,0.04);
@@ -415,8 +420,8 @@
     }
 
     .hero-photo {
-      width: 128px;
-      height: 128px;
+      width: 160px;
+      height: 160px;
       border-radius: 50%;
       overflow: hidden;
       flex-shrink: 0;
@@ -517,13 +522,13 @@
 
     /* Light mode adjustment */
     html.light .who-i-am-box {
-      background: #f8f8f8;
+      background: var(--surface);
       box-shadow: 0 2px 12px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.8);
       border: 1px solid rgba(0,0,0,0.06);
     }
 
     html.light .who-i-am-box .section-body p {
-      color: #1a1a1a;
+      color: var(--text-primary);
     }
 
     /* ========== CARDS ========== */
@@ -730,14 +735,25 @@
     }
 
     .expertise-btn--primary {
-      background: var(--accent);
+      background: linear-gradient(90deg, #8B5CF6, #7C3AED, #6D28D9, #7C3AED, #8B5CF6);
+      background-size: 200% 100%;
       color: var(--accent-text);
+      animation: gradientShift 3s ease infinite;
+      position: relative;
+      overflow: hidden;
+    }
+
+    @keyframes gradientShift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
     }
 
     .expertise-btn--primary:hover {
-      background: var(--accent-hover);
+      background: linear-gradient(90deg, #8B5CF6, #7C3AED, #6D28D9, #7C3AED, #8B5CF6);
+      background-size: 200% 100%;
       transform: translateY(-1px);
       box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+      animation: gradientShift 2s ease infinite;
     }
 
     .expertise-btn--secondary {
@@ -872,8 +888,8 @@
       width: 32px;
       height: 32px;
       border-radius: 50%;
-      background: #222222;
-      border: 1px solid rgba(255,255,255,0.1);
+      background: var(--surface);
+      border: 1px solid var(--border);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -896,7 +912,7 @@
       border-radius: 50%;
       font-size: 11px;
       font-weight: 600;
-      color: #ffffff;
+      color: var(--text-primary);
       text-align: center;
       line-height: 32px;
       letter-spacing: 0;
@@ -1155,7 +1171,7 @@
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.88);
+      background: var(--modal-overlay-bg);
       z-index: 1000;
       align-items: center;
       justify-content: center;
@@ -1254,7 +1270,7 @@
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.92);
+      background: var(--modal-overlay-bg);
       z-index: 1001;
       align-items: center;
       justify-content: center;
@@ -1271,7 +1287,7 @@
       width: 90%;
       max-width: 900px;
       aspect-ratio: 16 / 9;
-      background: #000;
+      background: var(--bg);
       border-radius: 12px;
       overflow: hidden;
       box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
@@ -1312,7 +1328,7 @@
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(15, 15, 15, 0.97);
+      background: var(--modal-overlay-bg);
       z-index: 1002;
       align-items: center;
       justify-content: center;
@@ -1335,7 +1351,7 @@
       width: 90%;
       max-width: 480px;
       height: 600px;
-      background: rgba(20, 20, 25, 0.95);
+      background: var(--modal-bg);
       border: 1px solid rgba(139, 92, 246, 0.3);
       border-radius: 20px;
       backdrop-filter: blur(20px);
@@ -1515,7 +1531,7 @@
     .chat-input {
       flex: 1;
       padding: 0.875rem 1rem;
-      background: rgba(0, 0, 0, 0.3);
+      background: var(--input-bg);
       border: 1px solid rgba(139, 92, 246, 0.3);
       border-radius: 10px;
       color: var(--text-primary);
@@ -2306,7 +2322,7 @@
 
     html.light .navbar-nav .nav-link.active {
       background: var(--accent);
-      color: #ffffff;
+      color: var(--accent-text);
       box-shadow: 0 2px 8px rgba(124, 58, 237, 0.35);
     }
 
@@ -2316,12 +2332,12 @@
     }
 
     html.light .theme-toggle {
-      background: rgba(0,0,0,0.05);
-      border-color: rgba(0,0,0,0.1);
+      background: var(--surface);
+      border-color: var(--border);
     }
 
     html.light .theme-toggle:hover {
-      background: rgba(0,0,0,0.1);
+      background: var(--surface-hover);
     }
 
     /* ========== LIGHT MODE OVERRIDES ========== */
@@ -2346,22 +2362,22 @@
 
     /* Chat Modal Light Mode */
     html.light .chat-modal-overlay {
-      background: rgba(255, 255, 255, 0.95);
+      background: var(--modal-overlay-bg);
     }
 
     html.light .chat-modal-container {
-      background: rgba(255, 255, 255, 0.98);
+      background: var(--modal-bg);
       border-color: rgba(139, 92, 246, 0.3);
       box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15), 0 0 80px rgba(139, 92, 246, 0.1);
     }
 
     html.light .chat-input {
-      background: rgba(0, 0, 0, 0.05);
+      background: var(--input-bg);
       border-color: rgba(139, 92, 246, 0.3);
     }
 
     html.light .chat-input:focus {
-      background: rgba(0, 0, 0, 0.08);
+      background: var(--surface-hover);
     }
 
     html.light .chat-mic-btn {
@@ -2402,7 +2418,7 @@
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(15, 15, 15, 0.97);
+      background: var(--modal-overlay-bg);
       z-index: 1003;
       align-items: center;
       justify-content: center;
@@ -2421,7 +2437,7 @@
       width: 90%;
       max-width: 500px;
       height: 650px;
-      background: rgba(20, 20, 25, 0.95);
+      background: var(--modal-bg);
       border: 1px solid rgba(139, 92, 246, 0.3);
       border-radius: 20px;
       backdrop-filter: blur(20px);
@@ -2523,7 +2539,7 @@
       overflow-y: auto;
       padding: 1rem;
       margin: 1rem 0;
-      background: rgba(0, 0, 0, 0.2);
+      background: var(--input-bg);
       border-radius: 12px;
       border: 1px solid rgba(139, 92, 246, 0.2);
     }
@@ -2554,7 +2570,7 @@
 
     .voice-transcript-label {
       font-weight: 700;
-      color: #8B5CF6;
+      color: var(--accent);
       margin-bottom: 0.25rem;
     }
 
@@ -2574,9 +2590,9 @@
       width: 80px;
       height: 80px;
       border-radius: 50%;
-      border: 2px solid #8B5CF6;
+      border: 2px solid var(--accent);
       background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(168, 85, 247, 0.2));
-      color: #8B5CF6;
+      color: var(--accent);
       cursor: pointer;
       display: flex;
       align-items: center;
@@ -2621,17 +2637,17 @@
 
     /* Light mode styles */
     html.light .voice-modal-overlay {
-      background: rgba(255, 255, 255, 0.95);
+      background: var(--modal-overlay-bg);
     }
 
     html.light .voice-modal-container {
-      background: rgba(255, 255, 255, 0.98);
+      background: var(--modal-bg);
       border-color: rgba(139, 92, 246, 0.3);
       box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15), 0 0 80px rgba(139, 92, 246, 0.1);
     }
 
     html.light .voice-transcript {
-      background: rgba(0, 0, 0, 0.03);
+      background: var(--input-bg);
     }
 
     @media (max-width: 768px) {
@@ -2740,7 +2756,7 @@
 
   <!-- ========== NAVBAR ========== -->
   <nav class="navbar">
-    <div class="navbar-brand" data-section="about" role="button">Nasrullah Tanim</div>
+    <div class="navbar-brand" data-section="about" role="button"></div>
 
     <ul class="navbar-nav">
       <li><a class="nav-link active" data-section="about">About</a></li>
@@ -2824,7 +2840,7 @@
         <div class="section-body">
           <p>I'm Tanim. I love building systems that scale a business. I solve three problems. First, <strong>content</strong>: planning, editing, producing, and distributing video across every major platform. Second, <strong>growth</strong>: engineering cold outreach systems that consistently find and convert the right leads. Third, <strong>operations</strong>: designing custom AI agents and internal workflows that remove the bottlenecks eating up founder time.</p>
         </div>
-        <div class="expertise-buttons" style="border-top: none; padding-top: 1rem; margin-top: 0.5rem;">
+        <div class="expertise-buttons" style="border-top: none; padding-top: 1rem; margin-top: 0.5rem; justify-content: center;">
           <button class="expertise-btn expertise-btn--primary" onclick="document.querySelector('[data-section=expertise]').click()">What I Solve</button>
         </div>
       </div>
