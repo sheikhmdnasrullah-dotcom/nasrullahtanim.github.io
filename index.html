@@ -1569,6 +1569,57 @@
       box-shadow: none;
     }
 
+    .chat-mic-btn {
+      width: 44px;
+      height: 44px;
+      background: rgba(139, 92, 246, 0.15);
+      border: 1px solid rgba(139, 92, 246, 0.3);
+      border-radius: 10px;
+      color: var(--accent);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+      flex-shrink: 0;
+    }
+
+    .chat-mic-btn:hover {
+      background: rgba(139, 92, 246, 0.25);
+      border-color: rgba(139, 92, 246, 0.5);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+    }
+
+    .chat-mic-btn:active {
+      transform: translateY(0);
+    }
+
+    .chat-mic-btn.listening {
+      background: var(--accent);
+      color: white;
+      animation: micPulse 1.5s ease-in-out infinite;
+    }
+
+    @keyframes micPulse {
+      0%, 100% {
+        box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.7);
+      }
+      50% {
+        box-shadow: 0 0 0 10px rgba(139, 92, 246, 0);
+      }
+    }
+
+    .chat-mic-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .chat-mic-btn:disabled:hover {
+      transform: none;
+      box-shadow: none;
+    }
+
     @media (max-width: 768px) {
       .chat-modal-container {
         width: 95%;
@@ -2313,6 +2364,20 @@
       background: rgba(0, 0, 0, 0.08);
     }
 
+    html.light .chat-mic-btn {
+      background: rgba(139, 92, 246, 0.1);
+      border-color: rgba(139, 92, 246, 0.3);
+    }
+
+    html.light .chat-mic-btn:hover {
+      background: rgba(139, 92, 246, 0.2);
+    }
+
+    html.light .chat-mic-btn.listening {
+      background: var(--accent);
+      color: white;
+    }
+
     html.light .chat-message--agent .chat-message-content {
       background: rgba(139, 92, 246, 0.1);
       border-color: rgba(139, 92, 246, 0.25);
@@ -2326,7 +2391,7 @@
     /* Smooth theme transition */
     body, .navbar, .mobile-nav, .card, .expertise-card, .portfolio-card,
     .article-card, .contact-form, .btn-primary, .bento-card, .who-i-am-box,
-    .chat-modal-overlay, .chat-modal-container, .chat-input, .chat-message-content {
+    .chat-modal-overlay, .chat-modal-container, .chat-input, .chat-message-content, .chat-mic-btn {
       transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease,
                   box-shadow 0.25s ease;
     }
@@ -2372,6 +2437,14 @@
       </div>
       <div class="chat-input-container">
         <input type="text" class="chat-input" id="chatInput" placeholder="Type your message..." />
+        <button class="chat-mic-btn" id="chatMicBtn" style="display: none;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+            <line x1="12" y1="19" x2="12" y2="23"></line>
+            <line x1="8" y1="23" x2="16" y2="23"></line>
+          </svg>
+        </button>
         <button class="chat-send-btn" id="chatSendBtn">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <line x1="22" y1="2" x2="11" y2="13"></line>
@@ -3267,6 +3340,7 @@
       const chatMessages = document.getElementById('chatMessages');
       const chatInput = document.getElementById('chatInput');
       const chatSendBtn = document.getElementById('chatSendBtn');
+      const chatMicBtn = document.getElementById('chatMicBtn');
 
       let conversationHistory = [
         {
@@ -3274,6 +3348,106 @@
           content: "Hey! I'm a demo of what a custom AI agent built for your business looks like. What's your name and tell me what your business does?"
         }
       ];
+
+      // ===== VOICE FUNCTIONALITY =====
+      let recognition = null;
+      let synthesis = window.speechSynthesis;
+      let isListening = false;
+      let currentUtterance = null;
+
+      // Check for Web Speech API support
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+      if (SpeechRecognition && synthesis && chatMicBtn) {
+        // Show mic button if browser supports it
+        chatMicBtn.style.display = 'flex';
+
+        // Initialize speech recognition
+        recognition = new SpeechRecognition();
+        recognition.continuous = false;
+        recognition.interimResults = false;
+        recognition.lang = 'en-US';
+
+        recognition.onstart = function() {
+          isListening = true;
+          chatMicBtn.classList.add('listening');
+          chatInput.placeholder = 'Listening...';
+          chatMicBtn.disabled = true;
+          stopSpeech(); // Stop any ongoing speech
+        };
+
+        recognition.onresult = function(event) {
+          const transcript = event.results[0][0].transcript;
+          chatInput.value = transcript;
+          // Auto-send after transcription
+          setTimeout(() => {
+            sendMessage();
+          }, 100);
+        };
+
+        recognition.onerror = function(event) {
+          console.error('Speech recognition error:', event.error);
+          isListening = false;
+          chatMicBtn.classList.remove('listening');
+          chatMicBtn.disabled = false;
+          chatInput.placeholder = 'Type your message...';
+        };
+
+        recognition.onend = function() {
+          isListening = false;
+          chatMicBtn.classList.remove('listening');
+          chatMicBtn.disabled = false;
+          chatInput.placeholder = 'Type your message...';
+        };
+      }
+
+      function startListening() {
+        if (recognition && !isListening) {
+          try {
+            recognition.start();
+          } catch (error) {
+            console.error('Error starting recognition:', error);
+          }
+        }
+      }
+
+      function stopListening() {
+        if (recognition && isListening) {
+          recognition.stop();
+        }
+      }
+
+      function speakText(text) {
+        if (synthesis) {
+          // Cancel any ongoing speech
+          stopSpeech();
+
+          currentUtterance = new SpeechSynthesisUtterance(text);
+          currentUtterance.rate = 1.0;
+          currentUtterance.pitch = 1.0;
+          currentUtterance.volume = 1.0;
+
+          currentUtterance.onend = function() {
+            currentUtterance = null;
+          };
+
+          synthesis.speak(currentUtterance);
+        }
+      }
+
+      function stopSpeech() {
+        if (synthesis && currentUtterance) {
+          synthesis.cancel();
+          currentUtterance = null;
+        }
+      }
+
+      // Stop speech when user starts typing
+      if (chatInput) {
+        chatInput.addEventListener('input', function() {
+          stopSpeech();
+        });
+      }
 
       function openChatModal() {
         chatModal.classList.add('visible');
@@ -3284,6 +3458,8 @@
       function closeChatModal() {
         chatModal.classList.remove('visible');
         document.body.style.overflow = '';
+        stopSpeech();
+        stopListening();
       }
 
       function addMessage(role, content) {
@@ -3329,6 +3505,11 @@
         const message = chatInput.value.trim();
         if (!message) return;
 
+        // Stop any ongoing speech
+        stopSpeech();
+        // Stop listening if active
+        stopListening();
+
         // Add user message to UI
         addMessage('user', message);
         conversationHistory.push({ role: 'user', content: message });
@@ -3336,6 +3517,7 @@
         // Clear input and disable send button
         chatInput.value = '';
         chatSendBtn.disabled = true;
+        if (chatMicBtn) chatMicBtn.disabled = true;
 
         // Show typing indicator
         showTypingIndicator();
@@ -3363,12 +3545,18 @@
           addMessage('assistant', agentMessage);
           conversationHistory.push({ role: 'assistant', content: agentMessage });
 
+          // Speak the agent's response
+          speakText(agentMessage);
+
         } catch (error) {
           console.error('Error sending message:', error);
           hideTypingIndicator();
-          addMessage('assistant', "Sorry, I'm having trouble connecting right now. Please try again.");
+          const errorMessage = "Sorry, I'm having trouble connecting right now. Please try again.";
+          addMessage('assistant', errorMessage);
+          speakText(errorMessage);
         } finally {
           chatSendBtn.disabled = false;
+          if (chatMicBtn) chatMicBtn.disabled = false;
           chatInput.focus();
         }
       }
@@ -3391,6 +3579,16 @@
 
       if (chatSendBtn) {
         chatSendBtn.addEventListener('click', sendMessage);
+      }
+
+      if (chatMicBtn) {
+        chatMicBtn.addEventListener('click', function() {
+          if (isListening) {
+            stopListening();
+          } else {
+            startListening();
+          }
+        });
       }
 
       if (chatInput) {
