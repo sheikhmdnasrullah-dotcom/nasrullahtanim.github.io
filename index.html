@@ -378,6 +378,33 @@
       font-weight: 600;
       max-width: 520px;
       letter-spacing: -0.01em;
+      min-height: 1.8em;
+      position: relative;
+    }
+
+    /* ========== ROTATING TAGLINE ========== */
+    .rotating-text {
+      position: absolute;
+      left: 0;
+      top: 0;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      white-space: nowrap;
+    }
+
+    .rotating-text:first-child {
+      position: relative;
+    }
+
+    .rotating-text.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .rotating-text.fade-out {
+      opacity: 0;
+      transform: translateY(-10px);
     }
 
     .hero-photo {
@@ -1838,7 +1865,11 @@
       <div class="hero animate-up">
         <div class="hero-text">
           <div class="hero-name">Nasrullah Tanim</div>
-          <div class="hero-tagline"><strong>Content production, AI automation, and Outbound Systems that scale.</strong></div>
+          <div class="hero-tagline">
+            <strong class="rotating-text visible" data-index="0">Helping founders with Content Production.</strong>
+            <strong class="rotating-text" data-index="1">Helping founders with AI Automation.</strong>
+            <strong class="rotating-text" data-index="2">Helping founders with Outbound Systems.</strong>
+          </div>
         </div>
         <div class="hero-photo">
           <img src="photo.webp" alt="Nasrullah Tanim" loading="eager" fetchpriority="high">
@@ -2501,6 +2532,27 @@
 
       if (themeToggle) themeToggle.addEventListener('click', toggleTheme);
       if (themeToggleMobile) themeToggleMobile.addEventListener('click', toggleTheme);
+
+      // ===== ROTATING TAGLINE =====
+      const rotatingTexts = document.querySelectorAll('.rotating-text');
+      let currentIndex = 0;
+
+      function rotateTagline() {
+        const current = rotatingTexts[currentIndex];
+        current.classList.add('fade-out');
+        current.classList.remove('visible');
+
+        setTimeout(() => {
+          current.classList.remove('fade-out');
+          currentIndex = (currentIndex + 1) % rotatingTexts.length;
+          const next = rotatingTexts[currentIndex];
+          next.classList.add('visible');
+        }, 400);
+      }
+
+      if (rotatingTexts.length > 0) {
+        setInterval(rotateTagline, 3000);
+      }
 
       // ===== DOM ELEMENTS =====
       const navLinks = document.querySelectorAll('.nav-link');
