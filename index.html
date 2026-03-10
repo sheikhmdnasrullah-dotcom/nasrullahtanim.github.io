@@ -1460,18 +1460,25 @@
 
     .video-gallery-sub {
       font-family: 'Inter', sans-serif;
-      font-size: 0.68rem;
+      font-size: 1.5rem;
       font-weight: 700;
-      letter-spacing: 0.13em;
+      letter-spacing: 0.05em;
       text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 1.15rem;
-      margin-top: 2rem;
-      padding-bottom: 0.5rem;
-      border-bottom: 1px solid var(--border);
+      color: white;
+      margin-bottom: 2rem;
+      margin-top: 4rem;
+      padding: 0.8rem 2rem;
+      background: linear-gradient(135deg, rgba(139, 92, 246, 0.8), rgba(124, 58, 237, 0.9));
+      border-radius: 8px;
+      text-align: center;
+      display: inline-block;
+      width: auto;
+      position: relative;
+      left: 50%;
+      transform: translateX(-50%);
     }
 
-    .video-gallery-sub:first-of-type { margin-top: 0.5rem; }
+    .video-gallery-sub:first-of-type { margin-top: 1rem; }
 
     .podcast-grid {
       display: grid;
@@ -1561,6 +1568,12 @@
 
       .podcast-grid { grid-template-columns: 1fr; }
       .reel-grid { grid-template-columns: repeat(2, 1fr); }
+      .video-gallery-sub {
+        font-size: 1.1rem;
+        padding: 0.6rem 1.5rem;
+        margin-top: 3rem;
+      }
+      .video-gallery-sub:first-of-type { margin-top: 0.8rem; }
     }
 
     @media (max-width: 480px) {
@@ -1569,6 +1582,12 @@
       .hero-name { font-size: 2.25rem; }
       .section-title { font-size: 1.75rem; }
       .reel-grid { grid-template-columns: repeat(2, 1fr); }
+      .video-gallery-sub {
+        font-size: 1rem;
+        padding: 0.6rem 1rem;
+        margin-top: 2.5rem;
+      }
+      .video-gallery-sub:first-of-type { margin-top: 0.8rem; }
       .expertise-card { padding: 1.5rem 1.5rem 2.75rem; margin-bottom: -25px; }
       .expertise-card:nth-child(1) { top: 65px; }
       .expertise-card:nth-child(2) { top: 80px; }
@@ -2186,12 +2205,6 @@
 
     <!-- ========== PORTFOLIO ========== -->
     <section class="section" id="portfolio">
-      <div class="animate-up">
-        <span class="eyebrow">My Work</span>
-        <h1 class="section-title">Video Portfolio</h1>
-        <p class="section-lead">A selection of podcast edits and short-form reels produced for clients across industries.</p>
-      </div>
-
       <div class="video-gallery animate-up">
         <h3 class="video-gallery-sub">Podcast Edits</h3>
         <div class="podcast-grid">
