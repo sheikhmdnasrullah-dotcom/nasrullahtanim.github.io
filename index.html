@@ -378,18 +378,22 @@
       font-weight: 600;
       max-width: 520px;
       letter-spacing: -0.01em;
-      min-height: 1.8em;
-      position: relative;
     }
 
     /* ========== ROTATING TAGLINE ========== */
+    .rotating-wrapper {
+      position: relative;
+      display: inline-block;
+    }
+
     .rotating-text {
+      color: var(--accent);
+      opacity: 0;
       position: absolute;
       left: 0;
       top: 0;
-      opacity: 0;
-      transform: translateY(10px);
-      transition: opacity 0.4s ease, transform 0.4s ease;
+      transform: translateY(4px);
+      transition: opacity 0.35s ease, transform 0.35s ease;
       white-space: nowrap;
     }
 
@@ -404,7 +408,7 @@
 
     .rotating-text.fade-out {
       opacity: 0;
-      transform: translateY(-10px);
+      transform: translateY(-4px);
     }
 
     .hero-photo {
@@ -1866,9 +1870,7 @@
         <div class="hero-text">
           <div class="hero-name">Nasrullah Tanim</div>
           <div class="hero-tagline">
-            <strong class="rotating-text visible" data-index="0">Helping founders with Content Production.</strong>
-            <strong class="rotating-text" data-index="1">Helping founders with AI Automation.</strong>
-            <strong class="rotating-text" data-index="2">Helping founders with Outbound Systems.</strong>
+            <strong>Helping founders with <span class="rotating-wrapper"><span class="rotating-text visible">Content Production.</span><span class="rotating-text">AI Automation.</span><span class="rotating-text">Outbound Systems.</span></span></strong>
           </div>
         </div>
         <div class="hero-photo">
@@ -2547,11 +2549,11 @@
           currentIndex = (currentIndex + 1) % rotatingTexts.length;
           const next = rotatingTexts[currentIndex];
           next.classList.add('visible');
-        }, 400);
+        }, 350);
       }
 
       if (rotatingTexts.length > 0) {
-        setInterval(rotateTagline, 3000);
+        setInterval(rotateTagline, 2500);
       }
 
       // ===== DOM ELEMENTS =====
