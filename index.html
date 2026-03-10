@@ -3978,6 +3978,8 @@
 
         voiceRecognition.onerror = function(event) {
           console.error('Voice recognition error:', event.error);
+          isVoiceListening = false;
+          voiceMicBtn.classList.remove('listening');
           setVoiceState('idle');
         };
 
@@ -4063,7 +4065,7 @@
             v.name.includes('Google US English') ||
             v.name.includes('Daniel') ||
             v.name.includes('Alex') ||
-            (v.lang === 'en-US' && !v.localService === false)
+            (v.lang === 'en-US' && v.localService === false)
           );
           if (preferred) utterance.voice = preferred;
           utterance.onend = () => resolve();
@@ -4106,6 +4108,8 @@
           voiceRecognition.start();
         } catch (error) {
           console.error('Error starting recognition:', error);
+          isVoiceListening = false;
+          voiceMicBtn.classList.remove('listening');
           setVoiceState('idle');
         }
       }
