@@ -3719,7 +3719,8 @@
     }
 
     .workflow-node.pulse {
-      animation: nodePulse 1.5s ease-in-out infinite;
+      border-color: var(--cyan);
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.6);
     }
 
     .workflow-line {
@@ -3784,7 +3785,8 @@
       }
 
       .workflow-line {
-        display: none;
+        transform: rotate(90deg);
+        transform-origin: center;
       }
 
       .workflow-tooltip {
@@ -3793,6 +3795,8 @@
         margin-top: 0.5rem;
         white-space: normal;
         text-align: center;
+        opacity: 1;
+        visibility: visible;
       }
 
       .workflow-node:hover .workflow-tooltip {
@@ -4295,6 +4299,46 @@
             <li>CRM automation and data processing</li>
             <li>Custom integrations via APIs and webhooks</li>
           </ul>
+
+          <!-- Workflow Visualizer (FEATURE 3) -->
+          <div class="workflow-visualizer">
+            <div class="workflow-nodes" id="workflowNodes">
+              <div class="workflow-node" data-step="0">
+                <div class="workflow-node-icon">🎯</div>
+                <div class="workflow-node-label">Prospect Input</div>
+                <div class="workflow-tooltip">Raw prospect data enters the pipeline from your lead source.</div>
+              </div>
+              <div class="workflow-node" data-step="1">
+                <div class="workflow-node-icon">📊</div>
+                <div class="workflow-node-label">AI Research Agent</div>
+                <div class="workflow-tooltip">AI agent researches each prospect and extracts key business context.</div>
+              </div>
+              <div class="workflow-node" data-step="2">
+                <div class="workflow-node-icon">✍️</div>
+                <div class="workflow-node-label">Personalization Engine</div>
+                <div class="workflow-tooltip">Custom personalization variables are generated for each contact.</div>
+              </div>
+              <div class="workflow-node" data-step="3">
+                <div class="workflow-node-icon">📧</div>
+                <div class="workflow-node-label">Email Sequencer</div>
+                <div class="workflow-tooltip">Emails are queued and sent with smart timing and follow-up logic.</div>
+              </div>
+              <div class="workflow-node" data-step="4">
+                <div class="workflow-node-icon">🗃️</div>
+                <div class="workflow-node-label">CRM Update</div>
+                <div class="workflow-tooltip">Replies and outcomes are logged automatically to your CRM.</div>
+              </div>
+              <div class="workflow-node" data-step="5">
+                <div class="workflow-node-icon">📈</div>
+                <div class="workflow-node-label">Performance Report</div>
+                <div class="workflow-tooltip">Weekly performance data is compiled and sent to your dashboard.</div>
+              </div>
+            </div>
+            <svg class="workflow-line" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;">
+              <line class="workflow-line-path" x1="0%" y1="50%" x2="100%" y2="50%" />
+            </svg>
+          </div>
+
           <div class="expertise-buttons">
             <button class="expertise-btn expertise-btn--ai" id="openChatAgentBtn">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -4311,45 +4355,6 @@
               </svg>
               Try Voice Agent
             </button>
-          </div>
-
-          <!-- Workflow Visualizer (FEATURE 3) -->
-          <div class="workflow-visualizer">
-            <div class="workflow-nodes" id="workflowNodes">
-              <div class="workflow-node" data-step="0">
-                <div class="workflow-node-icon">📥</div>
-                <div class="workflow-node-label">Prospect Input</div>
-                <div class="workflow-tooltip">Initial prospect data collection and validation</div>
-              </div>
-              <div class="workflow-node" data-step="1">
-                <div class="workflow-node-icon">🔍</div>
-                <div class="workflow-node-label">AI Research Agent</div>
-                <div class="workflow-tooltip">Automated prospect research and data enrichment</div>
-              </div>
-              <div class="workflow-node" data-step="2">
-                <div class="workflow-node-icon">✨</div>
-                <div class="workflow-node-label">Personalization Engine</div>
-                <div class="workflow-tooltip">AI-generated personalized messaging at scale</div>
-              </div>
-              <div class="workflow-node" data-step="3">
-                <div class="workflow-node-icon">📧</div>
-                <div class="workflow-node-label">Email Sequencer</div>
-                <div class="workflow-tooltip">Automated multi-touch email sequences</div>
-              </div>
-              <div class="workflow-node" data-step="4">
-                <div class="workflow-node-icon">💾</div>
-                <div class="workflow-node-label">CRM Update</div>
-                <div class="workflow-tooltip">Real-time CRM sync and contact management</div>
-              </div>
-              <div class="workflow-node" data-step="5">
-                <div class="workflow-node-icon">📊</div>
-                <div class="workflow-node-label">Performance Report</div>
-                <div class="workflow-tooltip">Analytics dashboard with actionable insights</div>
-              </div>
-            </div>
-            <svg class="workflow-line" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;">
-              <line class="workflow-line-path" x1="0%" y1="50%" x2="100%" y2="50%" />
-            </svg>
           </div>
         </div>
 
@@ -4827,7 +4832,7 @@
             <div class="quiz-result-text" id="quizResultText"></div>
             <div class="quiz-actions">
               <button class="quiz-cta-btn" id="quizBookCallBtn">// Book a Call</button>
-              <button class="quiz-restart-btn" id="quizRestartBtn">// Restart</button>
+              <button class="quiz-restart-btn" id="quizRestartBtn">// Retake Quiz</button>
             </div>
           </div>
         </div>
@@ -6215,21 +6220,23 @@
 
       if (workflowNodes.length === 0) return;
 
-      let currentStep = 0;
+      function pulseSequence() {
+        // Remove all pulse classes first
+        workflowNodes.forEach(node => node.classList.remove('pulse'));
 
-      function pulseNodes() {
+        // Add pulse to each node with 250ms delay
         workflowNodes.forEach((node, index) => {
-          node.classList.remove('pulse');
+          setTimeout(() => {
+            node.classList.add('pulse');
+          }, index * 250);
         });
-
-        workflowNodes[currentStep].classList.add('pulse');
-
-        currentStep = (currentStep + 1) % workflowNodes.length;
       }
 
       // Start pulsing animation
-      pulseNodes();
-      setInterval(pulseNodes, 1500);
+      pulseSequence();
+      // Loop every (number of nodes * 250ms) + 500ms pause
+      const loopDuration = (workflowNodes.length * 250) + 500;
+      setInterval(pulseSequence, loopDuration);
     })();
 
     // ===== FEATURE 4: OPS AUDIT QUIZ =====
@@ -6285,10 +6292,7 @@
 
       async function getRecommendation() {
         try {
-          const quizSummary = `Question 1: "What is your biggest bottleneck right now?" Answer: "${answers.q1}"
-Question 2: "How many hours per week do you personally spend on this?" Answer: "${answers.q2}"
-Question 3: "What have you already tried?" Answer: "${answers.q3}"
-Question 4: "What outcome matters most to you?" Answer: "${answers.q4}"`;
+          const quizSummary = `Quiz answers: Bottleneck: ${answers.q1}. Hours per week: ${answers.q2}. Already tried: ${answers.q3}. Desired outcome: ${answers.q4}.`;
 
           const response = await fetch('https://tanim-ai-agent.nasrullahtanim.workers.dev/api/claude', {
             method: 'POST',
