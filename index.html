@@ -89,7 +89,6 @@
       overflow-x: hidden;
       font-size: 16px;
       letter-spacing: -0.005em;
-      cursor: none;
       position: relative;
     }
 
@@ -116,31 +115,6 @@
       opacity: 0.03;
       pointer-events: none;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-    }
-
-    /* ========== CUSTOM CURSOR ========== */
-    .custom-cursor {
-      position: fixed;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--cyan);
-      pointer-events: none;
-      z-index: 10000;
-      mix-blend-mode: screen;
-      transition: transform 0.15s ease;
-    }
-
-    .custom-cursor-follower {
-      position: fixed;
-      width: 32px;
-      height: 32px;
-      border: 1px solid var(--cyan);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9999;
-      transition: all 0.2s ease;
-      box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
     }
 
     /* ========== LOADING SCREEN ========== */
@@ -205,14 +179,6 @@
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
-      }
-
-      .custom-cursor, .custom-cursor-follower {
-        display: none !important;
-      }
-
-      body {
-        cursor: auto;
       }
     }
 
@@ -614,8 +580,8 @@
     }
 
     .hero-photo {
-      width: 160px;
-      height: 160px;
+      width: 200px;
+      height: 200px;
       border-radius: 50%;
       overflow: hidden;
       flex-shrink: 0;
@@ -3163,10 +3129,6 @@
   <!-- ========== ANIMATED BACKGROUND CANVAS ========== -->
   <canvas id="bg-canvas"></canvas>
 
-  <!-- ========== CUSTOM CURSOR ========== -->
-  <div class="custom-cursor" id="customCursor"></div>
-  <div class="custom-cursor-follower" id="customCursorFollower"></div>
-
   <!-- ========== VIDEO MODAL ========== -->
   <div class="video-modal-overlay" id="videoModal">
     <div class="video-modal">
@@ -3852,29 +3814,6 @@
           }
         }, 2500);
       });
-
-      // ===== CUSTOM CURSOR =====
-      const cursor = document.getElementById('customCursor');
-      const cursorFollower = document.getElementById('customCursorFollower');
-
-      if (cursor && cursorFollower && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        let mouseX = 0, mouseY = 0;
-        let followerX = 0, followerY = 0;
-
-        document.addEventListener('mousemove', (e) => {
-          mouseX = e.clientX;
-          mouseY = e.clientY;
-          cursor.style.transform = `translate(${mouseX - 4}px, ${mouseY - 4}px)`;
-        });
-
-        function animateFollower() {
-          followerX += (mouseX - followerX) * 0.1;
-          followerY += (mouseY - followerY) * 0.1;
-          cursorFollower.style.transform = `translate(${followerX - 16}px, ${followerY - 16}px)`;
-          requestAnimationFrame(animateFollower);
-        }
-        animateFollower();
-      }
 
       // ===== ANIMATED BACKGROUND CANVAS =====
       const canvas = document.getElementById('bg-canvas');
