@@ -3194,9 +3194,13 @@
     }
 
     .cold-email-inputs {
-      display: flex;
-      flex-direction: column;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       gap: 1rem;
+    }
+
+    .cold-email-generate-btn {
+      grid-column: 1 / -1;
     }
 
     .cold-email-input-group {
@@ -3373,9 +3377,102 @@
       letter-spacing: 0.02em;
     }
 
+    /* ========== OUTREACH ENGINE TOGGLE BUTTON ========== */
+    .outreach-toggle-btn {
+      margin-top: 1.5rem;
+      width: 100%;
+      padding: 0.9rem 1.75rem;
+      background: transparent;
+      border: 2px solid var(--cyan);
+      border-radius: 8px;
+      color: var(--cyan);
+      font-family: 'JetBrains Mono', 'Courier New', monospace;
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .outreach-toggle-btn:hover {
+      background: rgba(0, 240, 255, 0.08);
+      box-shadow: 0 0 25px rgba(0, 240, 255, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .outreach-toggle-btn:active {
+      transform: translateY(0);
+    }
+
+    /* ========== COLD EMAIL DEMO ANIMATIONS ========== */
+    .cold-email-demo {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease, opacity 0.4s ease, margin-top 0.5s ease;
+    }
+
+    .cold-email-demo.show {
+      max-height: 2000px;
+      opacity: 1;
+      margin-top: 1.5rem;
+      display: block !important;
+    }
+
+    /* ========== OUTPUT AREA COLLAPSE ========== */
+    .cold-email-output {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, opacity 0.3s ease, margin-top 0.4s ease;
+      margin-top: 0;
+    }
+
+    .cold-email-output.show {
+      max-height: 1000px;
+      opacity: 1;
+      margin-top: 1.5rem;
+    }
+
+    /* ========== RESET BUTTON ========== */
+    .reset-email-btn {
+      margin-top: 1rem;
+      margin-left: 0.5rem;
+      padding: 0.65rem 1.25rem;
+      background: rgba(255, 100, 100, 0.08);
+      border: 1px solid rgba(255, 100, 100, 0.3);
+      border-radius: 6px;
+      color: rgba(255, 100, 100, 0.9);
+      font-family: 'JetBrains Mono', 'Courier New', monospace;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.2s ease;
+    }
+
+    .reset-email-btn:hover {
+      background: rgba(255, 100, 100, 0.15);
+      border-color: rgba(255, 100, 100, 0.5);
+      box-shadow: 0 0 15px rgba(255, 100, 100, 0.2);
+      transform: translateY(-1px);
+    }
+
+    .reset-email-btn:active {
+      transform: translateY(0);
+    }
+
     @media (max-width: 768px) {
       .cold-email-demo {
         padding: 1.25rem;
+      }
+
+      .cold-email-inputs {
+        grid-template-columns: 1fr;
       }
 
       .cold-email-input {
@@ -4118,8 +4215,13 @@
             <button class="expertise-btn expertise-btn--secondary" onclick="openYoutubeModal('https://www.youtube.com/embed/avRBuBSSdUg')">Service Explained</button>
           </div>
 
+          <!-- Outreach Engine Toggle Button -->
+          <button class="outreach-toggle-btn" id="outreachToggleBtn">
+            <span class="outreach-toggle-text">// Launch Outreach Engine</span>
+          </button>
+
           <!-- Cold Email Generator Demo -->
-          <div class="cold-email-demo">
+          <div class="cold-email-demo" id="coldEmailDemo" style="display: none;">
             <div class="cold-email-header">
               <span class="cold-email-label">// OUTREACH ENGINE — LIVE DEMO</span>
               <span class="status-dot"></span>
@@ -4169,6 +4271,9 @@
                   <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
                 </svg>
                 Copy Email
+              </button>
+              <button class="reset-email-btn" id="resetEmailBtn" style="display: none;">
+                // Reset
               </button>
             </div>
 
@@ -5830,8 +5935,50 @@
       const emailOutput = document.getElementById('emailOutput');
       const emailTerminalBody = document.getElementById('emailTerminalBody');
       const copyEmailBtn = document.getElementById('copyEmailBtn');
+      const resetEmailBtn = document.getElementById('resetEmailBtn');
+      const outreachToggleBtn = document.getElementById('outreachToggleBtn');
+      const coldEmailDemo = document.getElementById('coldEmailDemo');
 
       let generatedEmail = '';
+      let isOutreachEngineOpen = false;
+
+      // Toggle Outreach Engine visibility
+      if (outreachToggleBtn && coldEmailDemo) {
+        outreachToggleBtn.addEventListener('click', function() {
+          isOutreachEngineOpen = !isOutreachEngineOpen;
+
+          if (isOutreachEngineOpen) {
+            coldEmailDemo.classList.add('show');
+            outreachToggleBtn.querySelector('.outreach-toggle-text').textContent = '// Close Outreach Engine';
+          } else {
+            coldEmailDemo.classList.remove('show');
+            outreachToggleBtn.querySelector('.outreach-toggle-text').textContent = '// Launch Outreach Engine';
+          }
+        });
+      }
+
+      // Reset functionality
+      if (resetEmailBtn) {
+        resetEmailBtn.addEventListener('click', function() {
+          // Clear inputs
+          nicheInput.value = '';
+          prospectInput.value = '';
+
+          // Clear output
+          emailTerminalBody.innerHTML = '<span class="terminal-cursor"></span>';
+          generatedEmail = '';
+
+          // Hide and collapse output area
+          emailOutput.classList.remove('show');
+          copyEmailBtn.style.display = 'none';
+          resetEmailBtn.style.display = 'none';
+
+          // Small delay then fully hide
+          setTimeout(() => {
+            emailOutput.style.display = 'none';
+          }, 400);
+        });
+      }
 
       if (generateEmailBtn) {
         generateEmailBtn.addEventListener('click', async function() {
@@ -5843,9 +5990,15 @@
             return;
           }
 
-          // Show output area and hide copy button
+          // Show and expand output area with animation
           emailOutput.style.display = 'block';
+          setTimeout(() => {
+            emailOutput.classList.add('show');
+          }, 10);
+
+          // Hide buttons and clear output
           copyEmailBtn.style.display = 'none';
+          resetEmailBtn.style.display = 'none';
           emailTerminalBody.innerHTML = '<span class="terminal-cursor"></span>';
           generatedEmail = '';
 
@@ -5889,8 +6042,9 @@
                   charIndex++;
                   setTimeout(typeWriter, 15);
                 } else {
-                  // Show copy button when done
+                  // Show copy and reset buttons when done
                   copyEmailBtn.style.display = 'inline-flex';
+                  resetEmailBtn.style.display = 'inline-flex';
                 }
               }
 
