@@ -5195,7 +5195,7 @@
           generateEmailBtn.querySelector('.btn-text').textContent = 'Generating...';
 
           try {
-            const response = await fetch('/api/claude', {
+            const response = await fetch('https://tanim-ai-agent.nasrullahtanim.workers.dev/api/claude', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
