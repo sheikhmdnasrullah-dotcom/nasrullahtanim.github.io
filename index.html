@@ -3389,6 +3389,505 @@
       }
     }
 
+    /* ========== FEATURE 2: COLD EMAIL GRADER ========== */
+    .email-grader-section {
+      margin: 4rem 0;
+      padding: 3rem 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .email-grader-title {
+      font-family: 'JetBrains Mono', 'Courier New', monospace;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--cyan);
+      letter-spacing: 0.02em;
+      margin-bottom: 2rem;
+    }
+
+    .email-grader-container {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .email-grader-textarea {
+      width: 100%;
+      min-height: 200px;
+      background: rgba(0, 0, 0, 0.4);
+      border: 2px solid var(--border);
+      border-radius: 8px;
+      padding: 1.25rem;
+      color: var(--text-primary);
+      font-family: 'JetBrains Mono', 'Courier New', monospace;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      resize: vertical;
+      transition: border-color 0.3s ease;
+      margin-bottom: 1.5rem;
+    }
+
+    .email-grader-textarea:focus {
+      outline: none;
+      border-color: var(--cyan);
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.2);
+    }
+
+    .email-grader-textarea::placeholder {
+      color: var(--text-muted);
+    }
+
+    .grade-btn {
+      width: 100%;
+      padding: 1rem;
+      background: linear-gradient(135deg, var(--cyan), var(--purple-accent));
+      border: none;
+      border-radius: 8px;
+      color: #ffffff;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 240, 255, 0.3);
+    }
+
+    .grade-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 25px rgba(0, 240, 255, 0.45);
+    }
+
+    .grade-btn:active {
+      transform: translateY(0);
+    }
+
+    .grade-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .grader-output {
+      margin-top: 2rem;
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 2rem;
+      display: none;
+    }
+
+    .grader-output.visible {
+      display: block;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .score-bar-container {
+      margin-bottom: 1.5rem;
+    }
+
+    .score-bar-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.5rem;
+      font-family: 'JetBrains Mono', 'Courier New', monospace;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+
+    .score-bar-value {
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    .score-bar-track {
+      width: 100%;
+      height: 12px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 6px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .score-bar-fill {
+      height: 100%;
+      border-radius: 6px;
+      transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      background: var(--cyan);
+      box-shadow: 0 0 10px currentColor;
+    }
+
+    .score-bar-fill.red {
+      background: #ef4444;
+    }
+
+    .score-bar-fill.yellow {
+      background: #f59e0b;
+    }
+
+    .score-bar-fill.cyan {
+      background: var(--cyan);
+    }
+
+    .grader-verdict {
+      margin-top: 2rem;
+      padding: 1.5rem;
+      background: rgba(0, 240, 255, 0.05);
+      border: 1px solid rgba(0, 240, 255, 0.2);
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: var(--text-primary);
+    }
+
+    .grader-error {
+      margin-top: 1rem;
+      padding: 1rem;
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      border-radius: 8px;
+      color: #ef4444;
+      font-family: 'JetBrains Mono', 'Courier New', monospace;
+      font-size: 0.85rem;
+      display: none;
+    }
+
+    .grader-error.visible {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+
+    /* ========== FEATURE 3: WORKFLOW VISUALIZER ========== */
+    .workflow-visualizer {
+      margin-top: 2rem;
+      padding: 2rem;
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+
+    .workflow-nodes {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      position: relative;
+    }
+
+    .workflow-node {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1.25rem 0.75rem;
+      background: var(--card-bg);
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      position: relative;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .workflow-node:hover {
+      border-color: var(--cyan);
+      transform: translateY(-3px);
+    }
+
+    .workflow-node-icon {
+      font-size: 1.75rem;
+    }
+
+    .workflow-node-label {
+      font-family: 'JetBrains Mono', 'Courier New', monospace;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      text-align: center;
+      line-height: 1.3;
+    }
+
+    @keyframes nodePulse {
+      0%, 100% {
+        box-shadow: 0 0 0 rgba(0, 240, 255, 0);
+      }
+      50% {
+        box-shadow: 0 0 20px rgba(0, 240, 255, 0.6);
+      }
+    }
+
+    .workflow-node.pulse {
+      animation: nodePulse 1.5s ease-in-out infinite;
+    }
+
+    .workflow-line {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      pointer-events: none;
+    }
+
+    .workflow-line-path {
+      stroke: var(--cyan);
+      stroke-width: 2;
+      stroke-dasharray: 8 4;
+      animation: flowAnimation 2s linear infinite;
+    }
+
+    @keyframes flowAnimation {
+      to {
+        stroke-dashoffset: -12;
+      }
+    }
+
+    .workflow-tooltip {
+      position: absolute;
+      bottom: calc(100% + 10px);
+      left: 50%;
+      transform: translateX(-50%) scale(0.9);
+      padding: 0.75rem 1rem;
+      background: rgba(20, 20, 25, 0.95);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(0, 240, 255, 0.3);
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
+      color: var(--text-primary);
+      white-space: nowrap;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.25s ease;
+      pointer-events: none;
+      z-index: 10;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .workflow-node:hover .workflow-tooltip {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) scale(1);
+    }
+
+    @media (max-width: 768px) {
+      .workflow-nodes {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .workflow-node {
+        width: 100%;
+      }
+
+      .workflow-line {
+        display: none;
+      }
+
+      .workflow-tooltip {
+        position: static;
+        transform: none;
+        margin-top: 0.5rem;
+        white-space: normal;
+        text-align: center;
+      }
+
+      .workflow-node:hover .workflow-tooltip {
+        transform: none;
+      }
+    }
+
+    /* ========== FEATURE 4: OPS AUDIT QUIZ ========== */
+    .ops-quiz-section {
+      margin: 4rem 0 3rem;
+      padding: 3rem 0;
+    }
+
+    .ops-quiz-title {
+      font-family: 'JetBrains Mono', 'Courier New', monospace;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--cyan);
+      letter-spacing: 0.02em;
+      margin-bottom: 2rem;
+    }
+
+    .quiz-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2.5rem;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .quiz-progress {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--cyan), var(--purple-accent));
+      transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 0 10px var(--cyan);
+    }
+
+    .quiz-question-container {
+      min-height: 300px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .quiz-question {
+      display: none;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .quiz-question.active {
+      display: block;
+    }
+
+    .quiz-question-text {
+      font-family: 'Inter Tight', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 2rem;
+      line-height: 1.3;
+    }
+
+    .quiz-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .quiz-option {
+      padding: 1.25rem 1.5rem;
+      background: rgba(0, 0, 0, 0.3);
+      border: 2px solid var(--border);
+      border-radius: 8px;
+      color: var(--text-secondary);
+      font-family: 'JetBrains Mono', 'Courier New', monospace;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      text-align: left;
+    }
+
+    .quiz-option:hover {
+      border-color: var(--cyan);
+      background: rgba(0, 240, 255, 0.05);
+      color: var(--cyan);
+      box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+      transform: translateY(-2px);
+    }
+
+    .quiz-option.selected {
+      border-color: var(--cyan);
+      background: rgba(0, 240, 255, 0.1);
+      color: var(--cyan);
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+    }
+
+    .quiz-result {
+      display: none;
+      min-height: 300px;
+    }
+
+    .quiz-result.active {
+      display: block;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .quiz-result-text {
+      padding: 2rem;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(0, 240, 255, 0.3);
+      border-radius: 8px;
+      font-family: 'JetBrains Mono', 'Courier New', monospace;
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: var(--text-primary);
+      margin-bottom: 2rem;
+      overflow: hidden;
+    }
+
+    .typewriter-text {
+      display: inline;
+    }
+
+    .quiz-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .quiz-cta-btn {
+      flex: 1;
+      padding: 1rem 2rem;
+      background: linear-gradient(135deg, var(--accent), var(--purple-accent));
+      border: none;
+      border-radius: 8px;
+      color: #ffffff;
+      font-family: 'JetBrains Mono', 'Courier New', monospace;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+    }
+
+    .quiz-cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 25px rgba(139, 92, 246, 0.45);
+    }
+
+    .quiz-restart-btn {
+      padding: 1rem 2rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 2px solid var(--border);
+      border-radius: 8px;
+      color: var(--text-secondary);
+      font-family: 'JetBrains Mono', 'Courier New', monospace;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .quiz-restart-btn:hover {
+      border-color: var(--cyan);
+      color: var(--cyan);
+      background: rgba(0, 240, 255, 0.05);
+    }
+
+    @media (max-width: 768px) {
+      .quiz-question-text {
+        font-size: 1.15rem;
+      }
+
+      .quiz-options {
+        grid-template-columns: 1fr;
+      }
+
+      .quiz-actions {
+        flex-direction: column;
+      }
+
+      .quiz-cta-btn {
+        width: 100%;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -3708,6 +4207,45 @@
               Try Voice Agent
             </button>
           </div>
+
+          <!-- Workflow Visualizer (FEATURE 3) -->
+          <div class="workflow-visualizer">
+            <div class="workflow-nodes" id="workflowNodes">
+              <div class="workflow-node" data-step="0">
+                <div class="workflow-node-icon">📥</div>
+                <div class="workflow-node-label">Prospect Input</div>
+                <div class="workflow-tooltip">Initial prospect data collection and validation</div>
+              </div>
+              <div class="workflow-node" data-step="1">
+                <div class="workflow-node-icon">🔍</div>
+                <div class="workflow-node-label">AI Research Agent</div>
+                <div class="workflow-tooltip">Automated prospect research and data enrichment</div>
+              </div>
+              <div class="workflow-node" data-step="2">
+                <div class="workflow-node-icon">✨</div>
+                <div class="workflow-node-label">Personalization Engine</div>
+                <div class="workflow-tooltip">AI-generated personalized messaging at scale</div>
+              </div>
+              <div class="workflow-node" data-step="3">
+                <div class="workflow-node-icon">📧</div>
+                <div class="workflow-node-label">Email Sequencer</div>
+                <div class="workflow-tooltip">Automated multi-touch email sequences</div>
+              </div>
+              <div class="workflow-node" data-step="4">
+                <div class="workflow-node-icon">💾</div>
+                <div class="workflow-node-label">CRM Update</div>
+                <div class="workflow-tooltip">Real-time CRM sync and contact management</div>
+              </div>
+              <div class="workflow-node" data-step="5">
+                <div class="workflow-node-icon">📊</div>
+                <div class="workflow-node-label">Performance Report</div>
+                <div class="workflow-tooltip">Analytics dashboard with actionable insights</div>
+              </div>
+            </div>
+            <svg class="workflow-line" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;">
+              <line class="workflow-line-path" x1="0%" y1="50%" x2="100%" y2="50%" />
+            </svg>
+          </div>
         </div>
 
         <!-- Card 4: Autonomous Content Engine -->
@@ -3730,6 +4268,62 @@
         </div>
         </div>
 
+      </div>
+    </section>
+
+    <!-- ========== COLD EMAIL GRADER (FEATURE 2) ========== -->
+    <section class="section active" id="email-grader">
+      <div class="email-grader-section animate-up">
+        <h2 class="email-grader-title">// COLD EMAIL GRADER</h2>
+        <div class="email-grader-container">
+          <textarea
+            id="emailGraderInput"
+            class="email-grader-textarea"
+            placeholder="// Paste your cold email here..."
+            aria-label="Cold email input"
+          ></textarea>
+          <button id="gradeEmailBtn" class="grade-btn">Grade It</button>
+          <div id="graderError" class="grader-error"></div>
+          <div id="graderOutput" class="grader-output">
+            <div class="score-bar-container">
+              <div class="score-bar-label">
+                <span>Personalization</span>
+                <span class="score-bar-value" id="personalizationScore">0</span>
+              </div>
+              <div class="score-bar-track">
+                <div class="score-bar-fill" id="personalizationBar" style="width: 0%"></div>
+              </div>
+            </div>
+            <div class="score-bar-container">
+              <div class="score-bar-label">
+                <span>Subject Line</span>
+                <span class="score-bar-value" id="subjectLineScore">0</span>
+              </div>
+              <div class="score-bar-track">
+                <div class="score-bar-fill" id="subjectLineBar" style="width: 0%"></div>
+              </div>
+            </div>
+            <div class="score-bar-container">
+              <div class="score-bar-label">
+                <span>CTA Clarity</span>
+                <span class="score-bar-value" id="ctaClarityScore">0</span>
+              </div>
+              <div class="score-bar-track">
+                <div class="score-bar-fill" id="ctaClarityBar" style="width: 0%"></div>
+              </div>
+            </div>
+            <div class="score-bar-container">
+              <div class="score-bar-label">
+                <span>Deliverability Risk</span>
+                <span class="score-bar-value" id="deliverabilityRiskScore">0</span>
+              </div>
+              <div class="score-bar-track">
+                <div class="score-bar-fill" id="deliverabilityRiskBar" style="width: 0%"></div>
+              </div>
+            </div>
+            <div class="grader-verdict" id="graderVerdict"></div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -4068,6 +4662,71 @@
         </div><!-- /article-prose -->
       </div><!-- /article-view -->
 
+    </section>
+
+    <!-- ========== OPS AUDIT QUIZ (FEATURE 4) ========== -->
+    <section class="section active" id="ops-quiz">
+      <div class="ops-quiz-section animate-up">
+        <h2 class="ops-quiz-title">// WHAT DOES YOUR BUSINESS ACTUALLY NEED?</h2>
+        <div class="quiz-card">
+          <div class="quiz-progress" id="quizProgress" style="width: 0%"></div>
+
+          <div class="quiz-question-container" id="quizQuestionContainer">
+            <!-- Question 1 -->
+            <div class="quiz-question active" data-question="1">
+              <h3 class="quiz-question-text">What is your biggest bottleneck right now?</h3>
+              <div class="quiz-options">
+                <button class="quiz-option" data-question="1" data-answer="Content Output">Content Output</button>
+                <button class="quiz-option" data-question="1" data-answer="Lead Generation">Lead Generation</button>
+                <button class="quiz-option" data-question="1" data-answer="Internal Operations">Internal Operations</button>
+                <button class="quiz-option" data-question="1" data-answer="All Three">All Three</button>
+              </div>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="quiz-question" data-question="2">
+              <h3 class="quiz-question-text">How many hours per week do you personally spend on this?</h3>
+              <div class="quiz-options">
+                <button class="quiz-option" data-question="2" data-answer="Under 5 hours">Under 5 hours</button>
+                <button class="quiz-option" data-question="2" data-answer="5 to 15 hours">5 to 15 hours</button>
+                <button class="quiz-option" data-question="2" data-answer="15 to 30 hours">15 to 30 hours</button>
+                <button class="quiz-option" data-question="2" data-answer="30+ hours">30+ hours</button>
+              </div>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="quiz-question" data-question="3">
+              <h3 class="quiz-question-text">What have you already tried?</h3>
+              <div class="quiz-options">
+                <button class="quiz-option" data-question="3" data-answer="Hiring freelancers">Hiring freelancers</button>
+                <button class="quiz-option" data-question="3" data-answer="Buying SaaS tools">Buying SaaS tools</button>
+                <button class="quiz-option" data-question="3" data-answer="Building in-house">Building in-house</button>
+                <button class="quiz-option" data-question="3" data-answer="Nothing yet">Nothing yet</button>
+              </div>
+            </div>
+
+            <!-- Question 4 -->
+            <div class="quiz-question" data-question="4">
+              <h3 class="quiz-question-text">What outcome matters most to you?</h3>
+              <div class="quiz-options">
+                <button class="quiz-option" data-question="4" data-answer="More inbound leads">More inbound leads</button>
+                <button class="quiz-option" data-question="4" data-answer="More content published">More content published</button>
+                <button class="quiz-option" data-question="4" data-answer="More time back">More time back</button>
+                <button class="quiz-option" data-question="4" data-answer="Faster business growth">Faster business growth</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Result -->
+          <div class="quiz-result" id="quizResult">
+            <div class="quiz-result-text" id="quizResultText"></div>
+            <div class="quiz-actions">
+              <button class="quiz-cta-btn" id="quizBookCallBtn">// Book a Call</button>
+              <button class="quiz-restart-btn" id="quizRestartBtn">// Restart</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- ========== CONTACT ========== -->
