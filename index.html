@@ -4373,12 +4373,8 @@
         </div>
         </div>
 
-      </div>
-    </section>
-
-    <!-- ========== COLD EMAIL GRADER (FEATURE 2) ========== -->
-    <section class="section active" id="email-grader">
-      <div class="email-grader-section animate-up">
+        <!-- ========== COLD EMAIL GRADER (FEATURE 2) ========== -->
+        <div class="email-grader-section animate-up">
         <h2 class="email-grader-title">// COLD EMAIL GRADER</h2>
         <div class="email-grader-container">
           <textarea
@@ -4429,6 +4425,8 @@
             <div class="grader-verdict" id="graderVerdict"></div>
           </div>
         </div>
+      </div>
+
       </div>
     </section>
 
@@ -4769,8 +4767,10 @@
 
     </section>
 
-    <!-- ========== OPS AUDIT QUIZ (FEATURE 4) ========== -->
-    <section class="section active" id="ops-quiz">
+    <!-- ========== CONTACT ========== -->
+    <section class="section" id="contact">
+
+      <!-- ========== OPS AUDIT QUIZ (FEATURE 4) ========== -->
       <div class="ops-quiz-section animate-up">
         <h2 class="ops-quiz-title">// WHAT DOES YOUR BUSINESS ACTUALLY NEED?</h2>
         <div class="quiz-card">
@@ -4832,10 +4832,7 @@
           </div>
         </div>
       </div>
-    </section>
 
-    <!-- ========== CONTACT ========== -->
-    <section class="section" id="contact">
       <div class="animate-up">
         <h1 class="section-title">Let's build something.</h1>
       </div>
@@ -6095,6 +6092,288 @@
       }
 
     })();
+
+    // ===== FEATURE 2: COLD EMAIL GRADER =====
+    (function() {
+      const gradeEmailBtn = document.getElementById('gradeEmailBtn');
+      const emailGraderInput = document.getElementById('emailGraderInput');
+      const graderOutput = document.getElementById('graderOutput');
+      const graderError = document.getElementById('graderError');
+
+      if (!gradeEmailBtn || !emailGraderInput || !graderOutput || !graderError) return;
+
+      gradeEmailBtn.addEventListener('click', async function() {
+        const emailText = emailGraderInput.value.trim();
+
+        // Validation
+        if (emailText.length < 30) {
+          graderError.textContent = '// ERROR: Input too short to analyze.';
+          graderError.classList.add('visible');
+          graderOutput.classList.remove('visible');
+          return;
+        }
+
+        graderError.classList.remove('visible');
+        gradeEmailBtn.disabled = true;
+        gradeEmailBtn.textContent = 'Analyzing...';
+
+        try {
+          const response = await fetch('https://tanim-ai-agent.nasrullahtanim.workers.dev/api/claude', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              model: 'claude-sonnet-4-20250514',
+              max_tokens: 1000,
+              system: "You are a cold email deliverability and conversion expert. Analyze the cold email provided and return a JSON object with exactly this structure: { personalization: number between 0-100, subjectLine: number between 0-100, ctaClarity: number between 0-100, deliverabilityRisk: number between 0-100 (higher means more risky), verdict: string of 2-3 sentences summarizing the biggest strength and the single most important fix }. Return only valid JSON, no markdown, no explanation.",
+              messages: [{
+                role: 'user',
+                content: emailText
+              }]
+            })
+          });
+
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+
+          const data = await response.json();
+
+          if (data.content && data.content[0] && data.content[0].text) {
+            const result = JSON.parse(data.content[0].text.trim());
+
+            // Animate scores
+            graderOutput.classList.add('visible');
+
+            setTimeout(() => {
+              animateScore('personalization', result.personalization);
+              animateScore('subjectLine', result.subjectLine);
+              animateScore('ctaClarity', result.ctaClarity);
+              animateScore('deliverabilityRisk', result.deliverabilityRisk, true);
+
+              document.getElementById('graderVerdict').textContent = result.verdict;
+            }, 100);
+          } else {
+            throw new Error('Unexpected response format');
+          }
+        } catch (error) {
+          console.error('Error grading email:', error);
+          graderError.textContent = '// ERROR: Failed to analyze email. Please try again.';
+          graderError.classList.add('visible');
+        } finally {
+          gradeEmailBtn.disabled = false;
+          gradeEmailBtn.textContent = 'Grade It';
+        }
+      });
+
+      function animateScore(metricName, score, isRisk = false) {
+        const scoreElement = document.getElementById(`${metricName}Score`);
+        const barElement = document.getElementById(`${metricName}Bar`);
+
+        // Animate number
+        let currentScore = 0;
+        const increment = score / 50;
+        const interval = setInterval(() => {
+          currentScore += increment;
+          if (currentScore >= score) {
+            currentScore = score;
+            clearInterval(interval);
+          }
+          scoreElement.textContent = Math.round(currentScore);
+        }, 20);
+
+        // Set bar width and color
+        setTimeout(() => {
+          barElement.style.width = score + '%';
+
+          // Color logic: inverted for deliverabilityRisk
+          if (isRisk) {
+            if (score < 40) {
+              barElement.className = 'score-bar-fill cyan';
+            } else if (score <= 70) {
+              barElement.className = 'score-bar-fill yellow';
+            } else {
+              barElement.className = 'score-bar-fill red';
+            }
+          } else {
+            if (score > 70) {
+              barElement.className = 'score-bar-fill cyan';
+            } else if (score >= 40) {
+              barElement.className = 'score-bar-fill yellow';
+            } else {
+              barElement.className = 'score-bar-fill red';
+            }
+          }
+        }, 50);
+      }
+    })();
+
+    // ===== FEATURE 3: WORKFLOW VISUALIZER =====
+    (function() {
+      const workflowNodes = document.querySelectorAll('.workflow-node');
+
+      if (workflowNodes.length === 0) return;
+
+      let currentStep = 0;
+
+      function pulseNodes() {
+        workflowNodes.forEach((node, index) => {
+          node.classList.remove('pulse');
+        });
+
+        workflowNodes[currentStep].classList.add('pulse');
+
+        currentStep = (currentStep + 1) % workflowNodes.length;
+      }
+
+      // Start pulsing animation
+      pulseNodes();
+      setInterval(pulseNodes, 1500);
+    })();
+
+    // ===== FEATURE 4: OPS AUDIT QUIZ =====
+    (function() {
+      const quizOptions = document.querySelectorAll('.quiz-option');
+      const quizProgress = document.getElementById('quizProgress');
+      const quizQuestions = document.querySelectorAll('.quiz-question');
+      const quizResult = document.getElementById('quizResult');
+      const quizResultText = document.getElementById('quizResultText');
+      const quizBookCallBtn = document.getElementById('quizBookCallBtn');
+      const quizRestartBtn = document.getElementById('quizRestartBtn');
+      const quizQuestionContainer = document.getElementById('quizQuestionContainer');
+
+      if (quizOptions.length === 0) return;
+
+      let answers = {};
+      let currentQuestion = 1;
+
+      quizOptions.forEach(option => {
+        option.addEventListener('click', async function() {
+          const questionNum = parseInt(this.dataset.question);
+          const answer = this.dataset.answer;
+
+          // Store answer
+          answers[`q${questionNum}`] = answer;
+
+          // Visual feedback
+          const questionDiv = document.querySelector(`.quiz-question[data-question="${questionNum}"]`);
+          questionDiv.querySelectorAll('.quiz-option').forEach(opt => opt.classList.remove('selected'));
+          this.classList.add('selected');
+
+          // Wait a bit for visual feedback
+          await new Promise(resolve => setTimeout(resolve, 400));
+
+          // Update progress
+          const progressPercent = (questionNum / 4) * 100;
+          quizProgress.style.width = progressPercent + '%';
+
+          // Move to next question or show result
+          if (questionNum < 4) {
+            questionDiv.classList.remove('active');
+            const nextQuestion = document.querySelector(`.quiz-question[data-question="${questionNum + 1}"]`);
+            if (nextQuestion) {
+              nextQuestion.classList.add('active');
+            }
+            currentQuestion = questionNum + 1;
+          } else {
+            // All questions answered, get recommendation
+            await getRecommendation();
+          }
+        });
+      });
+
+      async function getRecommendation() {
+        try {
+          const quizSummary = `Question 1: "What is your biggest bottleneck right now?" Answer: "${answers.q1}"
+Question 2: "How many hours per week do you personally spend on this?" Answer: "${answers.q2}"
+Question 3: "What have you already tried?" Answer: "${answers.q3}"
+Question 4: "What outcome matters most to you?" Answer: "${answers.q4}"`;
+
+          const response = await fetch('https://tanim-ai-agent.nasrullahtanim.workers.dev/api/claude', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              model: 'claude-sonnet-4-20250514',
+              max_tokens: 1000,
+              system: "You are an operations consultant for 7-figure online business owners. Based on the following quiz answers, write a 3 to 4 sentence personalized recommendation for which service this person needs most: cold email outreach infrastructure, video content production, or AI workflow automation. Be direct, specific to their answers, and end with one actionable next step. Do not use em dashes. Do not use generic advice.",
+              messages: [{
+                role: 'user',
+                content: quizSummary
+              }]
+            })
+          });
+
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+
+          const data = await response.json();
+
+          if (data.content && data.content[0] && data.content[0].text) {
+            const recommendation = data.content[0].text.trim();
+
+            // Hide questions, show result
+            quizQuestionContainer.style.display = 'none';
+            quizResult.classList.add('active');
+
+            // Typewriter effect
+            quizResultText.textContent = '';
+            let charIndex = 0;
+
+            function typeWriter() {
+              if (charIndex < recommendation.length) {
+                quizResultText.textContent += recommendation.charAt(charIndex);
+                charIndex++;
+                setTimeout(typeWriter, 30);
+              }
+            }
+
+            typeWriter();
+          } else {
+            throw new Error('Unexpected response format');
+          }
+        } catch (error) {
+          console.error('Error getting recommendation:', error);
+          quizResultText.textContent = '// ERROR: Failed to generate recommendation. Please try again.';
+          quizQuestionContainer.style.display = 'none';
+          quizResult.classList.add('active');
+        }
+      }
+
+      if (quizBookCallBtn) {
+        quizBookCallBtn.addEventListener('click', function() {
+          // Scroll to contact section
+          switchSection('contact');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      }
+
+      if (quizRestartBtn) {
+        quizRestartBtn.addEventListener('click', function() {
+          // Reset quiz
+          answers = {};
+          currentQuestion = 1;
+          quizProgress.style.width = '0%';
+
+          quizResult.classList.remove('active');
+          quizQuestionContainer.style.display = 'flex';
+
+          quizQuestions.forEach((q, index) => {
+            q.classList.remove('active');
+            q.querySelectorAll('.quiz-option').forEach(opt => opt.classList.remove('selected'));
+            if (index === 0) {
+              q.classList.add('active');
+            }
+          });
+
+          quizResultText.textContent = '';
+        });
+      }
+    })();
+
   </script>
 </body>
 </html>
