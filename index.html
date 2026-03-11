@@ -3094,6 +3094,31 @@
       background: var(--input-bg);
     }
 
+    html.light .cold-email-demo {
+      background: rgba(255, 255, 255, 0.6);
+      border-color: rgba(0, 212, 230, 0.3);
+    }
+
+    html.light .cold-email-input {
+      background: var(--input-bg);
+      border-color: rgba(0, 212, 230, 0.25);
+    }
+
+    html.light .cold-email-input:focus {
+      background: rgba(0, 212, 230, 0.05);
+      border-color: var(--cyan);
+    }
+
+    html.light .terminal-window {
+      background: rgba(0, 0, 0, 0.03);
+      border-color: rgba(0, 212, 230, 0.3);
+    }
+
+    html.light .terminal-header {
+      background: rgba(0, 212, 230, 0.08);
+      border-bottom-color: rgba(0, 212, 230, 0.2);
+    }
+
     @media (max-width: 768px) {
       .voice-modal-container {
         width: 95%;
@@ -3111,6 +3136,256 @@
         width: 70px;
         height: 70px;
         font-size: 1.75rem;
+      }
+    }
+
+    /* ========== COLD EMAIL GENERATOR ========== */
+    .cold-email-demo {
+      margin-top: 2rem;
+      padding: 1.5rem;
+      background: rgba(0, 20, 30, 0.6);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(0, 240, 255, 0.15);
+      border-radius: 12px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cold-email-demo::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+      opacity: 0.5;
+    }
+
+    .cold-email-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .cold-email-label {
+      font-family: 'JetBrains Mono', 'Courier New', monospace;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--cyan);
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #00ff00;
+      box-shadow: 0 0 10px #00ff00;
+      animation: statusBlink 2s ease-in-out infinite;
+    }
+
+    @keyframes statusBlink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    .cold-email-inputs {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .cold-email-input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .cold-email-input-label {
+      font-family: 'JetBrains Mono', 'Courier New', monospace;
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--cyan-muted);
+      letter-spacing: 0.02em;
+    }
+
+    .cold-email-input {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(0, 240, 255, 0.2);
+      border-radius: 8px;
+      color: var(--text-primary);
+      font-family: 'JetBrains Mono', 'Courier New', monospace;
+      font-size: 0.85rem;
+      transition: all 0.3s ease;
+    }
+
+    .cold-email-input::placeholder {
+      color: rgba(180, 180, 180, 0.4);
+    }
+
+    .cold-email-input:focus {
+      outline: none;
+      border-color: var(--cyan);
+      background: rgba(0, 240, 255, 0.05);
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.2);
+    }
+
+    .cold-email-generate-btn {
+      margin-top: 0.5rem;
+      padding: 0.9rem 1.75rem;
+      background: linear-gradient(135deg, rgba(0, 240, 255, 0.15), rgba(0, 200, 255, 0.1));
+      border: 2px solid var(--cyan);
+      border-radius: 8px;
+      color: var(--cyan);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .cold-email-generate-btn:hover {
+      background: linear-gradient(135deg, rgba(0, 240, 255, 0.25), rgba(0, 200, 255, 0.15));
+      box-shadow: 0 0 30px rgba(0, 240, 255, 0.4);
+      transform: translateY(-2px);
+    }
+
+    .cold-email-generate-btn:active {
+      transform: translateY(0);
+    }
+
+    .cold-email-generate-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .btn-glow {
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.3), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .cold-email-generate-btn:hover .btn-glow {
+      left: 100%;
+    }
+
+    .cold-email-output {
+      margin-top: 1.5rem;
+    }
+
+    .terminal-window {
+      background: rgba(0, 0, 0, 0.6);
+      border: 1px solid rgba(0, 240, 255, 0.3);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .terminal-header {
+      padding: 0.6rem 1rem;
+      background: rgba(0, 240, 255, 0.1);
+      border-bottom: 1px solid rgba(0, 240, 255, 0.2);
+    }
+
+    .terminal-title {
+      font-family: 'JetBrains Mono', 'Courier New', monospace;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--cyan);
+      letter-spacing: 0.08em;
+    }
+
+    .terminal-body {
+      padding: 1.25rem;
+      font-family: 'JetBrains Mono', 'Courier New', monospace;
+      font-size: 0.85rem;
+      line-height: 1.7;
+      color: var(--text-primary);
+      min-height: 120px;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+
+    .terminal-cursor {
+      display: inline-block;
+      width: 8px;
+      height: 16px;
+      background: var(--cyan);
+      animation: cursorBlink 1s step-end infinite;
+      vertical-align: middle;
+    }
+
+    @keyframes cursorBlink {
+      0%, 49% { opacity: 1; }
+      50%, 100% { opacity: 0; }
+    }
+
+    .copy-email-btn {
+      margin-top: 1rem;
+      padding: 0.65rem 1.25rem;
+      background: rgba(0, 240, 255, 0.08);
+      border: 1px solid rgba(0, 240, 255, 0.3);
+      border-radius: 6px;
+      color: var(--cyan);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.2s ease;
+    }
+
+    .copy-email-btn:hover {
+      background: rgba(0, 240, 255, 0.15);
+      border-color: var(--cyan);
+      box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
+      transform: translateY(-1px);
+    }
+
+    .copy-email-btn:active {
+      transform: translateY(0);
+    }
+
+    .copy-email-btn svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .cold-email-disclaimer {
+      margin-top: 1rem;
+      font-family: 'JetBrains Mono', 'Courier New', monospace;
+      font-size: 0.65rem;
+      color: rgba(180, 180, 180, 0.5);
+      letter-spacing: 0.02em;
+    }
+
+    @media (max-width: 768px) {
+      .cold-email-demo {
+        padding: 1.25rem;
+      }
+
+      .cold-email-input {
+        font-size: 0.8rem;
+        padding: 0.75rem 0.85rem;
+      }
+
+      .terminal-body {
+        font-size: 0.8rem;
+        padding: 1rem;
       }
     }
 
@@ -3342,6 +3617,63 @@
           </ul>
           <div class="expertise-buttons">
             <button class="expertise-btn expertise-btn--secondary" onclick="openYoutubeModal('https://www.youtube.com/embed/avRBuBSSdUg')">Service Explained</button>
+          </div>
+
+          <!-- Cold Email Generator Demo -->
+          <div class="cold-email-demo">
+            <div class="cold-email-header">
+              <span class="cold-email-label">// OUTREACH ENGINE — LIVE DEMO</span>
+              <span class="status-dot"></span>
+            </div>
+
+            <div class="cold-email-inputs">
+              <div class="cold-email-input-group">
+                <input
+                  type="text"
+                  id="nicheInput"
+                  class="cold-email-input"
+                  placeholder="// e.g. B2B SaaS, real estate investor, fitness coach"
+                  aria-label="Your niche or business type"
+                />
+                <label for="nicheInput" class="cold-email-input-label">Your niche or business type</label>
+              </div>
+
+              <div class="cold-email-input-group">
+                <input
+                  type="text"
+                  id="prospectInput"
+                  class="cold-email-input"
+                  placeholder="// e.g. 7-figure agency owners, ecom founders"
+                  aria-label="Your ideal prospect"
+                />
+                <label for="prospectInput" class="cold-email-input-label">Your ideal prospect</label>
+              </div>
+
+              <button class="cold-email-generate-btn" id="generateEmailBtn">
+                <span class="btn-text">Generate Cold Email</span>
+                <span class="btn-glow"></span>
+              </button>
+            </div>
+
+            <div class="cold-email-output" id="emailOutput" style="display: none;">
+              <div class="terminal-window">
+                <div class="terminal-header">
+                  <span class="terminal-title">// OUTPUT</span>
+                </div>
+                <div class="terminal-body" id="emailTerminalBody">
+                  <span class="terminal-cursor"></span>
+                </div>
+              </div>
+              <button class="copy-email-btn" id="copyEmailBtn" style="display: none;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                </svg>
+                Copy Email
+              </button>
+            </div>
+
+            <div class="cold-email-disclaimer">// Generated by SlideIn's outreach logic. Results vary by ICP.</div>
           </div>
         </div>
 
@@ -4831,6 +5163,123 @@
           closeVoiceModal();
         }
       });
+
+      // ========== COLD EMAIL GENERATOR ==========
+      const generateEmailBtn = document.getElementById('generateEmailBtn');
+      const nicheInput = document.getElementById('nicheInput');
+      const prospectInput = document.getElementById('prospectInput');
+      const emailOutput = document.getElementById('emailOutput');
+      const emailTerminalBody = document.getElementById('emailTerminalBody');
+      const copyEmailBtn = document.getElementById('copyEmailBtn');
+
+      let generatedEmail = '';
+
+      if (generateEmailBtn) {
+        generateEmailBtn.addEventListener('click', async function() {
+          const niche = nicheInput.value.trim();
+          const prospect = prospectInput.value.trim();
+
+          if (!niche || !prospect) {
+            alert('Please fill in both fields');
+            return;
+          }
+
+          // Show output area and hide copy button
+          emailOutput.style.display = 'block';
+          copyEmailBtn.style.display = 'none';
+          emailTerminalBody.innerHTML = '<span class="terminal-cursor"></span>';
+          generatedEmail = '';
+
+          // Disable button during generation
+          generateEmailBtn.disabled = true;
+          generateEmailBtn.querySelector('.btn-text').textContent = 'Generating...';
+
+          try {
+            const response = await fetch('/api/claude', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                model: 'claude-sonnet-4-20250514',
+                max_tokens: 1024,
+                messages: [{
+                  role: 'user',
+                  content: `Niche: ${niche}\nIdeal Prospect: ${prospect}\n\nWrite a cold email for this prospect.`
+                }],
+                system: "You are a cold email expert with 5 years of experience writing hyper-personalized cold emails for B2B outreach. Write a single cold email for the following niche and target prospect. The email must be under 120 words, have no subject line fluff, open with a specific observation or insight (not a compliment), have one clear CTA, and sound like it was written by a human. Do not use em dashes. Output only the email, nothing else."
+              })
+            });
+
+            if (!response.ok) {
+              throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const data = await response.json();
+
+            if (data.content && data.content[0] && data.content[0].text) {
+              generatedEmail = data.content[0].text.trim();
+
+              // Clear terminal and show email with typing effect
+              emailTerminalBody.innerHTML = '';
+              let charIndex = 0;
+
+              function typeWriter() {
+                if (charIndex < generatedEmail.length) {
+                  emailTerminalBody.textContent += generatedEmail.charAt(charIndex);
+                  charIndex++;
+                  setTimeout(typeWriter, 15);
+                } else {
+                  // Show copy button when done
+                  copyEmailBtn.style.display = 'inline-flex';
+                }
+              }
+
+              typeWriter();
+            } else {
+              emailTerminalBody.textContent = 'Error: Unexpected response format';
+            }
+
+          } catch (error) {
+            console.error('Error generating email:', error);
+            emailTerminalBody.textContent = `Error: ${error.message}\n\nPlease ensure your API proxy is configured correctly.`;
+          } finally {
+            // Re-enable button
+            generateEmailBtn.disabled = false;
+            generateEmailBtn.querySelector('.btn-text').textContent = 'Generate Cold Email';
+          }
+        });
+      }
+
+      if (copyEmailBtn) {
+        copyEmailBtn.addEventListener('click', async function() {
+          if (!generatedEmail) return;
+
+          try {
+            await navigator.clipboard.writeText(generatedEmail);
+            const originalText = copyEmailBtn.textContent;
+            copyEmailBtn.innerHTML = `
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+              Copied!
+            `;
+
+            setTimeout(() => {
+              copyEmailBtn.innerHTML = `
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                </svg>
+                Copy Email
+              `;
+            }, 2000);
+          } catch (error) {
+            console.error('Failed to copy:', error);
+            alert('Failed to copy to clipboard');
+          }
+        });
+      }
 
     })();
   </script>
