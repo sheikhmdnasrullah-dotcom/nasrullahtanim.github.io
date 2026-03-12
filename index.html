@@ -3433,11 +3433,13 @@
       display: none;
       opacity: 0;
       transition: opacity 0.3s ease;
+      pointer-events: none;
     }
 
     .cold-email-overlay.active {
       display: flex;
       opacity: 1;
+      pointer-events: auto;
     }
 
     .cold-email-overlay-content {
@@ -6350,17 +6352,28 @@
         if (launcherBtn && overlay) {
           launcherBtn.addEventListener('click', function() {
             overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
             resetSession();
             renderStep(1);
           });
         }
 
         // Close overlay
-        if (closeBtn && overlay) {
-          closeBtn.addEventListener('click', function() {
-            overlay.classList.remove('active');
-          });
+        function closeOverlay() {
+          overlay.classList.remove('active');
+          document.body.style.overflow = '';
         }
+
+        if (closeBtn && overlay) {
+          closeBtn.addEventListener('click', closeOverlay);
+        }
+
+        // ESC key to close
+        document.addEventListener('keydown', function(e) {
+          if (e.key === 'Escape' && overlay.classList.contains('active')) {
+            closeOverlay();
+          }
+        });
 
         // Reset session
         function resetSession() {
@@ -6503,7 +6516,9 @@
             const data = await response.json();
             if (data.content && data.content[0] && data.content[0].text) {
               const jsonText = data.content[0].text.trim();
-              prospects = JSON.parse(jsonText);
+              // Remove markdown code blocks if present
+              const cleanedJson = jsonText.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
+              prospects = JSON.parse(cleanedJson);
               prospectsGenerated = prospects.length;
 
               await new Promise(resolve => setTimeout(resolve, 500));
@@ -6513,7 +6528,20 @@
             }
           } catch (error) {
             console.error('Error fetching prospects:', error);
-            logEl.innerHTML += '<div class="terminal-log-line" style="color: #ff6b6b;">// ERROR: Failed to fetch prospects. Please try again.</div>';
+            logEl.innerHTML += `
+              <div class="terminal-log-line" style="color: #ff6b6b; margin-top: 1rem;">// ERROR: Failed to fetch prospects.</div>
+              <div class="terminal-log-line" style="color: #ff6b6b;">// ${error.message}</div>
+            `;
+
+            // Add retry button in the terminal card
+            const retryBtn = document.createElement('button');
+            retryBtn.className = 'step-btn';
+            retryBtn.textContent = 'Retry';
+            retryBtn.style.marginTop = '1rem';
+            retryBtn.addEventListener('click', () => {
+              renderStep(2);
+            });
+            el.querySelector('.terminal-card').appendChild(retryBtn);
           }
         }
 
@@ -6616,7 +6644,29 @@
               });
 
               const data = await response.json();
-              const bullets = data.candidates[0].content.parts[0].text.trim().split('\n').filter(line => line.trim().startsWith('*') || line.trim().startsWith('-')).map(line => line.replace(/^[\*\-]\s*/, ''));
+
+              let bullets = [];
+              if (data.candidates && data.candidates[0] && data.candidates[0].content && data.candidates[0].content.parts && data.candidates[0].content.parts[0]) {
+                const text = data.candidates[0].content.parts[0].text.trim();
+                bullets = text.split('\n')
+                  .filter(line => line.trim().startsWith('*') || line.trim().startsWith('-') || line.trim().match(/^\d+\./))
+                  .map(line => line.replace(/^[\*\-\d\.]\s*/, '').trim())
+                  .filter(line => line.length > 0);
+
+                // If no bullets found, split by newlines and take non-empty lines
+                if (bullets.length === 0) {
+                  bullets = text.split('\n').filter(line => line.trim().length > 10).slice(0, 5);
+                }
+              }
+
+              // Fallback if no bullets found
+              if (bullets.length === 0) {
+                bullets = [
+                  `${prospect.name} is actively growing ${prospect.company} in the ${icpData.niche} space`,
+                  `Recent activity: ${prospect.recentActivity}`,
+                  `Focus on how your solution addresses challenges in ${icpData.niche}`
+                ];
+              }
 
               researchData[idx] = bullets;
 
@@ -6629,7 +6679,23 @@
               });
             } catch (error) {
               console.error('Research error:', error);
-              logEl.innerHTML += '<div class="terminal-log-line" style="color: #ff6b6b;">// ERROR: Failed to fetch research data.</div>';
+
+              // Provide fallback data instead of failing
+              const fallbackBullets = [
+                `${prospect.name} is actively growing ${prospect.company}`,
+                `Recent activity: ${prospect.recentActivity}`,
+                `Focus on immediate value and quick wins`
+              ];
+
+              researchData[idx] = fallbackBullets;
+
+              logEl.style.display = 'none';
+              researchEl.style.display = 'block';
+              fallbackBullets.forEach(bullet => {
+                const li = document.createElement('li');
+                li.textContent = bullet;
+                researchEl.appendChild(li);
+              });
             }
           }
 
@@ -6715,11 +6781,21 @@
               });
 
               const data = await response.json();
-              const emailData = JSON.parse(data.content[0].text.trim());
+              let emailText = data.content[0].text.trim();
+
+              // Remove markdown code blocks if present
+              emailText = emailText.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
+
+              const emailData = JSON.parse(emailText);
               emails[idx] = emailData;
             } catch (error) {
               console.error('Email generation error:', error);
-              emails[idx] = { subject: 'Error generating subject', body: 'Error generating email body.' };
+
+              // Provide fallback email
+              emails[idx] = {
+                subject: `Quick question about ${prospect.company}`,
+                body: `Hi ${prospect.name},\n\nI noticed ${prospect.recentActivity}${prospect.recentActivity.endsWith('.') ? '' : '.'}\n\n${bullets[0] || 'I help companies in the ' + icpData.niche + ' space improve their operations.'}\n\nWould you be open to a quick conversation about how we could help ${prospect.company} achieve similar results?\n\nBest,\n[Your Name]`
+              };
             }
           }
 
@@ -6766,7 +6842,12 @@
               });
 
               const data = await response.json();
-              const scoreData = JSON.parse(data.content[0].text.trim());
+              let scoreText = data.content[0].text.trim();
+
+              // Remove markdown code blocks if present
+              scoreText = scoreText.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
+
+              const scoreData = JSON.parse(scoreText);
               spamScores[idx] = scoreData;
 
               const fillEl = el.querySelector(`#spam-fill-${idx}`);
@@ -6783,7 +6864,15 @@
               }
             } catch (error) {
               console.error('Spam score error:', error);
-              spamScores[idx] = { score: 85, issues: [] };
+
+              // Display default score visually
+              const defaultScore = { score: 85, issues: [] };
+              spamScores[idx] = defaultScore;
+
+              const fillEl = el.querySelector(`#spam-fill-${idx}`);
+              fillEl.textContent = '85/100';
+              fillEl.style.width = '85%';
+              fillEl.classList.add('high');
             }
           }
 
@@ -6877,7 +6966,7 @@
           `;
 
           el.querySelector('#bookCallBtn').addEventListener('click', () => {
-            overlay.classList.remove('active');
+            closeOverlay();
             setTimeout(() => {
               document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' });
             }, 300);
