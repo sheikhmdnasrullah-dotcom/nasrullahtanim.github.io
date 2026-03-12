@@ -4075,169 +4075,6 @@
       animation: fadeIn 0.3s ease;
     }
 
-    /* ========== FEATURE 3: WORKFLOW VISUALIZER ========== */
-    .workflow-visualizer {
-      margin-top: 2rem;
-      padding: 2.5rem 1.5rem;
-      background: rgba(0, 0, 0, 0.3);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      position: relative;
-      overflow: visible;
-    }
-
-    .workflow-nodes {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 0.75rem;
-      position: relative;
-      z-index: 1;
-    }
-
-    .workflow-node {
-      flex: 1;
-      min-width: 100px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 1rem 0.5rem;
-      background: var(--card-bg);
-      border: 2px solid var(--border);
-      border-radius: 12px;
-      position: relative;
-      transition: all 0.3s ease;
-      cursor: pointer;
-      z-index: 2;
-    }
-
-    .workflow-node:hover {
-      border-color: var(--cyan);
-      transform: translateY(-3px);
-    }
-
-    .workflow-node-icon {
-      font-size: 1.5rem;
-      line-height: 1;
-    }
-
-    .workflow-node-label {
-      font-family: 'JetBrains Mono', 'Courier New', monospace;
-      font-size: 0.7rem;
-      font-weight: 600;
-      color: var(--text-secondary);
-      text-align: center;
-      line-height: 1.2;
-      max-width: 100%;
-      word-wrap: break-word;
-    }
-
-    @keyframes nodePulse {
-      0%, 100% {
-        box-shadow: 0 0 0 rgba(0, 240, 255, 0);
-      }
-      50% {
-        box-shadow: 0 0 20px rgba(0, 240, 255, 0.6);
-      }
-    }
-
-    .workflow-node.pulse {
-      border-color: var(--cyan);
-      box-shadow: 0 0 20px rgba(0, 240, 255, 0.6);
-      transition: all 0.3s ease;
-    }
-
-    .workflow-line {
-      position: absolute;
-      top: 50%;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    .workflow-line-path {
-      stroke: var(--cyan);
-      stroke-width: 2;
-      stroke-dasharray: 8 4;
-      animation: flowAnimation 2s linear infinite;
-    }
-
-    @keyframes flowAnimation {
-      to {
-        stroke-dashoffset: -12;
-      }
-    }
-
-    .workflow-tooltip {
-      position: absolute;
-      bottom: calc(100% + 10px);
-      left: 50%;
-      transform: translateX(-50%) scale(0.9);
-      padding: 0.75rem 1rem;
-      background: rgba(20, 20, 25, 0.95);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border: 1px solid rgba(0, 240, 255, 0.3);
-      border-radius: 8px;
-      font-family: 'Inter', sans-serif;
-      font-size: 0.75rem;
-      color: var(--text-primary);
-      white-space: normal;
-      max-width: 200px;
-      text-align: center;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.25s ease;
-      pointer-events: none;
-      z-index: 10;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-    }
-
-    .workflow-node:hover .workflow-tooltip {
-      opacity: 1;
-      visibility: visible;
-      transform: translateX(-50%) scale(1);
-    }
-
-    @media (max-width: 768px) {
-      .workflow-nodes {
-        flex-direction: column;
-        gap: 1rem;
-      }
-
-      .workflow-node {
-        width: 100%;
-        min-width: auto;
-      }
-
-      .workflow-line {
-        display: none;
-      }
-
-      .workflow-tooltip {
-        position: relative;
-        bottom: auto;
-        left: auto;
-        transform: none;
-        margin-top: 0.5rem;
-        white-space: normal;
-        text-align: center;
-        opacity: 0;
-        visibility: hidden;
-        max-width: 100%;
-        font-size: 0.8rem;
-      }
-
-      .workflow-node:hover .workflow-tooltip {
-        opacity: 1;
-        visibility: visible;
-        transform: none;
-      }
-    }
-
     /* ========== FEATURE 4: OPS AUDIT QUIZ ========== */
     .ops-quiz-section {
       margin: 4rem 0 3rem;
@@ -4698,45 +4535,6 @@
             <li>CRM automation and data processing</li>
             <li>Custom integrations via APIs and webhooks</li>
           </ul>
-
-          <!-- Workflow Visualizer (FEATURE 3) -->
-          <div class="workflow-visualizer">
-            <div class="workflow-nodes" id="workflowNodes">
-              <div class="workflow-node" data-step="0">
-                <div class="workflow-node-icon">🎯</div>
-                <div class="workflow-node-label">Prospect Input</div>
-                <div class="workflow-tooltip">Raw prospect data enters the pipeline from your lead source.</div>
-              </div>
-              <div class="workflow-node" data-step="1">
-                <div class="workflow-node-icon">📊</div>
-                <div class="workflow-node-label">AI Research Agent</div>
-                <div class="workflow-tooltip">AI agent researches each prospect and extracts key business context.</div>
-              </div>
-              <div class="workflow-node" data-step="2">
-                <div class="workflow-node-icon">✍️</div>
-                <div class="workflow-node-label">Personalization Engine</div>
-                <div class="workflow-tooltip">Custom personalization variables are generated for each contact.</div>
-              </div>
-              <div class="workflow-node" data-step="3">
-                <div class="workflow-node-icon">📧</div>
-                <div class="workflow-node-label">Email Sequencer</div>
-                <div class="workflow-tooltip">Emails are queued and sent with smart timing and follow-up logic.</div>
-              </div>
-              <div class="workflow-node" data-step="4">
-                <div class="workflow-node-icon">🗃️</div>
-                <div class="workflow-node-label">CRM Update</div>
-                <div class="workflow-tooltip">Replies and outcomes are logged automatically to your CRM.</div>
-              </div>
-              <div class="workflow-node" data-step="5">
-                <div class="workflow-node-icon">📈</div>
-                <div class="workflow-node-label">Performance Report</div>
-                <div class="workflow-tooltip">Weekly performance data is compiled and sent to your dashboard.</div>
-              </div>
-            </div>
-            <svg class="workflow-line" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;">
-              <line class="workflow-line-path" x1="0%" y1="50%" x2="100%" y2="50%" />
-            </svg>
-          </div>
 
           <div class="expertise-buttons">
             <button class="expertise-btn expertise-btn--ai" id="openChatAgentBtn">
@@ -5508,17 +5306,25 @@
         const target = document.getElementById(targetId);
         if (target) {
           target.classList.add('active');
-          // Re-trigger animations
+          // Re-trigger keyframe animations
           target.querySelectorAll('.animate-up, .stagger > *').forEach(el => {
             el.style.animation = 'none';
             el.offsetHeight; // force reflow
             el.style.animation = '';
+          });
+          // Reset scroll-reveal elements so they animate on entry
+          target.querySelectorAll('.scroll-reveal.revealed').forEach(el => {
+            el.classList.remove('revealed');
+            scrollRevealObserver.observe(el);
           });
         }
 
         navLinks.forEach(l => {
           if (l.dataset.section === targetId) l.classList.add('active');
         });
+
+        // Scroll to top instantly on section switch
+        window.scrollTo({ top: 0, behavior: 'instant' });
 
         // Update URL with section hash for shareable links
         history.pushState(null, '', '#' + targetId);
@@ -7090,31 +6896,6 @@
           }
         }, 50);
       }
-    })();
-
-    // ===== FEATURE 3: WORKFLOW VISUALIZER =====
-    (function() {
-      const workflowNodes = document.querySelectorAll('.workflow-node');
-
-      if (workflowNodes.length === 0) return;
-
-      function pulseSequence() {
-        // Add pulse to each node with 250ms delay
-        workflowNodes.forEach((node, index) => {
-          setTimeout(() => {
-            // Remove pulse from all nodes first
-            workflowNodes.forEach(n => n.classList.remove('pulse'));
-            // Add pulse to current node
-            node.classList.add('pulse');
-          }, index * 250);
-        });
-      }
-
-      // Start pulsing animation immediately
-      pulseSequence();
-      // Loop continues every (number of nodes * 250ms) + 500ms pause
-      const loopDuration = (workflowNodes.length * 250) + 500;
-      setInterval(pulseSequence, loopDuration);
     })();
 
     // ===== FEATURE 4: OPS AUDIT QUIZ =====
