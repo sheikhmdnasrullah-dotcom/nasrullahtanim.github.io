@@ -534,11 +534,11 @@
 
     .rotating-text.visible {
       opacity: 1;
-      animation: typewriter 2s steps(40) forwards, blink 0.75s step-end infinite, glitch 0.3s ease 1.8s;
+      animation: typewriter 2s steps(40) forwards, blink 0.75s step-end infinite;
     }
 
     .rotating-text.fade-out {
-      animation: glitchOut 0.4s ease forwards;
+      animation: tagFadeOut 0.25s ease forwards;
     }
 
     @keyframes typewriter {
@@ -551,21 +551,9 @@
       50% { border-color: var(--accent); }
     }
 
-    @keyframes glitch {
-      0%, 100% { transform: translate(0); }
-      20% { transform: translate(-2px, 2px); text-shadow: 2px 0 var(--cyan), -2px 0 var(--purple-accent); }
-      40% { transform: translate(-2px, -2px); text-shadow: -2px 0 var(--cyan), 2px 2px var(--purple-accent); }
-      60% { transform: translate(2px, 2px); text-shadow: 2px 2px var(--cyan), -2px -2px var(--purple-accent); }
-      80% { transform: translate(2px, -2px); text-shadow: -2px 2px var(--cyan), 2px 0 var(--purple-accent); }
-    }
-
-    @keyframes glitchOut {
-      0% { opacity: 1; transform: translate(0); }
-      20% { transform: translate(-3px, 3px); text-shadow: 3px 0 var(--cyan), -3px 0 var(--purple-accent); }
-      40% { transform: translate(3px, -3px); opacity: 0.8; }
-      60% { transform: translate(-3px, -3px); opacity: 0.5; }
-      80% { transform: translate(3px, 3px); opacity: 0.2; }
-      100% { opacity: 0; transform: scale(0.95); }
+    @keyframes tagFadeOut {
+      from { opacity: 1; transform: translateY(0); }
+      to { opacity: 0; transform: translateY(-2px); }
     }
 
     .hero-photo {
@@ -4366,8 +4354,7 @@
       font-weight: 300;
       letter-spacing: 0.005em;
       background:
-        radial-gradient(circle at 14% 12%, rgba(139, 92, 246, 0.1), transparent 32%),
-        radial-gradient(circle at 86% 78%, rgba(255, 255, 255, 0.04), transparent 34%),
+        linear-gradient(180deg, rgba(139, 92, 246, 0.09) 0%, rgba(10, 10, 11, 0) 26%),
         var(--bg);
     }
 
@@ -4483,17 +4470,11 @@
     }
 
     .hero::after {
-      content: '[';
-      position: absolute;
-      left: 10%;
-      top: 2.6rem;
-      font-family: 'Fraunces', serif;
-      font-size: 2.3rem;
-      color: rgba(255, 255, 255, 0.42);
-      transform: rotate(2.4deg);
+      content: none;
     }
 
     .hero-name {
+      font-family: 'Inter Tight', sans-serif;
       font-size: clamp(5rem, 8.8vw, 6rem);
       line-height: 0.95;
       letter-spacing: -0.032em;
@@ -4547,7 +4528,7 @@
     }
 
     .who-i-am-box {
-      border-radius: 10px 26px 14px 22px;
+      border-radius: 16px;
       border: 1px solid rgba(255, 255, 255, 0.12);
       margin: 2.4rem 0 3.6rem;
       padding: 2.8rem 2.5rem 2.6rem;
@@ -4607,6 +4588,34 @@
       gap: 0.8rem;
     }
 
+    .expertise-card .email-grader-section {
+      margin-top: 1.4rem;
+      padding-top: 1.1rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.09);
+    }
+
+    .expertise-card .email-grader-title {
+      font-size: 0.78rem;
+      margin-bottom: 0.8rem;
+      letter-spacing: 0.08em;
+    }
+
+    .expertise-card .email-grader-container {
+      padding: 1.1rem;
+      background: rgba(0, 0, 0, 0.16);
+      border: 1px solid rgba(139, 92, 246, 0.17);
+      border-radius: 10px;
+    }
+
+    .expertise-card .email-grader-textarea {
+      min-height: 140px;
+      max-height: 220px;
+    }
+
+    .expertise-card .grade-btn {
+      width: 100%;
+    }
+
     .expertise-btn,
     .submit-btn,
     .quiz-cta-btn {
@@ -4644,11 +4653,11 @@
     }
 
     .article-callout {
-      margin: 2.7rem 0 2.7rem 18%;
-      text-align: right;
-      border-right: 2px solid rgba(139, 92, 246, 0.62);
-      border-left: none;
-      padding: 1.2rem 1.25rem 1.2rem 0.9rem;
+      margin: 2rem 0;
+      text-align: left;
+      border-left: 2px solid rgba(139, 92, 246, 0.62);
+      border-right: none;
+      padding: 1.2rem 1.1rem;
     }
 
     .stats-section .stat-box:nth-child(even) {
@@ -4669,10 +4678,18 @@
     .animate-up:nth-child(4) { animation-delay: 0.27s; }
     .animate-up:nth-child(5) { animation-delay: 0.14s; }
 
+    .rotating-text.visible {
+      opacity: 1;
+      animation: typewriter 2s steps(40) forwards, blink 0.75s step-end infinite;
+    }
+
+    .rotating-text.fade-out {
+      animation: tagFadeOut 0.25s ease forwards;
+    }
+
     @media (max-width: 1024px) {
       .hero-name { font-size: clamp(4.2rem, 9.2vw, 5.4rem); }
       .main { padding: 7.4rem 2rem 4.6rem; }
-      .article-callout { margin-left: 10%; }
     }
 
     @media (max-width: 768px) {
@@ -4957,6 +4974,60 @@
             <button class="expertise-btn expertise-btn--secondary" onclick="openYoutubeModal('https://www.youtube.com/embed/avRBuBSSdUg')">Service Explained</button>
           </div>
 
+          <!-- ========== COLD EMAIL GRADER (MOVED INSIDE OUTBOUND CARD) ========== -->
+          <div class="email-grader-section animate-up">
+            <h2 class="email-grader-title">// COLD EMAIL GRADER</h2>
+            <div class="email-grader-container">
+              <textarea
+                id="emailGraderInput"
+                class="email-grader-textarea"
+                placeholder="// Paste your cold email here..."
+                aria-label="Cold email input"
+              ></textarea>
+              <button id="gradeEmailBtn" class="grade-btn">Grade It</button>
+              <div id="graderError" class="grader-error"></div>
+              <div id="graderOutput" class="grader-output">
+                <div class="score-bar-container">
+                  <div class="score-bar-label">
+                    <span>Personalization</span>
+                    <span class="score-bar-value" id="personalizationScore">0</span>
+                  </div>
+                  <div class="score-bar-track">
+                    <div class="score-bar-fill" id="personalizationBar" style="width: 0%"></div>
+                  </div>
+                </div>
+                <div class="score-bar-container">
+                  <div class="score-bar-label">
+                    <span>Subject Line</span>
+                    <span class="score-bar-value" id="subjectLineScore">0</span>
+                  </div>
+                  <div class="score-bar-track">
+                    <div class="score-bar-fill" id="subjectLineBar" style="width: 0%"></div>
+                  </div>
+                </div>
+                <div class="score-bar-container">
+                  <div class="score-bar-label">
+                    <span>CTA Clarity</span>
+                    <span class="score-bar-value" id="ctaClarityScore">0</span>
+                  </div>
+                  <div class="score-bar-track">
+                    <div class="score-bar-fill" id="ctaClarityBar" style="width: 0%"></div>
+                  </div>
+                </div>
+                <div class="score-bar-container">
+                  <div class="score-bar-label">
+                    <span>Deliverability Risk</span>
+                    <span class="score-bar-value" id="deliverabilityRiskScore">0</span>
+                  </div>
+                  <div class="score-bar-track">
+                    <div class="score-bar-fill" id="deliverabilityRiskBar" style="width: 0%"></div>
+                  </div>
+                </div>
+                <div class="grader-verdict" id="graderVerdict"></div>
+              </div>
+            </div>
+          </div>
+
           <!-- Send Cold Email Button -->
           <button class="cold-email-launcher-btn" id="coldEmailLauncherBtn">
             <span class="btn-text">// Send a Cold Email Right Now</span>
@@ -5046,62 +5117,6 @@
             <button class="expertise-btn expertise-btn--primary" id="viewExampleBtn">View Example</button>
           </div>
         </div>
-        </div>
-
-        <!-- ========== COLD EMAIL GRADER (FEATURE 2) ========== -->
-        <div class="email-grader-section animate-up">
-        <h2 class="email-grader-title">// COLD EMAIL GRADER</h2>
-        <div class="email-grader-container">
-          <textarea
-            id="emailGraderInput"
-            class="email-grader-textarea"
-            placeholder="// Paste your cold email here..."
-            aria-label="Cold email input"
-          ></textarea>
-          <button id="gradeEmailBtn" class="grade-btn">Grade It</button>
-          <div id="graderError" class="grader-error"></div>
-          <div id="graderOutput" class="grader-output">
-            <div class="score-bar-container">
-              <div class="score-bar-label">
-                <span>Personalization</span>
-                <span class="score-bar-value" id="personalizationScore">0</span>
-              </div>
-              <div class="score-bar-track">
-                <div class="score-bar-fill" id="personalizationBar" style="width: 0%"></div>
-              </div>
-            </div>
-            <div class="score-bar-container">
-              <div class="score-bar-label">
-                <span>Subject Line</span>
-                <span class="score-bar-value" id="subjectLineScore">0</span>
-              </div>
-              <div class="score-bar-track">
-                <div class="score-bar-fill" id="subjectLineBar" style="width: 0%"></div>
-              </div>
-            </div>
-            <div class="score-bar-container">
-              <div class="score-bar-label">
-                <span>CTA Clarity</span>
-                <span class="score-bar-value" id="ctaClarityScore">0</span>
-              </div>
-              <div class="score-bar-track">
-                <div class="score-bar-fill" id="ctaClarityBar" style="width: 0%"></div>
-              </div>
-            </div>
-            <div class="score-bar-container">
-              <div class="score-bar-label">
-                <span>Deliverability Risk</span>
-                <span class="score-bar-value" id="deliverabilityRiskScore">0</span>
-              </div>
-              <div class="score-bar-track">
-                <div class="score-bar-fill" id="deliverabilityRiskBar" style="width: 0%"></div>
-              </div>
-            </div>
-            <div class="grader-verdict" id="graderVerdict"></div>
-          </div>
-        </div>
-      </div>
-
       </div>
     </section>
 
@@ -5583,6 +5598,19 @@
         }, 2500);
       });
 
+      // ===== SAFE BODY SCROLL LOCK =====
+      let bodyScrollLocks = 0;
+      function lockBodyScroll() {
+        bodyScrollLocks += 1;
+        document.body.style.overflow = 'hidden';
+      }
+      function unlockBodyScroll() {
+        bodyScrollLocks = Math.max(0, bodyScrollLocks - 1);
+        if (bodyScrollLocks === 0) {
+          document.body.style.overflow = '';
+        }
+      }
+
       // ===== ANIMATED BACKGROUND CANVAS =====
       const canvas = document.getElementById('bg-canvas');
       if (canvas) {
@@ -5762,7 +5790,7 @@
         });
 
         // Scroll to top instantly on section switch
-        window.scrollTo({ top: 0, behavior: 'instant' });
+        window.scrollTo({ top: 0, behavior: 'auto' });
 
         // Update URL with section hash for shareable links
         history.pushState(null, '', '#' + targetId);
@@ -5979,7 +6007,7 @@
         if (youtubeIframe && youtubeModal) {
           youtubeIframe.src = videoUrl + '?autoplay=1';
           youtubeModal.classList.add('visible');
-          document.body.style.overflow = 'hidden';
+          lockBodyScroll();
         }
       }
 
@@ -5990,7 +6018,7 @@
         if (youtubeModal && youtubeIframe) {
           youtubeModal.classList.remove('visible');
           youtubeIframe.src = '';
-          document.body.style.overflow = '';
+          unlockBodyScroll();
         }
       }
 
@@ -6145,7 +6173,7 @@
       function openChatModal() {
         if (chatModal) {
           chatModal.classList.add('visible');
-          document.body.style.overflow = 'hidden';
+          lockBodyScroll();
           if (chatInput) {
             setTimeout(() => chatInput.focus(), 350);
           }
@@ -6155,7 +6183,7 @@
       function closeChatModal() {
         if (chatModal) {
           chatModal.classList.remove('visible');
-          document.body.style.overflow = '';
+          unlockBodyScroll();
           stopSpeech();
           stopListening();
         }
@@ -6357,7 +6385,7 @@
 
       function openVoiceModal() {
         voiceModal.classList.add('visible');
-        document.body.style.overflow = 'hidden';
+        lockBodyScroll();
 
         if (!isVoiceSupported) {
           voiceTranscript.innerHTML = '<div class="voice-error">Voice input not supported in this browser. Please use Chrome.</div>';
@@ -6374,7 +6402,7 @@
 
       function closeVoiceModal() {
         voiceModal.classList.remove('visible');
-        document.body.style.overflow = '';
+        unlockBodyScroll();
         stopVoiceListening();
         stopAudio();
         setVoiceState('idle');
@@ -6602,7 +6630,7 @@
         if (launcherBtn && overlay) {
           launcherBtn.addEventListener('click', function() {
             overlay.classList.add('active');
-            document.body.style.overflow = 'hidden';
+            lockBodyScroll();
             resetSession();
             renderStep(1);
           });
@@ -6611,7 +6639,7 @@
         // Close overlay
         function closeOverlay() {
           overlay.classList.remove('active');
-          document.body.style.overflow = '';
+          unlockBodyScroll();
         }
 
         if (closeBtn && overlay) {
