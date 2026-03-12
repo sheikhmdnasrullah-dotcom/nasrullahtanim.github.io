@@ -4742,6 +4742,34 @@
       #expertise .expertise-card:nth-child(4) {
         margin-top: 0;
       }
+
+      /* Fix rotating text wrapper on mobile — no blank space after shorter texts */
+      .rotating-wrapper {
+        display: block;
+        height: 1.6em;
+        min-height: unset;
+      }
+      .rotating-text:first-child {
+        position: absolute;
+      }
+
+      /* Smaller hero photo on mobile */
+      .hero-photo {
+        width: 120px;
+        height: 120px;
+      }
+
+      /* Tighten hero spacing on mobile */
+      .hero {
+        gap: 1rem;
+        margin-bottom: 2rem;
+        padding-bottom: 2rem;
+      }
+
+      .who-i-am-box {
+        margin: 1.5rem 0 2rem;
+        padding: 1.8rem 1.4rem 1.6rem;
+      }
     }
 
   </style>
@@ -4835,6 +4863,36 @@
             <line x1="8" y1="23" x2="16" y2="23"></line>
           </svg>
         </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== COLD EMAIL OVERLAY ========== -->
+  <div class="cold-email-overlay" id="coldEmailOverlay">
+    <div class="cold-email-overlay-content">
+      <!-- Close Button -->
+      <button class="cold-email-close-btn" id="closeOverlayBtn">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+
+      <!-- Progress Bar -->
+      <div class="cold-email-progress-bar">
+        <div class="cold-email-progress-fill" id="progressFill"></div>
+        <div class="cold-email-progress-text" id="progressText">STEP 1 / 11</div>
+      </div>
+
+      <!-- Step Container -->
+      <div class="cold-email-step-container" id="stepContainer">
+        <!-- Steps will be dynamically inserted here -->
+      </div>
+
+      <!-- Persistent Navigation Footer -->
+      <div class="cold-email-nav-footer" id="coldEmailNavFooter">
+        <button class="ce-nav-btn" id="coldEmailBackBtn">← Back</button>
+        <button class="ce-nav-btn ce-reset-btn" id="coldEmailResetBtn">↺ Start Over</button>
       </div>
     </div>
   </div>
@@ -5034,35 +5092,6 @@
             <span class="status-dot-inline"></span>
           </button>
 
-          <!-- Full-Screen Cold Email Overlay -->
-          <div class="cold-email-overlay" id="coldEmailOverlay">
-            <div class="cold-email-overlay-content">
-              <!-- Close Button -->
-              <button class="cold-email-close-btn" id="closeOverlayBtn">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <line x1="18" y1="6" x2="6" y2="18"></line>
-                  <line x1="6" y1="6" x2="18" y2="18"></line>
-                </svg>
-              </button>
-
-              <!-- Progress Bar -->
-              <div class="cold-email-progress-bar">
-                <div class="cold-email-progress-fill" id="progressFill"></div>
-                <div class="cold-email-progress-text" id="progressText">STEP 1 / 11</div>
-              </div>
-
-              <!-- Step Container -->
-              <div class="cold-email-step-container" id="stepContainer">
-                <!-- Steps will be dynamically inserted here -->
-              </div>
-
-              <!-- Persistent Navigation Footer -->
-              <div class="cold-email-nav-footer" id="coldEmailNavFooter">
-                <button class="ce-nav-btn" id="coldEmailBackBtn">← Back</button>
-                <button class="ce-nav-btn ce-reset-btn" id="coldEmailResetBtn">↺ Start Over</button>
-              </div>
-            </div>
-          </div>
         </div>
 
         <!-- Card 3: AI Automation -->
