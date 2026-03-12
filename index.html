@@ -33,8 +33,8 @@
       --accent: #8B5CF6;
       --accent-hover: #7C3AED;
       --accent-text: #ffffff;
-      --cyan: #00f0ff;
-      --cyan-muted: rgba(0, 240, 255, 0.7);
+      --cyan: #8B5CF6;
+      --cyan-muted: rgba(139, 92, 246, 0.7);
       --purple-accent: #7b61ff;
       --card-bg: rgba(255, 255, 255, 0.04);
       --input-bg: rgba(255, 255, 255, 0.02);
@@ -44,8 +44,8 @@
       --modal-bg: rgba(20, 20, 25, 0.95);
       --shadow: 0 1px 3px rgba(0,0,0,0.5);
       --shadow-lg: 0 8px 30px rgba(0,0,0,0.6);
-      --glow: 0 0 30px rgba(139,92,246,0.06);
-      --cyan-glow: 0 0 20px rgba(0, 240, 255, 0.3);
+      --glow: 0 0 20px rgba(139,92,246,0.05);
+      --cyan-glow: 0 0 15px rgba(139, 92, 246, 0.2);
     }
 
     html.light {
@@ -59,8 +59,8 @@
       --accent: #7C3AED;
       --accent-hover: #6D28D9;
       --accent-text: #ffffff;
-      --cyan: #00d4e6;
-      --cyan-muted: rgba(0, 212, 230, 0.7);
+      --cyan: #7C3AED;
+      --cyan-muted: rgba(124, 58, 237, 0.7);
       --purple-accent: #7b61ff;
       --card-bg: rgba(255, 255, 255, 0.9);
       --input-bg: rgba(0, 0, 0, 0.02);
@@ -70,8 +70,8 @@
       --modal-bg: rgba(255, 255, 255, 0.95);
       --shadow: 0 1px 3px rgba(0,0,0,0.08);
       --shadow-lg: 0 8px 30px rgba(0,0,0,0.1);
-      --glow: 0 0 30px rgba(139,92,246,0.04);
-      --cyan-glow: 0 0 15px rgba(0, 212, 230, 0.2);
+      --glow: 0 0 15px rgba(124,58,237,0.04);
+      --cyan-glow: 0 0 12px rgba(124, 58, 237, 0.15);
     }
 
     /* ========== BASE ========== */
@@ -100,22 +100,9 @@
       width: 100%;
       height: 100%;
       z-index: -2;
-      opacity: 0.3;
+      opacity: 0.08;
     }
 
-    /* Noise texture overlay */
-    body::before {
-      content: '';
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      opacity: 0.03;
-      pointer-events: none;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-    }
 
     /* ========== LOADING SCREEN ========== */
     .loading-screen {
@@ -727,7 +714,7 @@
 
     .card:hover {
       border-color: var(--cyan-muted);
-      box-shadow: 0 0 30px rgba(0, 240, 255, 0.2), 0 8px 32px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 0 30px rgba(139, 92, 246, 0.2), 0 8px 32px rgba(0, 0, 0, 0.4);
       transform: translateY(-2px);
     }
 
@@ -805,9 +792,9 @@
       background: linear-gradient(
         135deg,
         rgba(139, 92, 246, 0.6) 0%,
-        rgba(0, 240, 255, 0.3) 25%,
+        rgba(139, 92, 246, 0.3) 25%,
         rgba(139, 92, 246, 0.4) 50%,
-        rgba(0, 240, 255, 0.3) 75%,
+        rgba(139, 92, 246, 0.3) 75%,
         rgba(139, 92, 246, 0.6) 100%
       );
       background-size: 200% 200%;
@@ -846,8 +833,8 @@
     }
 
     .expertise-card:hover {
-      border-color: rgba(0, 240, 255, 0.5);
-      box-shadow: 0 0 40px rgba(139, 92, 246, 0.4), 0 0 60px rgba(0, 240, 255, 0.2);
+      border-color: rgba(139, 92, 246, 0.5);
+      box-shadow: 0 0 40px rgba(139, 92, 246, 0.4), 0 0 60px rgba(139, 92, 246, 0.2);
       transform: translateY(-2px);
     }
 
@@ -1203,7 +1190,7 @@
       background: var(--card-bg);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(0, 240, 255, 0.2);
+      border: 1px solid rgba(139, 92, 246, 0.2);
       border-radius: 12px;
       padding: 2rem;
       position: relative;
@@ -1262,9 +1249,9 @@
       width: 6px;
       height: 6px;
       border-radius: 50%;
-      background: #00ff88;
+      background: #4ade80;
       display: inline-block;
-      box-shadow: 0 0 8px #00ff88;
+      box-shadow: 
       animation: pulse 2s ease-in-out infinite;
     }
 
@@ -1275,7 +1262,7 @@
 
     .stat-box:hover {
       border-color: var(--cyan);
-      box-shadow: 0 0 30px rgba(0, 240, 255, 0.2);
+      box-shadow: 0 0 30px rgba(139, 92, 246, 0.2);
       transform: translateY(-2px);
       transition: all 0.3s ease;
     }
@@ -1655,11 +1642,11 @@
       max-width: 480px;
       height: 600px;
       background: rgba(8, 12, 16, 0.85);
-      border: 1px solid rgba(0, 240, 255, 0.3);
+      border: 1px solid rgba(139, 92, 246, 0.3);
       border-radius: 20px;
       backdrop-filter: blur(30px);
       -webkit-backdrop-filter: blur(30px);
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 80px rgba(0, 240, 255, 0.15), inset 0 0 80px rgba(0, 240, 255, 0.03);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 80px rgba(139, 92, 246, 0.15), inset 0 0 80px rgba(139, 92, 246, 0.03);
       display: flex;
       flex-direction: column;
       overflow: hidden;
@@ -1677,10 +1664,10 @@
       height: 100%;
       background: repeating-linear-gradient(
         0deg,
-        rgba(0, 240, 255, 0.03) 0px,
+        rgba(139, 92, 246, 0.03) 0px,
         transparent 1px,
         transparent 2px,
-        rgba(0, 240, 255, 0.03) 3px
+        rgba(139, 92, 246, 0.03) 3px
       );
       pointer-events: none;
       animation: scanLine 3s linear infinite;
@@ -1703,11 +1690,11 @@
 
     .chat-modal-header {
       padding: 1.25rem 1.5rem;
-      border-bottom: 1px solid rgba(0, 240, 255, 0.2);
+      border-bottom: 1px solid rgba(139, 92, 246, 0.2);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: rgba(0, 240, 255, 0.05);
+      background: rgba(139, 92, 246, 0.05);
       position: relative;
       z-index: 2;
     }
@@ -1722,7 +1709,7 @@
       width: 10px;
       height: 10px;
       border-radius: 50%;
-      background: #00ff88;
+      background: #4ade80;
       animation: pulse 2s ease-in-out infinite;
     }
 
@@ -1749,8 +1736,8 @@
       width: 32px;
       height: 32px;
       border-radius: 8px;
-      border: 1px solid rgba(0, 240, 255, 0.3);
-      background: rgba(0, 240, 255, 0.1);
+      border: 1px solid rgba(139, 92, 246, 0.3);
+      background: rgba(139, 92, 246, 0.1);
       color: var(--text-primary);
       cursor: pointer;
       display: flex;
@@ -1761,10 +1748,10 @@
     }
 
     .chat-modal-close:hover {
-      background: rgba(0, 240, 255, 0.2);
-      border-color: rgba(0, 240, 255, 0.5);
+      background: rgba(139, 92, 246, 0.2);
+      border-color: rgba(139, 92, 246, 0.5);
       transform: scale(1.05);
-      box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
+      box-shadow: 0 0 15px rgba(139, 92, 246, 0.3);
     }
 
     .chat-messages {
@@ -2091,7 +2078,7 @@
       background: var(--input-bg);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
-      border: 1px solid rgba(0, 240, 255, 0.2);
+      border: 1px solid rgba(139, 92, 246, 0.2);
       border-radius: 10px;
       outline: none;
       transition: all 0.3s ease;
@@ -2101,8 +2088,8 @@
     .form-group input:focus,
     .form-group textarea:focus {
       border-color: var(--cyan);
-      box-shadow: 0 0 20px rgba(0, 240, 255, 0.3), 0 0 0 3px rgba(0, 240, 255, 0.1);
-      background: rgba(0, 240, 255, 0.02);
+      box-shadow: 0 0 20px rgba(139, 92, 246, 0.3), 0 0 0 3px rgba(139, 92, 246, 0.1);
+      background: rgba(139, 92, 246, 0.02);
     }
 
     .form-group textarea { min-height: 140px; }
@@ -3096,27 +3083,27 @@
 
     html.light .cold-email-demo {
       background: rgba(255, 255, 255, 0.6);
-      border-color: rgba(0, 212, 230, 0.3);
+      border-color: rgba(139, 92, 246, 0.3);
     }
 
     html.light .cold-email-input {
       background: var(--input-bg);
-      border-color: rgba(0, 212, 230, 0.25);
+      border-color: rgba(139, 92, 246, 0.25);
     }
 
     html.light .cold-email-input:focus {
-      background: rgba(0, 212, 230, 0.05);
+      background: rgba(139, 92, 246, 0.05);
       border-color: var(--cyan);
     }
 
     html.light .terminal-window {
       background: rgba(0, 0, 0, 0.03);
-      border-color: rgba(0, 212, 230, 0.3);
+      border-color: rgba(139, 92, 246, 0.3);
     }
 
     html.light .terminal-header {
-      background: rgba(0, 212, 230, 0.08);
-      border-bottom-color: rgba(0, 212, 230, 0.2);
+      background: rgba(139, 92, 246, 0.08);
+      border-bottom-color: rgba(139, 92, 246, 0.2);
     }
 
     @media (max-width: 768px) {
@@ -3146,7 +3133,7 @@
       background: rgba(0, 20, 30, 0.6);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
-      border: 1px solid rgba(0, 240, 255, 0.15);
+      border: 1px solid rgba(139, 92, 246, 0.15);
       border-radius: 12px;
       position: relative;
       overflow: hidden;
@@ -3183,8 +3170,8 @@
       width: 8px;
       height: 8px;
       border-radius: 50%;
-      background: #00ff00;
-      box-shadow: 0 0 10px #00ff00;
+      background: #4ade80;
+      box-shadow: 
       animation: statusBlink 2s ease-in-out infinite;
     }
 
@@ -3221,7 +3208,7 @@
       width: 100%;
       padding: 0.85rem 1rem;
       background: rgba(0, 0, 0, 0.4);
-      border: 1px solid rgba(0, 240, 255, 0.2);
+      border: 1px solid rgba(139, 92, 246, 0.2);
       border-radius: 8px;
       color: var(--text-primary);
       font-family: 'JetBrains Mono', 'Courier New', monospace;
@@ -3236,14 +3223,14 @@
     .cold-email-input:focus {
       outline: none;
       border-color: var(--cyan);
-      background: rgba(0, 240, 255, 0.05);
-      box-shadow: 0 0 20px rgba(0, 240, 255, 0.2);
+      background: rgba(139, 92, 246, 0.05);
+      box-shadow: 0 0 20px rgba(139, 92, 246, 0.2);
     }
 
     .cold-email-generate-btn {
       margin-top: 0.5rem;
       padding: 0.9rem 1.75rem;
-      background: linear-gradient(135deg, rgba(0, 240, 255, 0.15), rgba(0, 200, 255, 0.1));
+      background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(0, 200, 255, 0.1));
       border: 2px solid var(--cyan);
       border-radius: 8px;
       color: var(--cyan);
@@ -3258,8 +3245,8 @@
     }
 
     .cold-email-generate-btn:hover {
-      background: linear-gradient(135deg, rgba(0, 240, 255, 0.25), rgba(0, 200, 255, 0.15));
-      box-shadow: 0 0 30px rgba(0, 240, 255, 0.4);
+      background: linear-gradient(135deg, rgba(139, 92, 246, 0.25), rgba(0, 200, 255, 0.15));
+      box-shadow: 0 0 30px rgba(139, 92, 246, 0.4);
       transform: translateY(-2px);
     }
 
@@ -3278,7 +3265,7 @@
       left: -100%;
       width: 100%;
       height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.3), transparent);
+      background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.3), transparent);
       transition: left 0.5s ease;
     }
 
@@ -3292,15 +3279,15 @@
 
     .terminal-window {
       background: rgba(0, 0, 0, 0.6);
-      border: 1px solid rgba(0, 240, 255, 0.3);
+      border: 1px solid rgba(139, 92, 246, 0.3);
       border-radius: 8px;
       overflow: hidden;
     }
 
     .terminal-header {
       padding: 0.6rem 1rem;
-      background: rgba(0, 240, 255, 0.1);
-      border-bottom: 1px solid rgba(0, 240, 255, 0.2);
+      background: rgba(139, 92, 246, 0.1);
+      border-bottom: 1px solid rgba(139, 92, 246, 0.2);
     }
 
     .terminal-title {
@@ -3339,8 +3326,8 @@
     .copy-email-btn {
       margin-top: 1rem;
       padding: 0.65rem 1.25rem;
-      background: rgba(0, 240, 255, 0.08);
-      border: 1px solid rgba(0, 240, 255, 0.3);
+      background: rgba(139, 92, 246, 0.08);
+      border: 1px solid rgba(139, 92, 246, 0.3);
       border-radius: 6px;
       color: var(--cyan);
       font-family: 'Inter', sans-serif;
@@ -3354,9 +3341,9 @@
     }
 
     .copy-email-btn:hover {
-      background: rgba(0, 240, 255, 0.15);
+      background: rgba(139, 92, 246, 0.15);
       border-color: var(--cyan);
-      box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
+      box-shadow: 0 0 15px rgba(139, 92, 246, 0.3);
       transform: translateY(-1px);
     }
 
@@ -3381,19 +3368,19 @@
     .cold-email-launcher-btn {
       margin-top: 1.5rem;
       width: 100%;
-      padding: 1rem 2rem;
+      padding: 0.9rem 2rem;
       background: transparent;
-      border: 3px solid var(--cyan);
-      border-radius: 12px;
-      color: var(--cyan);
-      font-family: 'JetBrains Mono', 'Courier New', monospace;
-      font-size: 1rem;
-      font-weight: 700;
-      letter-spacing: 0.02em;
+      border: 2px solid #8B5CF6;
+      border-radius: 10px;
+      color: #8B5CF6;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
       cursor: pointer;
       position: relative;
       overflow: visible;
-      transition: all 0.3s ease;
+      transition: all 0.2s ease;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -3401,9 +3388,9 @@
     }
 
     .cold-email-launcher-btn:hover {
-      background: rgba(0, 240, 255, 0.08);
-      box-shadow: 0 0 40px rgba(0, 240, 255, 0.4);
-      transform: translateY(-2px);
+      background: rgba(139, 92, 246, 0.08);
+      box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.15);
+      transform: translateY(-1px);
     }
 
     .cold-email-launcher-btn:active {
@@ -3411,11 +3398,10 @@
     }
 
     .status-dot-inline {
-      width: 10px;
-      height: 10px;
+      width: 8px;
+      height: 8px;
       border-radius: 50%;
-      background: #00ff00;
-      box-shadow: 0 0 12px #00ff00;
+      background: #4ade80;
       animation: statusBlink 2s ease-in-out infinite;
     }
 
@@ -3426,9 +3412,9 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(7, 6, 15, 0.98);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+      background: rgba(10, 8, 18, 0.97);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
       z-index: 10000;
       display: none;
       opacity: 0;
@@ -3447,7 +3433,7 @@
       height: 100%;
       overflow-y: auto;
       position: relative;
-      padding: 4rem 2rem 2rem 2rem;
+      padding: 4rem 2rem 5.5rem 2rem;
     }
 
     /* Close Button */
@@ -3481,14 +3467,14 @@
       top: 0;
       left: 0;
       width: 100%;
-      height: 4px;
-      background: rgba(0, 240, 255, 0.1);
+      height: 3px;
+      background: rgba(139, 92, 246, 0.12);
       z-index: 10001;
     }
 
     .cold-email-progress-fill {
       height: 100%;
-      background: linear-gradient(90deg, var(--cyan), #00ff88);
+      background: #8B5CF6;
       width: 10%;
       transition: width 0.5s ease;
     }
@@ -3497,11 +3483,11 @@
       position: fixed;
       top: 1.5rem;
       left: 1.5rem;
-      font-family: 'JetBrains Mono', 'Courier New', monospace;
-      font-size: 0.85rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
       font-weight: 600;
-      color: var(--cyan);
-      letter-spacing: 0.1em;
+      color: rgba(139, 92, 246, 0.8);
+      letter-spacing: 0.05em;
       z-index: 10001;
     }
 
@@ -3534,22 +3520,20 @@
 
     /* Step Heading */
     .step-heading {
-      font-family: 'JetBrains Mono', 'Courier New', monospace;
-      font-size: 1.5rem;
+      font-family: 'Inter Tight', 'Inter', sans-serif;
+      font-size: 1.3rem;
       font-weight: 700;
-      color: var(--cyan);
-      letter-spacing: 0.02em;
-      margin-bottom: 2rem;
+      color: #c4b5fd;
+      letter-spacing: -0.01em;
+      margin-bottom: 1.75rem;
       text-align: center;
     }
 
     /* Terminal Card */
     .terminal-card {
-      background: rgba(0, 20, 30, 0.6);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border: 1px solid rgba(0, 240, 255, 0.15);
-      border-radius: 12px;
+      background: rgba(139, 92, 246, 0.04);
+      border: 1px solid rgba(139, 92, 246, 0.18);
+      border-radius: 10px;
       padding: 1.5rem;
       margin-bottom: 1.5rem;
     }
@@ -3561,21 +3545,21 @@
 
     .step-input {
       width: 100%;
-      padding: 1rem;
-      background: rgba(0, 0, 0, 0.4);
-      border: 2px solid rgba(0, 240, 255, 0.2);
+      padding: 0.9rem 1rem;
+      background: rgba(0, 0, 0, 0.3);
+      border: 1.5px solid rgba(139, 92, 246, 0.25);
       border-radius: 8px;
-      color: #fff;
-      font-family: 'JetBrains Mono', 'Courier New', monospace;
+      color: #e8eaf0;
+      font-family: 'Inter', sans-serif;
       font-size: 0.95rem;
       transition: all 0.2s ease;
     }
 
     .step-input:focus {
       outline: none;
-      border-color: var(--cyan);
-      background: rgba(0, 240, 255, 0.05);
-      box-shadow: 0 0 20px rgba(0, 240, 255, 0.2);
+      border-color: #8B5CF6;
+      background: rgba(139, 92, 246, 0.04);
+      box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.12);
     }
 
     .step-input::placeholder {
@@ -3585,27 +3569,26 @@
     /* Buttons */
     .step-btn {
       width: 100%;
-      padding: 1rem 2rem;
-      background: transparent;
-      border: 2px solid var(--cyan);
+      padding: 0.9rem 2rem;
+      background: #8B5CF6;
+      border: none;
       border-radius: 8px;
-      color: var(--cyan);
-      font-family: 'JetBrains Mono', 'Courier New', monospace;
-      font-size: 1rem;
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
       font-weight: 600;
       cursor: pointer;
-      transition: all 0.3s ease;
+      transition: all 0.2s ease;
       margin-top: 1rem;
     }
 
     .step-btn:hover:not(:disabled) {
-      background: rgba(0, 240, 255, 0.1);
-      box-shadow: 0 0 30px rgba(0, 240, 255, 0.3);
-      transform: translateY(-2px);
+      background: #7C3AED;
+      transform: translateY(-1px);
     }
 
     .step-btn:disabled {
-      opacity: 0.5;
+      opacity: 0.4;
       cursor: not-allowed;
       transform: none;
     }
@@ -3613,9 +3596,9 @@
     /* Error Message */
     .step-error {
       color: #ff6b6b;
-      font-family: 'JetBrains Mono', 'Courier New', monospace;
-      font-size: 0.85rem;
-      margin-top: 0.5rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.82rem;
+      margin-top: 0.75rem;
       display: none;
     }
 
@@ -3625,9 +3608,9 @@
 
     /* Terminal Log */
     .terminal-log {
-      font-family: 'JetBrains Mono', 'Courier New', monospace;
+      font-family: 'Inter', sans-serif;
       font-size: 0.9rem;
-      color: #00ff88;
+      color: rgba(200, 200, 210, 0.85);
       line-height: 1.8;
     }
 
@@ -3651,31 +3634,29 @@
     }
 
     .prospect-card {
-      background: rgba(0, 20, 30, 0.6);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border: 1px solid rgba(0, 240, 255, 0.15);
-      border-radius: 12px;
+      background: rgba(139, 92, 246, 0.03);
+      border: 1px solid rgba(139, 92, 246, 0.18);
+      border-radius: 10px;
       padding: 1.5rem;
-      transition: all 0.3s ease;
+      transition: all 0.2s ease;
     }
 
     .prospect-card:hover {
-      border-color: var(--cyan);
-      box-shadow: 0 0 30px rgba(0, 240, 255, 0.2);
-      transform: translateY(-4px);
+      border-color: #8B5CF6;
+      box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+      transform: translateY(-2px);
     }
 
     .prospect-card.selected {
-      border-color: #00ff88;
-      background: rgba(0, 255, 136, 0.05);
+      border-color: #8B5CF6;
+      background: rgba(139, 92, 246, 0.07);
     }
 
     .prospect-card-name {
-      font-family: 'JetBrains Mono', 'Courier New', monospace;
-      font-size: 1.1rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
       font-weight: 700;
-      color: var(--cyan);
+      color: #c4b5fd;
       margin-bottom: 0.5rem;
     }
 
@@ -3699,12 +3680,12 @@
     .prospect-select-btn {
       width: 100%;
       margin-top: 1rem;
-      padding: 0.75rem;
+      padding: 0.65rem;
       background: transparent;
-      border: 2px solid var(--cyan);
+      border: 1.5px solid #8B5CF6;
       border-radius: 6px;
-      color: var(--cyan);
-      font-family: 'JetBrains Mono', 'Courier New', monospace;
+      color: #8B5CF6;
+      font-family: 'Inter', sans-serif;
       font-size: 0.85rem;
       font-weight: 600;
       cursor: pointer;
@@ -3712,13 +3693,13 @@
     }
 
     .prospect-select-btn:hover {
-      background: rgba(0, 240, 255, 0.1);
+      background: rgba(139, 92, 246, 0.08);
     }
 
     .prospect-select-btn.selected {
-      background: #00ff88;
-      border-color: #00ff88;
-      color: #000;
+      background: #8B5CF6;
+      border-color: #8B5CF6;
+      color: #fff;
     }
 
     /* Research Lists */
@@ -3764,7 +3745,7 @@
     }
 
     .spam-score-fill.high {
-      background: var(--cyan);
+      background: #7C3AED;
     }
 
     .spam-score-fill.medium {
@@ -3810,23 +3791,22 @@
     /* CTA Button */
     .cta-strategy-btn {
       width: 100%;
-      padding: 1.25rem 2rem;
-      background: var(--cyan);
+      padding: 1.1rem 2rem;
+      background: #8B5CF6;
       border: none;
       border-radius: 8px;
-      color: #000;
-      font-family: 'JetBrains Mono', 'Courier New', monospace;
+      color: #fff;
+      font-family: 'Inter', sans-serif;
       font-size: 1rem;
-      font-weight: 700;
+      font-weight: 600;
       cursor: pointer;
-      transition: all 0.3s ease;
+      transition: all 0.2s ease;
       margin-top: 2rem;
     }
 
     .cta-strategy-btn:hover {
-      background: #00ff88;
-      box-shadow: 0 0 40px rgba(0, 255, 136, 0.5);
-      transform: translateY(-2px);
+      background: #7C3AED;
+      transform: translateY(-1px);
     }
 
     /* Locked Message */
@@ -3861,7 +3841,7 @@
 
     .issues-list li::before {
       content: '✓';
-      color: #00ff88;
+      color: #a78bfa;
       font-weight: bold;
     }
 
@@ -3873,7 +3853,7 @@
     /* Mobile Responsive */
     @media (max-width: 768px) {
       .cold-email-overlay-content {
-        padding: 3rem 1rem 1rem 1rem;
+        padding: 3rem 1rem 5.5rem 1rem;
       }
 
       .cold-email-step-container {
@@ -3902,6 +3882,84 @@
       }
     }
 
+    /* ========== COLD EMAIL NAV FOOTER (Back + Reset) ========== */
+    .cold-email-nav-footer {
+      position: fixed;
+      bottom: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 0.75rem;
+      z-index: 10002;
+    }
+
+    .ce-nav-btn {
+      padding: 0.55rem 1.1rem;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      color: rgba(255, 255, 255, 0.55);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .ce-nav-btn:hover {
+      background: rgba(139, 92, 246, 0.1);
+      border-color: rgba(139, 92, 246, 0.4);
+      color: #c4b5fd;
+    }
+
+    .ce-nav-btn.ce-reset-btn {
+      border-color: rgba(255, 255, 255, 0.08);
+    }
+
+    .ce-nav-btn.ce-reset-btn:hover {
+      background: rgba(255, 100, 100, 0.08);
+      border-color: rgba(255, 100, 100, 0.3);
+      color: rgba(255, 160, 160, 0.9);
+    }
+
+    /* Step input label */
+    .step-input-label {
+      display: block;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: rgba(196, 181, 253, 0.8);
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    /* Pitch tags */
+    .pitch-tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+    }
+
+    .pitch-tag {
+      padding: 0.3rem 0.75rem;
+      background: rgba(139, 92, 246, 0.1);
+      border: 1px solid rgba(139, 92, 246, 0.3);
+      border-radius: 20px;
+      color: #c4b5fd;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.78rem;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .pitch-tag:hover, .pitch-tag.active {
+      background: rgba(139, 92, 246, 0.2);
+      border-color: #8B5CF6;
+      color: #fff;
+    }
+
     /* ========== FEATURE 2: COLD EMAIL GRADER ========== */
     .email-grader-section {
       margin: 4rem 0;
@@ -3911,11 +3969,11 @@
     }
 
     .email-grader-title {
-      font-family: 'JetBrains Mono', 'Courier New', monospace;
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: var(--cyan);
-      letter-spacing: 0.02em;
+      font-family: 'Inter Tight', 'Inter', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #8B5CF6;
+      letter-spacing: -0.01em;
       margin-bottom: 2rem;
     }
 
@@ -3946,7 +4004,7 @@
     .email-grader-textarea:focus {
       outline: none;
       border-color: var(--cyan);
-      box-shadow: 0 0 20px rgba(0, 240, 255, 0.2);
+      box-shadow: 0 0 20px rgba(139, 92, 246, 0.2);
     }
 
     .email-grader-textarea::placeholder {
@@ -3965,12 +4023,12 @@
       font-weight: 700;
       cursor: pointer;
       transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(0, 240, 255, 0.3);
+      box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
     }
 
     .grade-btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 6px 25px rgba(0, 240, 255, 0.45);
+      box-shadow: 0 6px 25px rgba(139, 92, 246, 0.45);
     }
 
     .grade-btn:active {
@@ -4049,8 +4107,8 @@
     .grader-verdict {
       margin-top: 2rem;
       padding: 1.5rem;
-      background: rgba(0, 240, 255, 0.05);
-      border: 1px solid rgba(0, 240, 255, 0.2);
+      background: rgba(139, 92, 246, 0.05);
+      border: 1px solid rgba(139, 92, 246, 0.2);
       border-radius: 8px;
       font-family: 'Inter', sans-serif;
       font-size: 0.95rem;
@@ -4157,17 +4215,17 @@
 
     .quiz-option:hover {
       border-color: var(--cyan);
-      background: rgba(0, 240, 255, 0.05);
+      background: rgba(139, 92, 246, 0.05);
       color: var(--cyan);
-      box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+      box-shadow: 0 0 15px rgba(139, 92, 246, 0.2);
       transform: translateY(-2px);
     }
 
     .quiz-option.selected {
       border-color: var(--cyan);
-      background: rgba(0, 240, 255, 0.1);
+      background: rgba(139, 92, 246, 0.1);
       color: var(--cyan);
-      box-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+      box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
     }
 
     .quiz-result {
@@ -4183,7 +4241,7 @@
     .quiz-result-text {
       padding: 2rem;
       background: rgba(0, 0, 0, 0.4);
-      border: 1px solid rgba(0, 240, 255, 0.3);
+      border: 1px solid rgba(139, 92, 246, 0.3);
       border-radius: 8px;
       font-family: 'JetBrains Mono', 'Courier New', monospace;
       font-size: 0.95rem;
@@ -4239,7 +4297,7 @@
     .quiz-restart-btn:hover {
       border-color: var(--cyan);
       color: var(--cyan);
-      background: rgba(0, 240, 255, 0.05);
+      background: rgba(139, 92, 246, 0.05);
     }
 
     @media (max-width: 768px) {
@@ -4510,12 +4568,18 @@
               <!-- Progress Bar -->
               <div class="cold-email-progress-bar">
                 <div class="cold-email-progress-fill" id="progressFill"></div>
-                <div class="cold-email-progress-text" id="progressText">STEP 1 / 10</div>
+                <div class="cold-email-progress-text" id="progressText">STEP 1 / 11</div>
               </div>
 
               <!-- Step Container -->
               <div class="cold-email-step-container" id="stepContainer">
                 <!-- Steps will be dynamically inserted here -->
+              </div>
+
+              <!-- Persistent Navigation Footer -->
+              <div class="cold-email-nav-footer" id="coldEmailNavFooter">
+                <button class="ce-nav-btn" id="coldEmailBackBtn">← Back</button>
+                <button class="ce-nav-btn ce-reset-btn" id="coldEmailResetBtn">↺ Start Over</button>
               </div>
             </div>
           </div>
@@ -5118,7 +5182,7 @@
         canvas.height = window.innerHeight;
 
         const particles = [];
-        const particleCount = 80;
+        const particleCount = 40;
 
         for (let i = 0; i < particleCount; i++) {
           particles.push({
@@ -5126,32 +5190,15 @@
             y: Math.random() * canvas.height,
             vx: (Math.random() - 0.5) * 0.5,
             vy: (Math.random() - 0.5) * 0.5,
-            size: Math.random() * 2
+            size: Math.random() * 1.5
           });
         }
 
         function drawParticles() {
           ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-          // Draw grid lines
-          ctx.strokeStyle = 'rgba(0, 240, 255, 0.08)';
-          ctx.lineWidth = 0.5;
-          const gridSize = 50;
-          for (let x = 0; x < canvas.width; x += gridSize) {
-            ctx.beginPath();
-            ctx.moveTo(x, 0);
-            ctx.lineTo(x, canvas.height);
-            ctx.stroke();
-          }
-          for (let y = 0; y < canvas.height; y += gridSize) {
-            ctx.beginPath();
-            ctx.moveTo(0, y);
-            ctx.lineTo(canvas.width, y);
-            ctx.stroke();
-          }
-
-          // Draw particles
-          ctx.fillStyle = 'rgba(139, 92, 246, 0.6)';
+          // Draw particles only — no neon grid, no connecting lines
+          ctx.fillStyle = 'rgba(160, 140, 200, 0.4)';
           particles.forEach(p => {
             p.x += p.vx;
             p.y += p.vy;
@@ -5163,24 +5210,6 @@
             ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
             ctx.fill();
           });
-
-          // Draw connections
-          ctx.strokeStyle = 'rgba(0, 240, 255, 0.15)';
-          ctx.lineWidth = 0.5;
-          for (let i = 0; i < particles.length; i++) {
-            for (let j = i + 1; j < particles.length; j++) {
-              const dx = particles[i].x - particles[j].x;
-              const dy = particles[i].y - particles[j].y;
-              const distance = Math.sqrt(dx * dx + dy * dy);
-
-              if (distance < 100) {
-                ctx.beginPath();
-                ctx.moveTo(particles[i].x, particles[i].y);
-                ctx.lineTo(particles[j].x, particles[j].y);
-                ctx.stroke();
-              }
-            }
-          }
 
           if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
             requestAnimationFrame(drawParticles);
@@ -6135,7 +6164,7 @@
         }
       });
 
-      // ========== 10-STEP COLD EMAIL OVERLAY ==========
+      // ========== 11-STEP COLD EMAIL OVERLAY ==========
       (function() {
         const launcherBtn = document.getElementById('coldEmailLauncherBtn');
         const overlay = document.getElementById('coldEmailOverlay');
@@ -6143,8 +6172,11 @@
         const stepContainer = document.getElementById('stepContainer');
         const progressFill = document.getElementById('progressFill');
         const progressText = document.getElementById('progressText');
+        const backBtn = document.getElementById('coldEmailBackBtn');
+        const resetBtn = document.getElementById('coldEmailResetBtn');
 
         let currentStep = 1;
+        let pitchData = { services: '', valueProposition: '' };
         let icpData = { niche: '', role: '' };
         let prospects = [];
         let selectedProspects = [];
@@ -6153,6 +6185,9 @@
         let spamScores = {};
         let prospectsGenerated = 0;
         const MAX_PROSPECTS = 2;
+
+        // Prev step map — skips async-only steps
+        const prevStepMap = { 1: null, 2: 1, 3: 2, 4: 2, 5: 4, 6: 4, 7: 6, 8: 6, 9: 6, 10: 9, 11: 10 };
 
         // Open overlay
         if (launcherBtn && overlay) {
@@ -6174,6 +6209,33 @@
           closeBtn.addEventListener('click', closeOverlay);
         }
 
+        // Back button
+        if (backBtn) {
+          backBtn.addEventListener('click', function() {
+            const prev = prevStepMap[currentStep];
+            if (prev !== null && prev !== undefined) {
+              // Reset prospect data if going back before the scan
+              if (currentStep >= 3 && prev <= 2) {
+                prospects = [];
+                selectedProspects = [];
+                researchData = {};
+                emails = {};
+                spamScores = {};
+                prospectsGenerated = 0;
+              }
+              renderStep(prev);
+            }
+          });
+        }
+
+        // Reset button
+        if (resetBtn) {
+          resetBtn.addEventListener('click', function() {
+            resetSession();
+            renderStep(1);
+          });
+        }
+
         // ESC key to close
         document.addEventListener('keydown', function(e) {
           if (e.key === 'Escape' && overlay.classList.contains('active')) {
@@ -6184,6 +6246,7 @@
         // Reset session
         function resetSession() {
           currentStep = 1;
+          pitchData = { services: '', valueProposition: '' };
           icpData = { niche: '', role: '' };
           prospects = [];
           selectedProspects = [];
@@ -6196,9 +6259,9 @@
 
         // Update progress bar
         function updateProgress(step) {
-          const percent = (step / 10) * 100;
+          const percent = (step / 11) * 100;
           progressFill.style.width = percent + '%';
-          progressText.textContent = `STEP ${step} / 10`;
+          progressText.textContent = `STEP ${step} / 11`;
         }
 
         // Render step
@@ -6224,30 +6287,93 @@
             case 8: renderStep8(stepEl); break;
             case 9: renderStep9(stepEl); break;
             case 10: renderStep10(stepEl); break;
+            case 11: renderStep11(stepEl); break;
           }
 
           stepContainer.appendChild(stepEl);
         }
 
-        // STEP 1: ICP Input
+        // STEP 1: Define Your Pitch / Services
         function renderStep1(el) {
+          const PITCH_EXAMPLES = [
+            'Cold email outreach & lead gen',
+            'SEO & content marketing',
+            'Paid ads (Meta / Google)',
+            'Web design & development',
+            'AI automations & n8n workflows',
+            'Social media management',
+            'Video editing & production',
+            'Copywriting & sales funnels',
+          ];
+
           el.innerHTML = `
-            <h2 class="step-heading">// STEP 1: DEFINE YOUR ICP</h2>
+            <h2 class="step-heading">What are you pitching?</h2>
             <div class="terminal-card">
               <div class="step-input-group">
-                <input type="text" id="nicheInput" class="step-input" placeholder="// e.g. B2B SaaS, real estate, fitness coaching" />
+                <label class="step-input-label">Your service / offer</label>
+                <input type="text" id="servicesInput" class="step-input" placeholder="e.g. Cold email outreach and lead generation for B2B companies" value="${pitchData.services}" />
               </div>
+              <div class="step-input-group" style="margin-top:1rem;">
+                <label class="step-input-label">Your value proposition (optional)</label>
+                <input type="text" id="valuePropInput" class="step-input" placeholder="e.g. We book 10–15 qualified calls per month using AI-powered outreach" value="${pitchData.valueProposition}" />
+              </div>
+              <div class="pitch-tag-row" id="pitchTagRow">
+                ${PITCH_EXAMPLES.map(ex => `<span class="pitch-tag" data-val="${ex}">${ex}</span>`).join('')}
+              </div>
+              <div class="step-error" id="step1Error">Please briefly describe what you're selling.</div>
+              <button class="step-btn" id="step1ContinueBtn" style="margin-top:1.5rem;">Continue →</button>
+            </div>
+          `;
+
+          const servicesInput = el.querySelector('#servicesInput');
+          const valuePropInput = el.querySelector('#valuePropInput');
+          const errorEl = el.querySelector('#step1Error');
+          const btn = el.querySelector('#step1ContinueBtn');
+          const tags = el.querySelectorAll('.pitch-tag');
+
+          // Restore active state on tags if matching
+          tags.forEach(tag => {
+            if (tag.dataset.val === pitchData.services) tag.classList.add('active');
+            tag.addEventListener('click', () => {
+              tags.forEach(t => t.classList.remove('active'));
+              tag.classList.add('active');
+              servicesInput.value = tag.dataset.val;
+            });
+          });
+
+          btn.addEventListener('click', () => {
+            const services = servicesInput.value.trim();
+            if (services.length < 5) {
+              errorEl.classList.add('show');
+              return;
+            }
+            errorEl.classList.remove('show');
+            pitchData = { services, valueProposition: valuePropInput.value.trim() };
+            renderStep(2);
+          });
+        }
+
+        // STEP 2: ICP Input (Define Your Target Audience)
+        function renderStep2(el) {
+          el.innerHTML = `
+            <h2 class="step-heading">Who are you reaching out to?</h2>
+            <div class="terminal-card">
               <div class="step-input-group">
-                <input type="text" id="roleInput" class="step-input" placeholder="// e.g. 7-figure agency owners, ecom founders, startup CTOs" />
+                <label class="step-input-label">Industry / Niche</label>
+                <input type="text" id="nicheInput" class="step-input" placeholder="e.g. B2B SaaS, real estate, fitness coaching" value="${icpData.niche}" />
               </div>
-              <div class="step-error" id="step1Error">// ERROR: Please be more specific.</div>
-              <button class="step-btn" id="findProspectsBtn">Find Prospects</button>
+              <div class="step-input-group" style="margin-top:1rem;">
+                <label class="step-input-label">Target Role / Person</label>
+                <input type="text" id="roleInput" class="step-input" placeholder="e.g. 7-figure agency owners, ecom founders, startup CTOs" value="${icpData.role}" />
+              </div>
+              <div class="step-error" id="step2Error">Please be more specific about your target.</div>
+              <button class="step-btn" id="findProspectsBtn" style="margin-top:1.5rem;">Find Prospects →</button>
             </div>
           `;
 
           const nicheInput = el.querySelector('#nicheInput');
           const roleInput = el.querySelector('#roleInput');
-          const errorEl = el.querySelector('#step1Error');
+          const errorEl = el.querySelector('#step2Error');
           const btnEl = el.querySelector('#findProspectsBtn');
 
           btnEl.addEventListener('click', () => {
@@ -6261,25 +6387,25 @@
 
             errorEl.classList.remove('show');
             icpData = { niche, role };
-            renderStep(2);
+            renderStep(3);
           });
         }
 
-        // STEP 2: Prospect Discovery
-        async function renderStep2(el) {
+        // STEP 3: Prospect Discovery
+        async function renderStep3(el) {
           if (prospectsGenerated >= MAX_PROSPECTS) {
             el.innerHTML = `
-              <h2 class="step-heading">// STEP 2: SCANNING FOR PROSPECTS</h2>
+              <h2 class="step-heading">Scanning for Prospects</h2>
               <div class="prospect-locked-message">
-                // LIMIT REACHED: Maximum ${MAX_PROSPECTS} prospects per session. Close and reopen overlay to reset.
+                Session limit reached: max ${MAX_PROSPECTS} prospects per session. Use Start Over to reset.
               </div>
-              <button class="step-btn" onclick="document.getElementById('closeOverlayBtn').click()">Close Overlay</button>
+              <button class="step-btn" onclick="document.getElementById('closeOverlayBtn').click()">Close</button>
             `;
             return;
           }
 
           el.innerHTML = `
-            <h2 class="step-heading">// STEP 2: SCANNING FOR PROSPECTS</h2>
+            <h2 class="step-heading">Scanning for Prospects</h2>
             <div class="terminal-card">
               <div class="terminal-log" id="terminalLog"></div>
             </div>
@@ -6287,11 +6413,11 @@
 
           const logEl = el.querySelector('#terminalLog');
           const lines = [
-            '// Initializing prospect scanner...',
-            '// Cross-referencing ICP criteria...',
-            '// Analyzing market signals...',
-            '// Filtering high-intent profiles...',
-            '// Prospects identified.'
+            'Initializing prospect scanner...',
+            'Cross-referencing ICP criteria...',
+            'Analyzing market signals...',
+            'Filtering high-intent profiles...',
+            'Prospects identified.'
           ];
 
           // Animate lines
@@ -6328,15 +6454,15 @@
               prospectsGenerated = prospects.length;
 
               await new Promise(resolve => setTimeout(resolve, 500));
-              renderStep(3);
+              renderStep(4);
             } else {
               throw new Error('Invalid response format');
             }
           } catch (error) {
             console.error('Error fetching prospects:', error);
             logEl.innerHTML += `
-              <div class="terminal-log-line" style="color: #ff6b6b; margin-top: 1rem;">// ERROR: Failed to fetch prospects.</div>
-              <div class="terminal-log-line" style="color: #ff6b6b;">// ${error.message}</div>
+              <div class="terminal-log-line" style="color: #ff6b6b; margin-top: 1rem;">Error: Failed to fetch prospects.</div>
+              <div class="terminal-log-line" style="color: #ff6b6b;">${error.message}</div>
             `;
 
             // Add retry button in the terminal card
@@ -6345,14 +6471,14 @@
             retryBtn.textContent = 'Retry';
             retryBtn.style.marginTop = '1rem';
             retryBtn.addEventListener('click', () => {
-              renderStep(2);
+              renderStep(3);
             });
             el.querySelector('.terminal-card').appendChild(retryBtn);
           }
         }
 
-        // STEP 3: Prospect Selection
-        function renderStep3(el) {
+        // STEP 4: Prospect Selection
+        function renderStep4(el) {
           const cardsHTML = prospects.map((p, idx) => `
             <div class="prospect-card" data-index="${idx}">
               <div class="prospect-card-name">${p.name}</div>
@@ -6365,11 +6491,11 @@
           `).join('');
 
           el.innerHTML = `
-            <h2 class="step-heading">// STEP 3: SELECT YOUR TARGETS</h2>
+            <h2 class="step-heading">Select Your Targets</h2>
             <div class="prospect-cards-container">
               ${cardsHTML}
             </div>
-            <button class="step-btn" id="researchBtn" disabled>Research Prospects</button>
+            <button class="step-btn" id="researchBtn" disabled>Run Research →</button>
           `;
 
           const cards = el.querySelectorAll('.prospect-card');
@@ -6390,7 +6516,7 @@
                 selectedProspects.push(idx);
                 card.classList.add('selected');
                 btn.classList.add('selected');
-                btn.textContent = 'Selected';
+                btn.textContent = 'Selected ✓';
               }
 
               researchBtn.disabled = selectedProspects.length < 2;
@@ -6398,22 +6524,22 @@
           });
 
           researchBtn.addEventListener('click', () => {
-            renderStep(4);
+            renderStep(5);
           });
         }
 
-        // STEP 4: Gemini Research
-        async function renderStep4(el) {
+        // STEP 5: AI Research
+        async function renderStep5(el) {
           const cardsHTML = selectedProspects.map(idx => `
             <div class="terminal-card">
-              <h3 style="color: var(--cyan); font-family: 'JetBrains Mono', monospace; margin-bottom: 1rem;">// ${prospects[idx].name}</h3>
+              <h3 style="color: #c4b5fd; font-family: 'Inter', sans-serif; margin-bottom: 1rem; font-weight: 600;">${prospects[idx].name}</h3>
               <div class="terminal-log" id="log-${idx}"></div>
               <ul class="research-list" id="research-${idx}" style="display: none;"></ul>
             </div>
           `).join('');
 
           el.innerHTML = `
-            <h2 class="step-heading">// STEP 4: RUNNING AI RESEARCH</h2>
+            <h2 class="step-heading">Running Research</h2>
             ${cardsHTML}
           `;
 
@@ -6424,11 +6550,11 @@
             const researchEl = el.querySelector(`#research-${idx}`);
 
             const lines = [
-              '// Connecting to research agent...',
-              `// Analyzing ${prospect.company}...`,
-              '// Extracting pain points...',
-              '// Identifying conversation hooks...',
-              '// Research complete.'
+              'Connecting to research agent...',
+              `Analyzing ${prospect.company}...`,
+              'Extracting pain points...',
+              'Identifying conversation hooks...',
+              'Research complete.'
             ];
 
             for (let i = 0; i < lines.length; i++) {
@@ -6506,16 +6632,16 @@
           }
 
           await new Promise(resolve => setTimeout(resolve, 1000));
-          renderStep(5);
+          renderStep(6);
         }
 
-        // STEP 5: Research Review
-        function renderStep5(el) {
+        // STEP 6: Research Summary
+        function renderStep6(el) {
           const cardsHTML = selectedProspects.map(idx => {
             const bullets = researchData[idx] || [];
             return `
               <div class="terminal-card">
-                <h3 style="color: var(--cyan); font-family: 'JetBrains Mono', monospace; margin-bottom: 1rem;">// ${prospects[idx].name}</h3>
+                <h3 style="color: #c4b5fd; font-family: 'Inter', sans-serif; margin-bottom: 1rem; font-weight: 600;">${prospects[idx].name}</h3>
                 <ul class="research-list">
                   ${bullets.map(b => `<li>${b}</li>`).join('')}
                 </ul>
@@ -6524,27 +6650,27 @@
           }).join('');
 
           el.innerHTML = `
-            <h2 class="step-heading">// STEP 5: RESEARCH SUMMARY</h2>
+            <h2 class="step-heading">Research Summary</h2>
             ${cardsHTML}
-            <button class="step-btn" id="writeEmailsBtn">Write Emails</button>
+            <button class="step-btn" id="writeEmailsBtn">Write Emails →</button>
           `;
 
           el.querySelector('#writeEmailsBtn').addEventListener('click', () => {
-            renderStep(6);
+            renderStep(7);
           });
         }
 
-        // STEP 6: Email Generation
-        async function renderStep6(el) {
+        // STEP 7: Email Generation
+        async function renderStep7(el) {
           const cardsHTML = selectedProspects.map(idx => `
             <div class="terminal-card">
-              <h3 style="color: var(--cyan); font-family: 'JetBrains Mono', monospace; margin-bottom: 1rem;">// ${prospects[idx].name}</h3>
+              <h3 style="color: #c4b5fd; font-family: 'Inter', sans-serif; margin-bottom: 1rem; font-weight: 600;">${prospects[idx].name}</h3>
               <div class="terminal-log" id="email-log-${idx}"></div>
             </div>
           `).join('');
 
           el.innerHTML = `
-            <h2 class="step-heading">// STEP 6: WRITING PERSONALIZED EMAILS</h2>
+            <h2 class="step-heading">Writing Personalized Emails</h2>
             ${cardsHTML}
           `;
 
@@ -6554,12 +6680,12 @@
             const bullets = researchData[idx] || [];
 
             const lines = [
-              '// Loading personalization data...',
-              '// Applying ICP context...',
-              '// Crafting subject line...',
-              '// Writing email body...',
-              '// Applying deliverability rules...',
-              '// Email ready.'
+              'Loading personalization data...',
+              'Applying ICP context...',
+              'Crafting subject line...',
+              'Writing email body...',
+              'Applying deliverability rules...',
+              'Email ready.'
             ];
 
             for (let i = 0; i < lines.length; i++) {
@@ -6578,10 +6704,10 @@
                 body: JSON.stringify({
                   model: 'claude-sonnet-4-20250514',
                   max_tokens: 1024,
-                  system: "You are a cold email expert with 5 years of experience writing hyper-personalized cold emails for B2B outreach. Write a single cold email using the prospect research provided. Rules: under 120 words, no subject line fluff, open with a specific observation referencing their recent activity, one clear CTA, sound like a human wrote it, do not use em dashes. Return the output as JSON with exactly this structure: { subject: string, body: string }. Return only valid JSON, no markdown, no explanation.",
+                  system: "You are a cold email expert with 5 years of experience writing hyper-personalized cold emails for B2B outreach. Write a single cold email using the prospect research and the service/offer provided. Rules: under 120 words, no subject line fluff, open with a specific observation referencing their recent activity, one clear CTA about the service being pitched, sound like a human wrote it, do not use em dashes. Return the output as JSON with exactly this structure: { subject: string, body: string }. Return only valid JSON, no markdown, no explanation.",
                   messages: [{
                     role: 'user',
-                    content: `Prospect: ${prospect.name}, ${prospect.role} at ${prospect.company}\nRecent Activity: ${prospect.recentActivity}\n\nResearch Insights:\n${bullets.join('\n')}`
+                    content: `Service being pitched: ${pitchData.services}${pitchData.valueProposition ? '\nValue proposition: ' + pitchData.valueProposition : ''}\n\nProspect: ${prospect.name}, ${prospect.role} at ${prospect.company}\nRecent Activity: ${prospect.recentActivity}\n\nResearch Insights:\n${bullets.join('\n')}`
                   }]
                 })
               });
@@ -6606,14 +6732,14 @@
           }
 
           await new Promise(resolve => setTimeout(resolve, 500));
-          renderStep(7);
+          renderStep(8);
         }
 
-        // STEP 7: Spam Score Check
-        async function renderStep7(el) {
+        // STEP 8: Spam Score Check
+        async function renderStep8(el) {
           const cardsHTML = selectedProspects.map(idx => `
             <div class="terminal-card">
-              <h3 style="color: var(--cyan); font-family: 'JetBrains Mono', monospace; margin-bottom: 0.5rem;">// ${prospects[idx].name}</h3>
+              <h3 style="color: #c4b5fd; font-family: 'Inter', sans-serif; margin-bottom: 0.5rem; font-weight: 600;">${prospects[idx].name}</h3>
               <div class="spam-score-container">
                 <div class="spam-score-bar">
                   <div class="spam-score-fill" id="spam-fill-${idx}"></div>
@@ -6623,7 +6749,7 @@
           `).join('');
 
           el.innerHTML = `
-            <h2 class="step-heading">// STEP 7: SPAM ANALYSIS</h2>
+            <h2 class="step-heading">Spam Analysis</h2>
             ${cardsHTML}
           `;
 
@@ -6683,11 +6809,11 @@
           }
 
           await new Promise(resolve => setTimeout(resolve, 1500));
-          renderStep(8);
+          renderStep(9);
         }
 
-        // STEP 8: Deliverability Tips
-        function renderStep8(el) {
+        // STEP 9: Deliverability Report
+        function renderStep9(el) {
           const cardsHTML = selectedProspects.map(idx => {
             const scoreData = spamScores[idx] || { score: 85, issues: [] };
             const issuesHTML = scoreData.issues.length > 0
@@ -6696,7 +6822,7 @@
 
             return `
               <div class="terminal-card">
-                <h3 style="color: var(--cyan); font-family: 'JetBrains Mono', monospace; margin-bottom: 1rem;">// ${prospects[idx].name}</h3>
+                <h3 style="color: #c4b5fd; font-family: 'Inter', sans-serif; margin-bottom: 1rem; font-weight: 600;">${prospects[idx].name}</h3>
                 <ul class="issues-list">
                   ${issuesHTML}
                 </ul>
@@ -6706,18 +6832,18 @@
           }).join('');
 
           el.innerHTML = `
-            <h2 class="step-heading">// STEP 8: DELIVERABILITY REPORT</h2>
+            <h2 class="step-heading">Deliverability Report</h2>
             ${cardsHTML}
-            <button class="step-btn" id="previewBtn">Preview Emails</button>
+            <button class="step-btn" id="previewBtn">Preview Emails →</button>
           `;
 
           el.querySelector('#previewBtn').addEventListener('click', () => {
-            renderStep(9);
+            renderStep(10);
           });
         }
 
-        // STEP 9: Email Preview
-        function renderStep9(el) {
+        // STEP 10: Email Preview
+        function renderStep10(el) {
           const cardsHTML = selectedProspects.map(idx => {
             const prospect = prospects[idx];
             const email = emails[idx];
@@ -6729,12 +6855,12 @@
                 <div class="email-preview-field"><strong>Subject:</strong> ${email.subject}</div>
                 <div class="email-preview-body">${email.body}</div>
               </div>
-              <button class="step-btn" data-idx="${idx}">Send via Email App</button>
+              <button class="step-btn" data-idx="${idx}">Send via Email App →</button>
             `;
           }).join('');
 
           el.innerHTML = `
-            <h2 class="step-heading">// STEP 9: PREVIEW YOUR EMAILS</h2>
+            <h2 class="step-heading">Preview Your Emails</h2>
             ${cardsHTML}
           `;
 
@@ -6743,7 +6869,7 @@
             btn.addEventListener('click', (e) => {
               const idx = parseInt(e.target.dataset.idx);
               openMailto(idx);
-              renderStep(10);
+              renderStep(11);
             });
           });
         }
@@ -6756,18 +6882,18 @@
           window.location.href = mailtoLink;
         }
 
-        // STEP 10: Completion
-        function renderStep10(el) {
+        // STEP 11: Completion
+        function renderStep11(el) {
           el.innerHTML = `
-            <h2 class="step-heading">// STEP 10: SEND COMPLETE</h2>
+            <h2 class="step-heading">You're Done</h2>
             <div class="terminal-card">
               <div class="terminal-log">
-                <div class="terminal-log-line">// Email loaded in your mail app. Hit send to launch your outreach.</div>
+                <div class="terminal-log-line">Email loaded in your mail app — hit send to launch your outreach.</div>
               </div>
             </div>
-            <div style="text-align: center; margin-top: 3rem;">
-              <p style="font-family: 'JetBrains Mono', monospace; color: rgba(255,255,255,0.6); font-size: 0.95rem; margin-bottom: 1.5rem;">// System complete. ${selectedProspects.length} emails processed. This is what SlideIn's outbound infrastructure does at scale, automatically, every day.</p>
-              <button class="cta-strategy-btn" id="bookCallBtn">// Book a Strategy Call</button>
+            <div style="text-align: center; margin-top: 2.5rem;">
+              <p style="font-family: 'Inter', sans-serif; color: rgba(255,255,255,0.55); font-size: 0.9rem; margin-bottom: 1.5rem;">${selectedProspects.length} emails processed. This is what SlideIn's outbound infrastructure does at scale, automatically, every day.</p>
+              <button class="cta-strategy-btn" id="bookCallBtn">Book a Strategy Call</button>
             </div>
           `;
 
