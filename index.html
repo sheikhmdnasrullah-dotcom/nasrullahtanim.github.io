@@ -15,9 +15,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@700;800&family=Inter:wght@300;400;500;600&family=Syne:wght@700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&family=Fraunces:opsz,wght@9..144,200;9..144,900&family=Sora:wght@300;600&display=swap" rel="stylesheet">
   </noscript>
-  <script src="https://fast.wistia.com/player.js" async></script>
-  <script src="https://fast.wistia.com/embed/x7ydzmpcdc.js" async type="module"></script>
-  <script src="https://fast.wistia.com/embed/jkd9o74r18.js" async type="module"></script>
   <style>
     /* ========== CSS RESET ========== */
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -1029,19 +1026,6 @@
       transform: none;
       box-shadow: none;
       background: var(--surface);
-    }
-
-    /* Wistia popover player - visually hidden but functional */
-    .wistia-popover-player {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0, 0, 0, 0);
-      white-space: nowrap;
-      border: 0;
     }
 
     .expertise-tools {
@@ -4698,7 +4682,7 @@
 
   <!-- ========== NAVBAR ========== -->
   <nav class="navbar">
-    <div class="navbar-brand" data-section="about" role="button"></div>
+    <div class="navbar-brand" data-section="about" role="button">Nasrullah Tanim</div>
 
     <ul class="navbar-nav">
       <li><a class="nav-link active" data-section="about">About</a></li>
@@ -4933,7 +4917,6 @@
             <div class="video-embed video-embed--portrait"><iframe src="https://www.youtube.com/embed/u-lQqR65Ox0" allowfullscreen loading="lazy"></iframe></div>
             <div class="video-embed video-embed--portrait"><iframe src="https://www.youtube.com/embed/vgvHQRCwPq0" allowfullscreen loading="lazy"></iframe></div>
             <div class="video-embed video-embed--portrait"><iframe src="https://www.youtube.com/embed/_zX8pe1S96g" allowfullscreen loading="lazy"></iframe></div>
-            <div class="video-embed video-embed--portrait"><iframe src="https://www.youtube.com/embed/YIOb6yP-Vqg" allowfullscreen loading="lazy"></iframe></div>
             <div class="video-embed video-embed--portrait"><iframe src="https://www.youtube.com/embed/g_D2BvQIAkw" allowfullscreen loading="lazy"></iframe></div>
           </div>
         </div>
@@ -5343,7 +5326,7 @@
             </div>
             <div class="form-group">
               <label for="contactMessage">Message</label>
-              <textarea id="contactMessage" name="message" placeholder="// tell me about what you're building and what bottleneck you're trying to solve..."></textarea>
+              <textarea id="contactMessage" name="message" placeholder="// tell me about what you're building and what bottleneck you're trying to solve..." required></textarea>
             </div>
             <button type="submit" class="submit-btn">
               Send message
@@ -5747,26 +5730,6 @@
           const targetContent = document.getElementById(targetTab + 'Content');
           if (targetContent) {
             targetContent.classList.add('active');
-          }
-        });
-      });
-
-      // ===== WISTIA POPOVER TRIGGERS =====
-      document.querySelectorAll('.wistia-popover-trigger').forEach(btn => {
-        btn.addEventListener('click', function() {
-          const mediaId = this.dataset.wistiaId;
-          const player = document.querySelector(`wistia-player[media-id="${mediaId}"]`);
-          if (player) {
-            // Trigger click on the wistia-player to open popover
-            player.click();
-            // Also try the Wistia API if available
-            if (window.Wistia && window.Wistia.api) {
-              const video = window.Wistia.api(mediaId);
-              if (video) {
-                video.popover.show();
-                video.play();
-              }
-            }
           }
         });
       });
@@ -6311,7 +6274,7 @@
           }
 
           const data = await response.json();
-          const agentResponse = data.response;
+          const agentResponse = data.content[0].text;
 
           voiceConversationHistory.push({ role: 'assistant', content: agentResponse });
           addVoiceTranscript('Agent', agentResponse);
