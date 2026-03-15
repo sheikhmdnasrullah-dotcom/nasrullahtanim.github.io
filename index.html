@@ -5032,59 +5032,6 @@
             <button class="expertise-btn expertise-btn--secondary" onclick="openYoutubeModal('https://www.youtube.com/embed/avRBuBSSdUg')">Service Explained</button>
           </div>
 
-          <!-- ========== COLD EMAIL GRADER (MOVED INSIDE OUTBOUND CARD) ========== -->
-          <div class="email-grader-section animate-up">
-            <div class="email-grader-container">
-              <textarea
-                id="emailGraderInput"
-                class="email-grader-textarea"
-                placeholder="// Paste your cold email here..."
-                aria-label="Cold email input"
-              ></textarea>
-              <button id="gradeEmailBtn" class="grade-btn">Grade It</button>
-              <div id="graderError" class="grader-error"></div>
-              <div id="graderOutput" class="grader-output">
-                <div class="score-bar-container">
-                  <div class="score-bar-label">
-                    <span>Personalization</span>
-                    <span class="score-bar-value" id="personalizationScore">0</span>
-                  </div>
-                  <div class="score-bar-track">
-                    <div class="score-bar-fill" id="personalizationBar" style="width: 0%"></div>
-                  </div>
-                </div>
-                <div class="score-bar-container">
-                  <div class="score-bar-label">
-                    <span>Subject Line</span>
-                    <span class="score-bar-value" id="subjectLineScore">0</span>
-                  </div>
-                  <div class="score-bar-track">
-                    <div class="score-bar-fill" id="subjectLineBar" style="width: 0%"></div>
-                  </div>
-                </div>
-                <div class="score-bar-container">
-                  <div class="score-bar-label">
-                    <span>CTA Clarity</span>
-                    <span class="score-bar-value" id="ctaClarityScore">0</span>
-                  </div>
-                  <div class="score-bar-track">
-                    <div class="score-bar-fill" id="ctaClarityBar" style="width: 0%"></div>
-                  </div>
-                </div>
-                <div class="score-bar-container">
-                  <div class="score-bar-label">
-                    <span>Deliverability Risk</span>
-                    <span class="score-bar-value" id="deliverabilityRiskScore">0</span>
-                  </div>
-                  <div class="score-bar-track">
-                    <div class="score-bar-fill" id="deliverabilityRiskBar" style="width: 0%"></div>
-                  </div>
-                </div>
-                <div class="grader-verdict" id="graderVerdict"></div>
-              </div>
-            </div>
-          </div>
-
           <!-- Send Cold Email Button -->
           <button class="cold-email-launcher-btn" id="coldEmailLauncherBtn">
             <span class="btn-text">// Send a Cold Email Right Now</span>
